@@ -3,10 +3,13 @@ import * as THREE from "three";
 export function Lights() {
   return (
     <>
-      {/* Head light - frontal illumination */}
+      {/* Ambient light for overall illumination */}
+      <ambientLight intensity={0.3} color={0x404040} />
+      
+      {/* Main directional light (sun) */}
       <directionalLight
-        position={[0, 0, 10]}
-        intensity={0.4}
+        position={[10, 10, 5]}
+        intensity={1.5}
         color={0xffffff}
         castShadow
         shadow-mapSize-width={2048}
@@ -18,22 +21,21 @@ export function Lights() {
         shadow-camera-bottom={-10}
       />
       
-      {/* Back light - blue illumination from behind */}
+      {/* Rim light for atmospheric effect */}
       <directionalLight
-        position={[0, 0, -10]}
-        intensity={0.8}
-        color={0x00a8ff}
+        position={[-10, -10, -5]}
+        intensity={0.5}
+        color={0x88ccff}
       />
       
-      {/* Ground glow - blue underglow from below */}
-      <directionalLight
-        position={[0, -8, 0]}
-        intensity={0.6}
-        color={0x0094ff}
+      {/* Point light for additional highlights */}
+      <pointLight
+        position={[0, 0, 10]}
+        intensity={0.3}
+        color={0xffffff}
+        distance={20}
+        decay={2}
       />
-      
-      {/* Ambient light for subtle overall illumination */}
-      <ambientLight intensity={0.1} color={0x404040} />
     </>
   );
 }
