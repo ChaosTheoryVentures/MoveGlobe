@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { Scene } from "./components/Scene";
 import { Navbar } from "./components/ui/navbar";
 import { Footer } from "./components/ui/footer";
+import { Overlay } from "./components/ui/overlay";
 import "@fontsource/inter";
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         </Suspense>
       </Canvas>
       
+      <Overlay />
       <Navbar />
       <Footer />
     </div>
