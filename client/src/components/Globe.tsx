@@ -1,10 +1,26 @@
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useTexture } from "@react-three/drei";
 
 export function Globe() {
   const meshRef = useRef<THREE.Mesh>(null);
+  const { size } = useThree();
+  const [globeScale, setGlobeScale] = useState(1);
+
+  // Calculate responsive scale based on screen size
+  useEffect(() => {
+    const isMobile = size.width < 768;
+    const isTablet = size.width >= 768 && size.width < 1024;
+    
+    if (isMobile) {
+      setGlobeScale(0.6); // Smaller on mobile
+    } else if (isTablet) {
+      setGlobeScale(0.8); // Medium on tablet
+    } else {
+      setGlobeScale(1); // Full size on desktop
+    }
+  }, [size.width]);
   
   // Load the authentic landmask texture
   const landTexture = useTexture("/land_dotted.png");
@@ -60,7 +76,7 @@ export function Globe() {
   });
   
   return (
-    <group>
+    <group scale={[globeScale, globeScale, globeScale]}>
       {/* Main Digital Earth sphere */}
       <mesh ref={meshRef} castShadow receiveShadow>
         <sphereGeometry args={[2, 64, 64]} />

@@ -28,8 +28,8 @@ export function Scene() {
         enableRotate={true}
         rotateSpeed={0.4}
         zoomSpeed={0.6}
-        minDistance={4}
-        maxDistance={15}
+        minDistance={2.5}
+        maxDistance={12}
         maxPolarAngle={Math.PI}
         minPolarAngle={0}
         target={[0, 0, 0]}
