@@ -33,9 +33,9 @@ export function Footer() {
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-t border-white/10">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0">
+        <div className="flex flex-col items-center space-y-3">
           {/* Company Logo */}
-          <div className="flex items-center order-1 lg:order-1">
+          <div className="flex items-center">
             <img 
               src="/logo.svg" 
               alt="MOVE Logo" 
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 order-3 lg:order-2">
+          <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8">
             <a 
               href="#privacy" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
@@ -86,7 +86,7 @@ export function Footer() {
           {/* Language Switcher */}
           <button
             onClick={toggleLanguage}
-            className="flex items-center space-x-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200 order-2 lg:order-3"
+            className="flex items-center space-x-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200"
           >
             <span className="text-white text-xs sm:text-sm">
               {language === 'en' ? 'Language:' : 'Taal:'}
