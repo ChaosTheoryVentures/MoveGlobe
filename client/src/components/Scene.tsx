@@ -24,7 +24,7 @@ export function Scene() {
       {/* Camera Controls */}
       <OrbitControls
         enablePan={false}
-        enableZoom={true}
+        enableZoom={false}
         enableRotate={true}
         zoomSpeed={0.6}
         panSpeed={0.5}
