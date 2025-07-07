@@ -84,15 +84,51 @@ function latLonToCartesian(lat: number, lon: number, radius: number = 2.01): THR
   return new THREE.Vector3(x, y, z);
 }
 
+// Create curved path between two points on sphere
+function createCurvedPath(start: THREE.Vector3, end: THREE.Vector3, segments: number = 32): THREE.Vector3[] {
+  const points: THREE.Vector3[] = [];
+  
+  // Calculate mid-point with elevation for arc effect
+  const midPoint = new THREE.Vector3()
+    .addVectors(start, end)
+    .multiplyScalar(0.5);
+  
+  // Add elevation to mid-point for curved effect
+  const distance = start.distanceTo(end);
+  const elevation = Math.min(distance * 0.3, 0.8); // Limit elevation
+  midPoint.normalize().multiplyScalar(2.01 + elevation);
+  
+  // Create quadratic bezier curve
+  for (let i = 0; i <= segments; i++) {
+    const t = i / segments;
+    const point = new THREE.Vector3()
+      .copy(start)
+      .multiplyScalar((1 - t) * (1 - t))
+      .add(midPoint.clone().multiplyScalar(2 * (1 - t) * t))
+      .add(end.clone().multiplyScalar(t * t));
+    
+    points.push(point);
+  }
+  
+  return points;
+}
+
+interface Connection {
+  from: THREE.Vector3;
+  to: THREE.Vector3;
+  fromId: string;
+  toId: string;
+  isToCore: boolean;
+}
+
 export function NetworkNodes() {
   const groupRef = useRef<THREE.Group>(null);
-  const lineRef = useRef<THREE.LineSegments>(null);
   const time = useRef(0);
   
   // Process network data and create 3D positions
   const { nodes, connections } = useMemo(() => {
     const allNodes = new Map();
-    const allConnections: Array<{from: THREE.Vector3, to: THREE.Vector3}> = [];
+    const allConnections: Connection[] = [];
     
     // Add AI-Core at center (0,0,0)
     allNodes.set("AI-Core", {
@@ -114,7 +150,7 @@ export function NetworkNodes() {
       });
     });
     
-    // Create connection lines
+    // Create connection lines with metadata
     allNodes.forEach(node => {
       if (node.connections) {
         node.connections.forEach((connId: string) => {
@@ -122,7 +158,10 @@ export function NetworkNodes() {
           if (targetNode) {
             allConnections.push({
               from: node.position,
-              to: targetNode.position
+              to: targetNode.position,
+              fromId: node.id,
+              toId: connId,
+              isToCore: connId === "AI-Core"
             });
           }
         });
@@ -132,60 +171,110 @@ export function NetworkNodes() {
     return { nodes: Array.from(allNodes.values()), connections: allConnections };
   }, []);
   
-  // Create line geometry for connections
-  const lineGeometry = useMemo(() => {
-    const points: number[] = [];
-    connections.forEach(conn => {
-      points.push(conn.from.x, conn.from.y, conn.from.z);
-      points.push(conn.to.x, conn.to.y, conn.to.z);
-    });
-    
-    const geometry = new THREE.BufferGeometry();
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(points, 3));
-    return geometry;
-  }, [connections]);
-  
   useFrame((state, delta) => {
     time.current += delta;
-    
-    // Pulse animation for connections
-    if (lineRef.current) {
-      const material = lineRef.current.material as THREE.LineBasicMaterial;
-      material.opacity = 0.3 + Math.sin(time.current * 2) * 0.2;
-    }
   });
   
   return (
     <group ref={groupRef}>
-      {/* Connection lines */}
-      <lineSegments ref={lineRef} geometry={lineGeometry}>
-        <lineBasicMaterial
-          color={0x0072ff}
-          transparent={true}
-          opacity={0.4}
-        />
-      </lineSegments>
+      {/* Connection lines with different styles */}
+      {connections.map((conn, index) => {
+        const curvePoints = createCurvedPath(conn.from, conn.to, 16);
+        const curve = new THREE.CatmullRomCurve3(curvePoints);
+        const points = curve.getPoints(32);
+        
+        return (
+          <group key={`${conn.fromId}-${conn.toId}-${index}`}>
+            {/* Main connection line */}
+            <line>
+              <bufferGeometry>
+                <bufferAttribute
+                  attach="attributes-position"
+                  count={points.length}
+                  array={new Float32Array(points.flatMap(p => [p.x, p.y, p.z]))}
+                  itemSize={3}
+                />
+              </bufferGeometry>
+              <lineBasicMaterial
+                color={conn.isToCore ? 0xff6600 : 0x0072ff}
+                transparent={true}
+                opacity={conn.isToCore ? 0.7 : 0.5}
+                linewidth={conn.isToCore ? 3 : 2}
+              />
+            </line>
+            
+            {/* Animated data pulse */}
+            <mesh
+              position={points[Math.floor((Math.sin(time.current * 2 + index) + 1) * 0.5 * (points.length - 1))]}
+              scale={[0.8, 0.8, 0.8]}
+            >
+              <sphereGeometry args={[0.02, 8, 8]} />
+              <meshBasicMaterial
+                color={conn.isToCore ? 0xffaa00 : 0x00aaff}
+                transparent={true}
+                opacity={0.8}
+              />
+            </mesh>
+          </group>
+        );
+      })}
       
-      {/* Network nodes */}
+      {/* Network nodes with enhanced visuals */}
       {nodes.map((node) => (
-        <mesh key={node.id} position={node.position}>
-          <sphereGeometry args={[node.isCore ? 0.08 : 0.05, 16, 16]} />
-          <meshBasicMaterial
-            color={node.isCore ? 0xff6600 : 0x00aaff}
-            transparent={true}
-            opacity={node.isCore ? 0.9 : 0.8}
-          />
-          
-          {/* Node glow effect */}
-          <mesh position={[0, 0, 0]} scale={[1.5, 1.5, 1.5]}>
-            <sphereGeometry args={[node.isCore ? 0.08 : 0.05, 16, 16]} />
+        <group key={node.id}>
+          {/* Main node */}
+          <mesh position={node.position}>
+            <sphereGeometry args={[node.isCore ? 0.12 : 0.06, 16, 16]} />
             <meshBasicMaterial
               color={node.isCore ? 0xff6600 : 0x0072ff}
               transparent={true}
-              opacity={0.2}
+              opacity={node.isCore ? 1.0 : 0.9}
             />
           </mesh>
-        </mesh>
+          
+          {/* Pulsing glow effect */}
+          <mesh 
+            position={node.position}
+            scale={[
+              1 + Math.sin(time.current * 3) * 0.2,
+              1 + Math.sin(time.current * 3) * 0.2,
+              1 + Math.sin(time.current * 3) * 0.2
+            ]}
+          >
+            <sphereGeometry args={[node.isCore ? 0.16 : 0.08, 16, 16]} />
+            <meshBasicMaterial
+              color={node.isCore ? 0xff6600 : 0x0072ff}
+              transparent={true}
+              opacity={node.isCore ? 0.3 : 0.2}
+            />
+          </mesh>
+          
+          {/* Outer glow ring */}
+          <mesh position={node.position}>
+            <sphereGeometry args={[node.isCore ? 0.20 : 0.10, 16, 16]} />
+            <meshBasicMaterial
+              color={node.isCore ? 0xff6600 : 0x0072ff}
+              transparent={true}
+              opacity={0.1}
+            />
+          </mesh>
+          
+          {/* Data activity indicator */}
+          {!node.isCore && (
+            <mesh 
+              position={node.position.clone().add(new THREE.Vector3(0, 0.08, 0))}
+              rotation={[0, time.current * 2, 0]}
+            >
+              <ringGeometry args={[0.03, 0.05, 8]} />
+              <meshBasicMaterial
+                color={0x00ffff}
+                transparent={true}
+                opacity={0.6}
+                side={THREE.DoubleSide}
+              />
+            </mesh>
+          )}
+        </group>
       ))}
     </group>
   );
