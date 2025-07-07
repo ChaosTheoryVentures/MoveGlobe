@@ -21,19 +21,20 @@ export function Scene() {
       {/* Main Globe */}
       <Globe />
       
-      {/* Camera Controls - Disabled for scrolling */}
+      {/* Camera Controls */}
       <OrbitControls
-        enabled={false}
         enablePan={false}
-        enableZoom={false}
-        enableRotate={false}
+        enableZoom={true}
+        enableRotate={true}
+        rotateSpeed={0.4}
+        zoomSpeed={0.6}
         minDistance={2.5}
         maxDistance={12}
         maxPolarAngle={Math.PI}
         minPolarAngle={0}
         target={[0, 0, 0]}
-        autoRotate={true}
-        autoRotateSpeed={0.5}
+        autoRotate={false}
+        autoRotateSpeed={0}
         touches={{
           ONE: 2, // Touch rotate
           TWO: 1  // Touch zoom

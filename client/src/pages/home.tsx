@@ -7,43 +7,38 @@ import { Overlay } from "../components/ui/overlay";
 
 export default function Home() {
   return (
-    <div className="min-h-screen relative overflow-y-auto" style={{ 
-      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
+    <div style={{ 
+      width: '100vw', 
+      height: '100vh', 
+      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)',
+      overflow: 'hidden'
     }}>
-      <div className="fixed inset-0 pointer-events-none">
-        <Canvas
-          shadows
-          camera={{
-            position: [3, 2, 6],
-            fov: 45,
-            near: 0.1,
-            far: 1000
-          }}
-          gl={{
-            antialias: true,
-            powerPreference: "default"
-          }}
-          style={{ 
-            width: '100%', 
-            height: '100%',
-            background: 'transparent'
-          }}
-        >
-          <Suspense fallback={null}>
-            <Scene />
-          </Suspense>
-        </Canvas>
-      </div>
+      <Canvas
+        shadows
+        camera={{
+          position: [3, 2, 6],
+          fov: 45,
+          near: 0.1,
+          far: 1000
+        }}
+        gl={{
+          antialias: true,
+          powerPreference: "default"
+        }}
+        style={{ 
+          width: '100%', 
+          height: '100%',
+          touchAction: 'none'
+        }}
+      >
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
+      </Canvas>
       
-      <div className="relative z-10">
-        <Navbar />
-        <Overlay />
-        
-        {/* Spacer to enable scrolling */}
-        <div style={{ height: '150vh' }}></div>
-        
-        <Footer />
-      </div>
+      <Overlay />
+      <Navbar />
+      <Footer />
     </div>
   );
 }
