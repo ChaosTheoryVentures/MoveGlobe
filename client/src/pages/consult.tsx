@@ -1,8 +1,5 @@
-import { Canvas } from "@react-three/fiber";
 import { Suspense, useState, useEffect } from "react";
-import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
-import { StarField } from "../components/StarField";
 
 export default function Consult() {
   const [language, setLanguage] = useState<'en' | 'nl'>('en');
@@ -77,6 +74,82 @@ export default function Consult() {
   return (
     <div className="min-h-screen bg-white">
       <div className="relative z-10 h-screen overflow-y-auto">
+        {/* Navigation */}
+        <nav className="bg-white shadow-sm border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                <a href="/">
+                  <img 
+                    src="/logo.svg" 
+                    alt="MOVE Logo" 
+                    className="h-8 w-auto"
+                  />
+                </a>
+              </div>
+              
+              {/* Navigation Links */}
+              <div className="hidden md:block">
+                <div className="flex items-center space-x-8">
+                  {/* Sectoren Dropdown */}
+                  <div className="relative group">
+                    <button className="text-gray-700 hover:text-[#4746a4] px-3 py-2 text-sm font-medium flex items-center">
+                      {language === 'en' ? 'Sectors' : 'Sectoren'}
+                      <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="py-1">
+                        <a href="/sectoren" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          {language === 'en' ? 'All Sectors' : 'Alle Sectoren'}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Oplossingen Dropdown */}
+                  <div className="relative group">
+                    <button className="text-gray-700 hover:text-[#4746a4] px-3 py-2 text-sm font-medium flex items-center">
+                      {language === 'en' ? 'Solutions' : 'Oplossingen'}
+                      <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="py-1">
+                        <a href="/oplossingen" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                          {language === 'en' ? 'All Solutions' : 'Alle Oplossingen'}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Cases */}
+                  <a href="/cases" className="text-gray-700 hover:text-[#4746a4] px-3 py-2 text-sm font-medium">
+                    Cases
+                  </a>
+                  
+                  {/* Consult */}
+                  <a href="/consult" className="bg-[#4746a4] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#3d3a8f] transition-colors">
+                    {language === 'en' ? 'Consult' : 'Consultatie'}
+                  </a>
+                </div>
+              </div>
+              
+              {/* Mobile menu button */}
+              <div className="md:hidden">
+                <button className="text-gray-700 hover:text-[#4746a4] p-2">
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+        
         <div className="bg-[#4746a4] text-white text-center py-2 px-4">
           <p className="text-sm font-medium">
             {language === 'en' ? 'Limited time: €750 comprehensive AI audit (normally €1,200)' : 'Beperkte tijd: €750 uitgebreide AI-audit (normaal €1,200)'}
@@ -246,6 +319,8 @@ export default function Consult() {
             </div>
           </div>
         </div>
+        
+        <Footer />
       </div>
     </div>
   );
