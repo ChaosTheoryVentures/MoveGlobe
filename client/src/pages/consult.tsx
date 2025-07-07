@@ -75,153 +75,177 @@ export default function Consult() {
   const t = content[language];
 
   return (
-    <div className="min-h-screen relative" style={{ 
-      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
-    }}>
-      <div className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
-          <Suspense fallback={null}>
-            <StarField />
-          </Suspense>
-        </Canvas>
-      </div>
-      
-      <div className="relative z-10 h-screen overflow-y-auto">
-        <Navbar />
-        <div className="pt-20 pb-16 px-4 min-h-full">
-          <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-white">
+      <div className="relative z-10 overflow-y-auto">
+        <div className="bg-[#4746a4] text-white text-center py-2 px-4">
+          <p className="text-sm font-medium">
+            {language === 'en' ? 'Limited time: €750 comprehensive AI audit (normally €1,200)' : 'Beperkte tijd: €750 uitgebreide AI-audit (normaal €1,200)'}
+          </p>
+        </div>
+        
+        <div className="py-12 px-4">
+          <div className="max-w-4xl mx-auto">
             {/* Hero Section */}
-            <div className="max-w-4xl mx-auto text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-                <span className="bg-gradient-to-r from-[#4746a4] to-purple-600 bg-clip-text text-transparent">
-                  {t.title1}
-                </span>{" "}
+            <div className="text-center mb-12">
+              <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <span className="text-[#4746a4]">{t.title1}</span>{" "}
                 {t.title2}
               </h1>
               
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed mb-6">
+              <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-6 max-w-3xl mx-auto">
                 {t.text1}
               </p>
               
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
+              <p className="text-lg text-gray-600 leading-relaxed mb-6 max-w-2xl mx-auto">
                 {t.text2}
               </p>
               
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed font-semibold">
+              <p className="text-lg text-gray-800 leading-relaxed font-semibold mb-8 max-w-2xl mx-auto">
                 {t.text3}
               </p>
+
+              {/* Social Proof */}
+              <div className="flex justify-center items-center gap-8 mb-8 text-sm text-gray-600">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>{language === 'en' ? '50+ businesses helped' : '50+ bedrijven geholpen'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>{language === 'en' ? 'Average 35% cost savings' : 'Gemiddeld 35% kostenbesparing'}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-600">✓</span>
+                  <span>{language === 'en' ? '24h delivery' : '24u levering'}</span>
+                </div>
+              </div>
             </div>
             
             {/* Form Section */}
-            <div className="max-w-2xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+            <div className="max-w-xl mx-auto">
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-200">
                 <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-white mb-4">{t.formTitle}</h2>
-                  <div className="inline-flex items-center gap-3 bg-[#4746a4]/20 px-6 py-3 rounded-full">
-                    <span className="text-2xl font-bold text-[#4746a4]">€750</span>
-                    <span className="text-white/80">{t.investment}</span>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.formTitle}</h2>
+                  <div className="bg-gradient-to-r from-[#4746a4] to-purple-600 text-white px-6 py-3 rounded-full inline-block mb-4">
+                    <span className="text-2xl font-bold">€750</span>
+                    <span className="text-sm ml-2 opacity-90">({t.investment})</span>
                   </div>
+                  <p className="text-sm text-gray-600">
+                    {language === 'en' ? 'Book your audit today - limited slots available this month' : 'Boek je audit vandaag - beperkte plekken beschikbaar deze maand'}
+                  </p>
                 </div>
                 
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <form className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-white mb-2 font-medium">{t.firstName} *</label>
+                      <label className="block text-gray-700 mb-2 font-medium text-sm">{t.firstName} *</label>
                       <input 
                         type="text" 
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all"
                         placeholder={language === 'en' ? "John" : "Jan"}
                       />
                     </div>
                     <div>
-                      <label className="block text-white mb-2 font-medium">{t.lastName} *</label>
+                      <label className="block text-gray-700 mb-2 font-medium text-sm">{t.lastName} *</label>
                       <input 
                         type="text" 
                         required
-                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all"
                         placeholder={language === 'en' ? "Doe" : "Jansen"}
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-white mb-2 font-medium">{t.companyName} *</label>
-                    <input 
-                      type="text" 
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
-                      placeholder={language === 'en' ? "Your Company" : "Uw Bedrijf"}
-                    />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white mb-2 font-medium">{t.email} *</label>
+                    <label className="block text-gray-700 mb-2 font-medium text-sm">{t.email} *</label>
                     <input 
                       type="email" 
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all"
                       placeholder={language === 'en' ? "john@company.com" : "jan@bedrijf.nl"}
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white mb-2 font-medium">{t.phone} *</label>
+                    <label className="block text-gray-700 mb-2 font-medium text-sm">{t.phone} *</label>
                     <input 
                       type="tel" 
                       required
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all"
                       placeholder="+31 6 12345678"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white mb-2 font-medium">{t.employees}</label>
-                    <select 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-[#4746a4] focus:outline-none transition-colors"
-                    >
-                      <option value="" className="bg-gray-800">{t.selectRange}</option>
-                      <option value="1-10" className="bg-gray-800">1-10</option>
-                      <option value="11-50" className="bg-gray-800">11-50</option>
-                      <option value="51-200" className="bg-gray-800">51-200</option>
-                      <option value="200+" className="bg-gray-800">200+</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label className="block text-white mb-2 font-medium">{t.challenge} *</label>
-                    <textarea 
+                    <label className="block text-gray-700 mb-2 font-medium text-sm">{t.companyName} *</label>
+                    <input 
+                      type="text" 
                       required
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors resize-none"
-                      placeholder={t.challengePlaceholder}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all"
+                      placeholder={language === 'en' ? "Your Company" : "Uw Bedrijf"}
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white mb-2 font-medium">{t.preferredDate}</label>
-                    <input 
-                      type="date" 
-                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white focus:border-[#4746a4] focus:outline-none transition-colors"
+                    <label className="block text-gray-700 mb-2 font-medium text-sm">{t.challenge} *</label>
+                    <textarea 
+                      required
+                      rows={3}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 text-gray-900 placeholder-gray-500 focus:border-[#4746a4] focus:ring-2 focus:ring-[#4746a4]/20 focus:outline-none transition-all resize-none"
+                      placeholder={t.challengePlaceholder}
                     />
                   </div>
                   
                   <button 
                     type="submit"
-                    className="w-full bg-gradient-to-r from-[#4746a4] to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity transform hover:scale-[1.02] active:scale-[0.98] transition-transform"
+                    className="w-full bg-gradient-to-r from-[#4746a4] to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                   >
                     {t.submitButton}
                   </button>
                   
-                  <p className="text-white/60 text-sm text-center">
-                    {t.disclaimer}
-                  </p>
+                  <div className="text-center">
+                    <p className="text-gray-500 text-xs mb-2">
+                      {t.disclaimer}
+                    </p>
+                    <div className="flex justify-center items-center gap-4 text-xs text-gray-400">
+                      <span>🔒 {language === 'en' ? 'Secure & confidential' : 'Veilig & vertrouwelijk'}</span>
+                      <span>💼 {language === 'en' ? 'No spam, ever' : 'Geen spam, ooit'}</span>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
+            
+            {/* Additional Trust Signals */}
+            <div className="max-w-2xl mx-auto mt-12 text-center">
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#4746a4] mb-2">4 hrs</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Deep dive session' : 'Diepgaande sessie'}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#4746a4] mb-2">24h</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Delivery time' : 'Levertijd'}</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#4746a4] mb-2">35%</div>
+                  <div className="text-sm text-gray-600">{language === 'en' ? 'Avg. cost savings' : 'Gem. kostenbesparing'}</div>
+                </div>
+              </div>
+              
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+                <p className="text-sm text-yellow-800 font-medium">
+                  ⚡ {language === 'en' ? 'Only 3 audit slots left this month. Book now to secure your spot.' : 'Slechts 3 audit plekken over deze maand. Boek nu om je plek te reserveren.'}
+                </p>
+              </div>
+              
+              <p className="text-xs text-gray-500">
+                {language === 'en' ? 'MOVE - AI Automation Experts | Amsterdam, Netherlands' : 'MOVE - AI Automatisering Experts | Amsterdam, Nederland'}
+              </p>
+            </div>
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   );
