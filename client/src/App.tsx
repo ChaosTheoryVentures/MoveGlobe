@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Scene } from "./components/Scene";
+import { Footer } from "./components/ui/footer";
 import "@fontsource/inter";
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
         </Suspense>
       </Canvas>
       
-
+      <Footer />
     </div>
   );
 }
