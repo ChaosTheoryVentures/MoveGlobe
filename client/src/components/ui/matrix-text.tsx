@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 interface MatrixTextProps {
   texts: string[];
@@ -58,7 +59,7 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           {description}
         </p>
         
-        <button className="pointer-events-auto relative px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
+        <Link to="/consult" className="pointer-events-auto relative inline-block px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
           {/* Glass background */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-white/10 rounded-full"></div>
           
@@ -81,7 +82,7 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           
           {/* Bottom glow on hover */}
           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#4746a4] to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-        </button>
+        </Link>
       </div>
     </div>
   );

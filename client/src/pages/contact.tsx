@@ -3,8 +3,12 @@ import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarField } from "../components/StarField";
+import { Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function Contact() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen relative" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
@@ -22,31 +26,31 @@ export default function Contact() {
         <div className="pt-24 pb-16 px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-              Contact
+              {t('contact.title')}
             </h1>
             
             <div className="grid md:grid-cols-2 gap-8">
               {/* Contact Information */}
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <h2 className="text-2xl font-semibold text-white mb-6">Get in Touch</h2>
+                <h2 className="text-2xl font-semibold text-white mb-6">{t('contact.getInTouch')}</h2>
                 
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Email</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">{t('contact.email')}</h3>
                     <a href="mailto:info@move.ai" className="text-[#4746a4] hover:text-white transition-colors">
                       info@move.ai
                     </a>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Phone</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">{t('contact.phone')}</h3>
                     <a href="tel:+31123456789" className="text-[#4746a4] hover:text-white transition-colors">
                       +31 (0) 12 345 6789
                     </a>
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Address</h3>
+                    <h3 className="text-lg font-medium text-white mb-2">{t('contact.address')}</h3>
                     <p className="text-white/80">
                       Science Park 904<br/>
                       1098 XH Amsterdam<br/>
@@ -55,53 +59,76 @@ export default function Contact() {
                   </div>
                   
                   <div>
-                    <h3 className="text-lg font-medium text-white mb-2">Business Hours</h3>
-                    <p className="text-white/80">
-                      Monday - Friday: 9:00 - 18:00<br/>
-                      Weekend: By appointment
+                    <h3 className="text-lg font-medium text-white mb-2">{t('contact.businessHours')}</h3>
+                    <p className="text-white/80" style={{ whiteSpace: 'pre-line' }}>
+                      {t('contact.businessHoursText')}
                     </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-lg font-medium text-white mb-2">{t('contact.followUs')}</h3>
+                    <div className="flex space-x-4">
+                      <a 
+                        href="https://linkedin.com/company/move-ai" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 text-[#4746a4] hover:text-white transition-colors"
+                      >
+                        <Linkedin className="w-5 h-5" />
+                        <span>LinkedIn</span>
+                      </a>
+                      <a 
+                        href="https://instagram.com/moveai" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 text-[#4746a4] hover:text-white transition-colors"
+                      >
+                        <Instagram className="w-5 h-5" />
+                        <span>Instagram</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Contact Form */}
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <h2 className="text-2xl font-semibold text-white mb-6">Send Message</h2>
+                <h2 className="text-2xl font-semibold text-white mb-6">{t('contact.sendMessage')}</h2>
                 
                 <form className="space-y-4">
                   <div>
-                    <label className="block text-white/80 mb-2">Name</label>
+                    <label className="block text-white/80 mb-2">{t('contact.name')}</label>
                     <input 
                       type="text" 
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
-                      placeholder="Your name"
+                      placeholder={t('contact.namePlaceholder')}
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white/80 mb-2">Email</label>
+                    <label className="block text-white/80 mb-2">{t('contact.email')}</label>
                     <input 
                       type="email" 
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
-                      placeholder="your@email.com"
+                      placeholder={t('contact.emailPlaceholder')}
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white/80 mb-2">Company</label>
+                    <label className="block text-white/80 mb-2">{t('contact.company')}</label>
                     <input 
                       type="text" 
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
-                      placeholder="Your company"
+                      placeholder={t('contact.companyPlaceholder')}
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-white/80 mb-2">Message</label>
+                    <label className="block text-white/80 mb-2">{t('contact.message')}</label>
                     <textarea 
                       rows={4}
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors resize-none"
-                      placeholder="Tell us about your project..."
+                      placeholder={t('contact.messagePlaceholder')}
                     ></textarea>
                   </div>
                   
@@ -109,7 +136,7 @@ export default function Contact() {
                     type="submit"
                     className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                   >
-                    Send Message
+                    {t('contact.sendButton')}
                   </button>
                 </form>
               </div>

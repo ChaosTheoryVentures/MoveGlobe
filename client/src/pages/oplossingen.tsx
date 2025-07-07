@@ -3,8 +3,10 @@ import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarField } from "../components/StarField";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function Oplossingen() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen relative" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
@@ -22,8 +24,11 @@ export default function Oplossingen() {
         <div className="pt-24 pb-24 px-4">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-              Oplossingen
+              {t('oplossingen.title')}
             </h1>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto text-center mb-12">
+              {t('oplossingen.subtitle')}
+            </p>
             <div className="space-y-8">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-semibold text-white mb-4">Agentische AI Systemen</h3>

@@ -1,111 +1,73 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export function Navbar() {
-  const [sectorenOpen, setSectorenOpen] = useState(false);
-  const [oplossingenOpen, setOplossingenOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const sectorenItems = [
-    { label: "Financiële Dienstverlening", href: "/sectoren#financieel" },
-    { label: "Gezondheidszorg", href: "/sectoren#gezondheidszorg" },
-    { label: "Retail & E-commerce", href: "/sectoren#retail" },
-    { label: "Productie & Logistiek", href: "/sectoren#productie" }
-  ];
-
-  const oplossingenItems = [
-    { label: "AI-Powered Analytics", href: "/oplossingen#analytics" },
-    { label: "Procesautomatisering", href: "/oplossingen#automatisering" },
-    { label: "Predictive Intelligence", href: "/oplossingen#predictive" },
-    { label: "Custom AI Solutions", href: "/oplossingen#custom" }
-  ];
+  const { t } = useLanguage();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href="/" className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0">
             <img 
               src="/logo.svg" 
               alt="MOVE Logo" 
               className="h-8 sm:h-10 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Navigation Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Sectoren Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setSectorenOpen(true)}
-              onMouseLeave={() => setSectorenOpen(false)}
+            {/* Sectoren Link */}
+            <Link 
+              to="/sectoren" 
+              className="text-white hover:text-[#4746a4] transition-colors"
             >
-              <button className="flex items-center space-x-1 text-white hover:text-[#4746a4] transition-colors">
-                <span>Sectoren</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              
-              {sectorenOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-md rounded-lg border border-white/20 shadow-xl">
-                  <div className="py-2">
-                    {sectorenItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+              {t('nav.sectoren')}
+            </Link>
 
-            {/* Oplossingen Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setOplossingenOpen(true)}
-              onMouseLeave={() => setOplossingenOpen(false)}
+            {/* Oplossingen Link */}
+            <Link 
+              to="/oplossingen" 
+              className="text-white hover:text-[#4746a4] transition-colors"
             >
-              <button className="flex items-center space-x-1 text-white hover:text-[#4746a4] transition-colors">
-                <span>Oplossingen</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              
-              {oplossingenOpen && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-black/90 backdrop-blur-md rounded-lg border border-white/20 shadow-xl">
-                  <div className="py-2">
-                    {oplossingenItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+              {t('nav.oplossingen')}
+            </Link>
 
             {/* AI Consult Link */}
-            <a 
-              href="/consult" 
+            <Link 
+              to="/consult" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
-              AI Consult
-            </a>
+              {t('nav.aiConsult')}
+            </Link>
+
+            {/* Kennisbank Link */}
+            <Link 
+              to="/kennisbank" 
+              className="text-white hover:text-[#4746a4] transition-colors"
+            >
+              {t('nav.kennisbank')}
+            </Link>
+
+            {/* ROI Calculator Link */}
+            <Link 
+              to="/roi" 
+              className="text-white hover:text-[#4746a4] transition-colors"
+            >
+              {t('nav.roi')}
+            </Link>
 
             {/* Contact Link */}
-            <a 
-              href="/contact" 
+            <Link 
+              to="/contact" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
-              Contact
-            </a>
+              {t('nav.contact')}
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -131,73 +93,59 @@ export function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
             <div className="px-4 py-4 space-y-4">
-              {/* Sectoren Mobile Dropdown */}
-              <div>
-                <button 
-                  onClick={() => setSectorenOpen(!sectorenOpen)}
-                  className="flex items-center justify-between w-full text-white hover:text-[#4746a4] transition-colors"
-                >
-                  <span>Sectoren</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${sectorenOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {sectorenOpen && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    {sectorenItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block text-white/80 hover:text-white transition-colors py-1"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {/* Sectoren Mobile Link */}
+              <Link 
+                to="/sectoren" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('nav.sectoren')}
+              </Link>
 
-              {/* Oplossingen Mobile Dropdown */}
-              <div>
-                <button 
-                  onClick={() => setOplossingenOpen(!oplossingenOpen)}
-                  className="flex items-center justify-between w-full text-white hover:text-[#4746a4] transition-colors"
-                >
-                  <span>Oplossingen</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${oplossingenOpen ? 'rotate-180' : ''}`} />
-                </button>
-                {oplossingenOpen && (
-                  <div className="mt-2 ml-4 space-y-2">
-                    {oplossingenItems.map((item, index) => (
-                      <a
-                        key={index}
-                        href={item.href}
-                        className="block text-white/80 hover:text-white transition-colors py-1"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {/* Oplossingen Mobile Link */}
+              <Link 
+                to="/oplossingen" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('nav.oplossingen')}
+              </Link>
 
               {/* AI Consult Mobile Link */}
-              <a 
-                href="/consult" 
+              <Link 
+                to="/consult" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                AI Consult
-              </a>
+                {t('nav.aiConsult')}
+              </Link>
+
+              {/* Kennisbank Mobile Link */}
+              <Link 
+                to="/kennisbank" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('nav.kennisbank')}
+              </Link>
+
+              {/* ROI Calculator Mobile Link */}
+              <Link 
+                to="/roi" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('nav.roi')}
+              </Link>
 
               {/* Contact Mobile Link */}
-              <a 
-                href="/contact" 
+              <Link 
+                to="/contact" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Contact
-              </a>
+                {t('nav.contact')}
+              </Link>
             </div>
           </div>
         )}

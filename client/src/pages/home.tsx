@@ -1,11 +1,23 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { Scene } from "../components/Scene";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { Overlay } from "../components/ui/overlay";
 
 export default function Home() {
+  useEffect(() => {
+    // Add classes for 3D page behavior
+    document.body.classList.add('no-scroll');
+    document.getElementById('root')?.classList.add('fixed-root');
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('no-scroll');
+      document.getElementById('root')?.classList.remove('fixed-root');
+    };
+  }, []);
+
   return (
     <div style={{ 
       width: '100vw', 

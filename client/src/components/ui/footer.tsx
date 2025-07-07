@@ -1,48 +1,8 @@
-import { useState, useEffect } from 'react';
+import { Linkedin, Instagram } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function Footer() {
-  const [language, setLanguage] = useState<'en' | 'nl'>(() => {
-    return localStorage.getItem('language') as 'en' | 'nl' || 'en';
-  });
-
-  const toggleLanguage = () => {
-    const newLang = language === 'en' ? 'nl' : 'en';
-    setLanguage(newLang);
-    localStorage.setItem('language', newLang);
-    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLang }));
-  };
-
-  useEffect(() => {
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
-    };
-    window.addEventListener('languageChange' as any, handleLanguageChange);
-    
-    return () => {
-      window.removeEventListener('languageChange' as any, handleLanguageChange);
-    };
-  }, []);
-
-  const content = {
-    en: {
-      rights: 'All rights reserved',
-      privacyNotice: 'Privacy Notice',
-      privacy: 'Privacy Policy',
-      terms: 'Terms',
-      contact: 'Contact',
-      language: 'Nederlands'
-    },
-    nl: {
-      rights: 'Alle rechten voorbehouden',
-      privacyNotice: 'Privacyverklaring',
-      privacy: 'Privacybeleid',
-      terms: 'Voorwaarden',
-      contact: 'Contact',
-      language: 'English'
-    }
-  };
-
-  const currentContent = content[language];
+  const { language, toggleLanguage, t } = useLanguage();
 
   return (
     <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-sm border-t border-white/5">
@@ -59,25 +19,47 @@ export function Footer() {
               />
             </a>
             <span className="whitespace-nowrap">
-              © 2025 MOVE - {currentContent.rights}
+              © 2025 MOVE - {t('footer.rights')}
             </span>
             <span className="text-white/30">•</span>
             <a 
               href="/privacy" 
               className="hover:text-white/70 transition-colors whitespace-nowrap"
             >
-              {currentContent.privacy}
+              {t('footer.privacy')}
             </a>
             <span className="text-white/30">•</span>
             <a 
               href="/voorwaarden" 
               className="hover:text-white/70 transition-colors whitespace-nowrap"
             >
-              {currentContent.terms}
+              {t('footer.terms')}
             </a>
           </div>
 
           <div className="flex items-center space-x-3">
+            {/* Social Media Icons */}
+            <a 
+              href="https://linkedin.com/company/move-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white/80 transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://instagram.com/moveai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white/80 transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            
+            <span className="text-white/30">|</span>
+            
             <button
               onClick={toggleLanguage}
               className="flex items-center px-2 py-1 bg-white/5 hover:bg-white/10 rounded transition-colors"
@@ -91,7 +73,7 @@ export function Footer() {
               href="/contact"
               className="bg-[#4746a4]/80 hover:bg-[#4746a4] text-white px-3 py-1 rounded text-xs font-medium transition-colors whitespace-nowrap"
             >
-              {currentContent.contact}
+              {t('footer.contact')}
             </a>
           </div>
         </div>
@@ -108,7 +90,7 @@ export function Footer() {
               />
             </a>
             <span className="text-white/50 text-xs whitespace-nowrap">
-              © 2025 MOVE - {currentContent.rights}
+              © 2025 MOVE - {t('footer.rights')}
             </span>
           </div>
 
@@ -118,19 +100,41 @@ export function Footer() {
               href="/privacy" 
               className="hover:text-white/70 transition-colors"
             >
-              {currentContent.privacy}
+              {t('footer.privacy')}
             </a>
             <span className="text-white/30">•</span>
             <a 
               href="/voorwaarden" 
               className="hover:text-white/70 transition-colors"
             >
-              {currentContent.terms}
+              {t('footer.terms')}
             </a>
           </div>
 
-          {/* Bottom Row: Language + Contact */}
+          {/* Bottom Row: Social + Language + Contact */}
           <div className="flex items-center justify-center space-x-3">
+            {/* Social Media Icons */}
+            <a 
+              href="https://linkedin.com/company/move-ai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white/80 transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+            <a 
+              href="https://instagram.com/moveai" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white/50 hover:text-white/80 transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            
+            <span className="text-white/30">|</span>
+            
             <button
               onClick={toggleLanguage}
               className="flex items-center px-2 py-1 bg-white/5 hover:bg-white/10 rounded transition-colors"
@@ -144,7 +148,7 @@ export function Footer() {
               href="/contact"
               className="bg-[#4746a4]/80 hover:bg-[#4746a4] text-white px-3 py-1 rounded text-xs font-medium transition-colors"
             >
-              {currentContent.contact}
+              {t('footer.contact')}
             </a>
           </div>
         </div>

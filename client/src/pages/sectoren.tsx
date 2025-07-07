@@ -3,8 +3,10 @@ import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarField } from "../components/StarField";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function Sectoren() {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen relative" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
@@ -22,56 +24,31 @@ export default function Sectoren() {
         <div className="pt-24 pb-24 px-4">
           <div className="max-w-6xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-              Sectoren
+              {t('sectoren.title')}
             </h1>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto text-center mb-12">
+              {t('sectoren.subtitle')}
+            </p>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-semibold text-white mb-4">Financiële Dienstverlening</h3>
-              <p className="text-white/80 mb-4">
-                AI-oplossingen voor banken, verzekeraars en beleggingsfondsen.
-              </p>
-              <ul className="text-white/70 space-y-2">
-                <li>• Risicobeoordeling en compliance</li>
-                <li>• Fraudedetectie en preventie</li>
-                <li>• Geautomatiseerde klantenservice</li>
-              </ul>
-            </div>
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('sectoren.financial.title')}</h3>
+                <p className="text-white/80 mb-4">{t('sectoren.financial.description')}</p>
+              </div>
             
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-semibold text-white mb-4">Zorg & Welzijn</h3>
-              <p className="text-white/80 mb-4">
-                Innovatieve AI-toepassingen voor de gezondheidszorg.
-              </p>
-              <ul className="text-white/70 space-y-2">
-                <li>• Patiënt monitoring en diagnostiek</li>
-                <li>• Resource planning en scheduling</li>
-                <li>• Administratieve automatisering</li>
-              </ul>
-            </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('sectoren.healthcare.title')}</h3>
+                <p className="text-white/80 mb-4">{t('sectoren.healthcare.description')}</p>
+              </div>
             
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-semibold text-white mb-4">Retail & E-commerce</h3>
-              <p className="text-white/80 mb-4">
-                Slimme oplossingen voor moderne retailers.
-              </p>
-              <ul className="text-white/70 space-y-2">
-                <li>• Voorraadoptimalisatie</li>
-                <li>• Gepersonaliseerde aanbevelingen</li>
-                <li>• Dynamische prijsstrategieën</li>
-              </ul>
-            </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('sectoren.retail.title')}</h3>
+                <p className="text-white/80 mb-4">{t('sectoren.retail.description')}</p>
+              </div>
             
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-              <h3 className="text-2xl font-semibold text-white mb-4">Productie & Logistiek</h3>
-              <p className="text-white/80 mb-4">
-                Automatisering en optimalisatie van productieprocessen.
-              </p>
-              <ul className="text-white/70 space-y-2">
-                <li>• Predictief onderhoud</li>
-                <li>• Supply chain optimalisatie</li>
-                <li>• Kwaliteitscontrole systemen</li>
-              </ul>
-            </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('sectoren.manufacturing.title')}</h3>
+                <p className="text-white/80 mb-4">{t('sectoren.manufacturing.description')}</p>
+              </div>
             </div>
           </div>
         </div>
