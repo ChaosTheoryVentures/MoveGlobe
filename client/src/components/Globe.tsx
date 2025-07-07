@@ -9,34 +9,48 @@ export function Globe() {
   // Load the authentic landmask texture
   const landTexture = useTexture("/land_dotted.png");
   
-  // Create enhanced digital earth texture using the authentic landmask
-  const createDigitalEarthTexture = () => {
+  // Process the landmask to create darker blue dots
+  const processLandTexture = () => {
     const canvas = document.createElement('canvas');
-    canvas.width = 1024;
-    canvas.height = 512;
     const ctx = canvas.getContext('2d')!;
     
-    // Create radial gradient base from dark navy center to brighter blue at edges
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.max(canvas.width, canvas.height) / 2;
+    // Wait for texture to load
+    if (landTexture.image) {
+      canvas.width = landTexture.image.width;
+      canvas.height = landTexture.image.height;
+      
+      // Draw the original image
+      ctx.drawImage(landTexture.image, 0, 0);
+      
+      // Get image data to modify colors
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
+      
+      // Process each pixel to make blue areas darker
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+        
+        // If pixel is blue (landmass), make it darker blue
+        if (b > 200 && r < 100 && g < 150) {
+          data[i] = 15;     // Dark blue R
+          data[i + 1] = 45; // Dark blue G  
+          data[i + 2] = 85; // Dark blue B
+        }
+      }
+      
+      ctx.putImageData(imageData, 0, 0);
+      return new THREE.CanvasTexture(canvas);
+    }
     
-    const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
-    gradient.addColorStop(0, '#010814');    // Near-black navy core
-    gradient.addColorStop(0.6, '#001a3d');  // Deep navy
-    gradient.addColorStop(0.8, '#003d7a');  // Medium blue
-    gradient.addColorStop(1, '#0060ff');    // Electric blue rim
-    
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    return new THREE.CanvasTexture(canvas);
+    return landTexture;
   };
   
-  const digitalEarthTexture = createDigitalEarthTexture();
+  const processedLandTexture = processLandTexture();
   
-  // Configure the land texture
-  landTexture.wrapS = landTexture.wrapT = THREE.RepeatWrapping;
+  // Configure the texture
+  processedLandTexture.wrapS = processedLandTexture.wrapT = THREE.RepeatWrapping;
   
   // Continuous rotation
   useFrame((state, delta) => {
@@ -51,41 +65,30 @@ export function Globe() {
       <mesh ref={meshRef} castShadow receiveShadow>
         <sphereGeometry args={[2, 64, 64]} />
         <meshBasicMaterial
-          map={landTexture}
+          map={processedLandTexture}
           transparent={false}
         />
       </mesh>
       
-      {/* Electric blue rim glow - Main halo */}
-      <mesh scale={[2.08, 2.08, 2.08]}>
+      {/* Subtle blue rim glow - Main atmospheric layer */}
+      <mesh scale={[2.05, 2.05, 2.05]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
-          color={new THREE.Color(0x0060ff)}
+          color={new THREE.Color(0x2080ff)}
           transparent={true}
-          opacity={0.6}
+          opacity={0.4}
           side={THREE.BackSide}
         />
       </mesh>
       
-      {/* Electric blue rim glow - Outer halo */}
-      <mesh scale={[2.18, 2.18, 2.18]}>
+      {/* Outer atmospheric glow */}
+      <mesh scale={[2.12, 2.12, 2.12]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
-          color={new THREE.Color(0x0060ff)}
-          transparent={true}
-          opacity={0.3}
-          side={THREE.BackSide}
-        />
-      </mesh>
-      
-      {/* Subtle inner rim highlight */}
-      <mesh scale={[2.02, 2.02, 2.02]}>
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshBasicMaterial
-          color={new THREE.Color(0x0072ff)}
+          color={new THREE.Color(0x1870ff)}
           transparent={true}
           opacity={0.2}
-          side={THREE.FrontSide}
+          side={THREE.BackSide}
         />
       </mesh>
     </group>

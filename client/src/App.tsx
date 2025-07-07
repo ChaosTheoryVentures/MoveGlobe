@@ -5,7 +5,7 @@ import "@fontsource/inter";
 
 function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh', background: 'linear-gradient(to bottom, #0a0a0a, #1a1a2e)' }}>
+    <div style={{ width: '100vw', height: '100vh', background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)' }}>
       <Canvas
         shadows
         camera={{
