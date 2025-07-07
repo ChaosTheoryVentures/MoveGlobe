@@ -1,0 +1,88 @@
+{
+  "globe": {
+    "radius": 1.0,
+    "material": {
+      "baseColor": "#001b54",
+      "rimGlowColor": "#007bff",
+      "rimGlowWidthPercent": 2,
+      "rimGlowIntensity": 1.00
+    },
+    "spin": {
+      "axis": [0, 1, 0],               // Y-axis in Three-JS coordinates
+      "secondsPerRevolution": 30,      // one full turn every 30 s
+      "autoRotate": true,
+      "easing": "linear"
+    },
+    "lighting": {
+      "headLight": { "intensity": 0.4 },
+      "backLight": { "intensity": 0.8, "color": "#00a8ff" },
+      "groundGlow": { "intensity": 0.6, "color": "#0094ff" }
+    }
+  },
+
+  "dotStyle": {
+    "dotColor": "#ffffff",
+    "haloColor": "#00b4ff",
+    "diameterPx": 2,
+    "spacingPx": 4,
+    "falloffTowardCore": true          // dots fade slightly near the sphere centre
+  },
+
+  "continents": [
+    {
+      "name": "Africa",
+      "bounds": { "latMin": -35, "latMax": 38, "lonMin": -17, "lonMax": 52 },
+      "density": "high",
+      "notes": "West-coast bulge, taper to Cape, concave east coast with hint of Madagascar shelf."
+    },
+    {
+      "name": "Europe",
+      "bounds": { "latMin": 35, "latMax": 71, "lonMin": -25, "lonMax": 40 },
+      "density": "medium",
+      "notes": "Iberian triangle, British isles speck, ragged Scandinavian fringe; clear Mediterranean gap."
+    },
+    {
+      "name": "Asia",
+      "bounds": { "latMin": 0, "latMax": 77, "lonMin": 26, "lonMax": 180 },
+      "density": "medium",
+      "notes": "Arabian peninsula arc, Indian sub-continent spur, sweeping east-Asian coastline and Japanese island chain."
+    },
+    {
+      "name": "North America",
+      "bounds": { "latMin": 7, "latMax": 83, "lonMin": -169, "lonMax": -52 },
+      "density": "medium",
+      "notes": "Distinct Gulf of Mexico bite, tapering Florida, Great Lakes cluster; Alaska wraps across 170° W."
+    },
+    {
+      "name": "South America",
+      "bounds": { "latMin": -56, "latMax": 13, "lonMin": -81, "lonMax": -34 },
+      "density": "medium",
+      "notes": "Brazilian bulge then clean taper south-east toward Cape Horn; Andes ridge hugs west coast."
+    },
+    {
+      "name": "Oceania",
+      "bounds": { "latMin": -48, "latMax": 0, "lonMin": 112, "lonMax": 180 },
+      "density": "low",
+      "notes": "Australia dominates; New Zealand twin islands; dotted arc of Melanesian islands optional."
+    },
+    {
+      "name": "Antarctica",
+      "bounds": { "latMin": -90, "latMax": -60, "lonMin": -180, "lonMax": 180 },
+      "density": "low",
+      "notes": "Continuous ring of sparse dots to suggest ice shelf; appears only when southern pole rotates into view."
+    },
+    {
+      "name": "Greenland",
+      "bounds": { "latMin": 58, "latMax": 83, "lonMin": -73, "lonMax": -12 },
+      "density": "low",
+      "notes": "Large polar island important for recognisable silhouette."
+    }
+  ],
+
+  "meta": {
+    "projection": "sphere",
+    "coordinateSystem": "EPSG:4326",
+    "intendedRenderer": "Three.js (InstancedMesh or shader-generated dots)",
+    "authoringHint": "Populate dots with Poisson-disk sampling inside the bounds of each continent, then project to the sphere’s surface.  Use v-shader to apply per-dot radial fade for fall-off."
+  }
+}

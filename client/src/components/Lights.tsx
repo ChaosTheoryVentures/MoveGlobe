@@ -4,12 +4,12 @@ export function Lights() {
   return (
     <>
       {/* Ambient light for overall illumination */}
-      <ambientLight intensity={0.3} color={0x404040} />
+      <ambientLight intensity={0.2} color={0x404040} />
       
-      {/* Main directional light (sun) */}
+      {/* Primary highlight at 10 o'clock position */}
       <directionalLight
-        position={[10, 10, 5]}
-        intensity={1.5}
+        position={[-5, 8, 5]}
+        intensity={0.9}
         color={0xffffff}
         castShadow
         shadow-mapSize-width={2048}
@@ -21,18 +21,25 @@ export function Lights() {
         shadow-camera-bottom={-10}
       />
       
-      {/* Rim light for atmospheric effect */}
+      {/* Secondary highlight at 4 o'clock position */}
       <directionalLight
-        position={[-10, -10, -5]}
-        intensity={0.5}
-        color={0x88ccff}
+        position={[8, -5, 5]}
+        intensity={0.7}
+        color={0xffffff}
       />
       
-      {/* Point light for additional highlights */}
+      {/* Under glow - blue underglow from below */}
+      <directionalLight
+        position={[0, -8, -5]}
+        intensity={0.6}
+        color={0x0094ff}
+      />
+      
+      {/* Subtle rim lighting */}
       <pointLight
         position={[0, 0, 10]}
         intensity={0.3}
-        color={0xffffff}
+        color={0x007bff}
         distance={20}
         decay={2}
       />
