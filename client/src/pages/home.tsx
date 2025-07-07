@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div style={{ 
       width: '100vw', 
-      minHeight: '100vh', 
+      height: '100vh', 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)',
-      overflow: 'auto'
+      overflow: 'hidden'
     }}>
       <Canvas
         shadows
@@ -26,12 +26,8 @@ export default function Home() {
           powerPreference: "default"
         }}
         style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
           width: '100%', 
-          height: '100vh',
-          zIndex: 0,
+          height: '100%',
           touchAction: 'none'
         }}
       >
