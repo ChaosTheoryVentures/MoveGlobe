@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react';
 interface MatrixTextProps {
   texts: string[];
   baseText: string;
+  description: string;
+  ctaText: string;
 }
 
-export function MatrixText({ texts, baseText }: MatrixTextProps) {
+export function MatrixText({ texts, baseText, description, ctaText }: MatrixTextProps) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -52,8 +54,8 @@ export function MatrixText({ texts, baseText }: MatrixTextProps) {
           <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-green-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
         </h1>
         
-        <p className="text-white/80 text-sm sm:text-base md:text-lg mb-8 leading-relaxed px-4" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)' }}>
-          We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, understanding and autonomy for the future of business.
+        <p className="text-white text-base sm:text-lg md:text-xl mb-8 leading-relaxed px-4 font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)' }}>
+          {description}
         </p>
         
         <button className="pointer-events-auto relative px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
@@ -71,7 +73,7 @@ export function MatrixText({ texts, baseText }: MatrixTextProps) {
           
           {/* Button text */}
           <span className="relative z-10 flex items-center gap-2">
-            Get ready for AI within 24 hrs
+            {ctaText}
             <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>

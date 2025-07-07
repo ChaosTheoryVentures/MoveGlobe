@@ -1,11 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Footer() {
-  const [language, setLanguage] = useState<'en' | 'nl'>('en');
+  const [language, setLanguage] = useState<'en' | 'nl'>(() => {
+    return localStorage.getItem('language') as 'en' | 'nl' || 'en';
+  });
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'en' ? 'nl' : 'en');
+    const newLang = language === 'en' ? 'nl' : 'en';
+    setLanguage(newLang);
+    localStorage.setItem('language', newLang);
+    window.dispatchEvent(new CustomEvent('languageChange', { detail: newLang }));
   };
+
+  useEffect(() => {
+    const handleLanguageChange = (e: CustomEvent) => {
+      setLanguage(e.detail);
+    };
+    window.addEventListener('languageChange' as any, handleLanguageChange);
+    
+    return () => {
+      window.removeEventListener('languageChange' as any, handleLanguageChange);
+    };
+  }, []);
 
   const content = {
     en: {
