@@ -52,7 +52,7 @@ export function MatrixText({ texts, baseText }: MatrixTextProps) {
           <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-green-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
         </h1>
         
-        <p className="text-white/80 text-sm sm:text-base md:text-lg mb-8 leading-relaxed px-4">
+        <p className="text-white/80 text-sm sm:text-base md:text-lg mb-8 leading-relaxed px-4" style={{ textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)' }}>
           We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, understanding and autonomy for the future of business.
         </p>
         
