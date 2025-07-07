@@ -1,11 +1,25 @@
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
+import { StarField } from "../components/StarField";
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
-      <Navbar />
-      <div className="pt-20 pb-16 px-4">
+    <div className="min-h-screen relative overflow-auto" style={{ 
+      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
+    }}>
+      <div className="fixed inset-0 z-0">
+        <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
+          <Suspense fallback={null}>
+            <StarField />
+          </Suspense>
+        </Canvas>
+      </div>
+      
+      <div className="relative z-10">
+        <Navbar />
+        <div className="pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
             Privacy Policy
@@ -39,8 +53,9 @@ export default function Privacy() {
             </div>
           </div>
         </div>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }

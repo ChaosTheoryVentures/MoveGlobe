@@ -52,11 +52,13 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
           {/* Company Logo */}
           <div className="flex items-center order-2 md:order-1">
-            <img 
-              src="/logo.svg" 
-              alt="MOVE Logo" 
-              className="h-6 sm:h-8 w-auto"
-            />
+            <a href="/">
+              <img 
+                src="/logo.svg" 
+                alt="MOVE Logo" 
+                className="h-6 sm:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-200"
+              />
+            </a>
           </div>
 
           {/* Navigation Links */}
