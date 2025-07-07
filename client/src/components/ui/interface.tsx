@@ -46,17 +46,17 @@ export function Interface() {
   }, [displayedText, currentTextIndex, isTyping, isDeleting]);
 
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4 sm:px-6">
       {/* Dynamic typing text */}
-      <div className="text-center mb-8 pointer-events-none">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+      <div className="text-center mb-6 sm:mb-8 pointer-events-none max-w-4xl">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-2 sm:mb-4 leading-tight">
           AI for{' '}
-          <span className="text-blue-400 inline-block min-w-[200px] text-left">
+          <span className="text-blue-400 inline-block min-w-[120px] sm:min-w-[180px] md:min-w-[200px] text-left">
             {displayedText}
             <span className="animate-pulse">|</span>
           </span>
         </h1>
-        <p className="text-xl md:text-2xl text-blue-200 opacity-80">
+        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-blue-200 opacity-80 px-2">
           Intelligent solutions for your industry
         </p>
       </div>
@@ -64,7 +64,7 @@ export function Interface() {
       {/* CTA Button */}
       <div className="pointer-events-auto">
         <Button 
-          className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap"
           onClick={() => {
             // Add your CTA action here
             console.log('CTA clicked: Personalized advice in 24 hrs');
