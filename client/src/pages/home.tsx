@@ -10,7 +10,7 @@ export default function Home() {
     <div className="min-h-screen relative overflow-y-auto" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
     }}>
-      <div className="fixed inset-0">
+      <div className="fixed inset-0 pointer-events-none">
         <Canvas
           shadows
           camera={{
