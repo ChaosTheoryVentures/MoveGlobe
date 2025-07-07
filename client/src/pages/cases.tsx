@@ -19,13 +19,13 @@ export default function Cases() {
       
       <div className="relative z-10 min-h-screen overflow-y-auto">
         <Navbar />
-      <div className="pt-24 pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            Case Studies
-          </h1>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+        <div className="pt-24 pb-24 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+              Case Studies
+            </h1>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
               <h3 className="text-xl font-semibold text-white mb-3">E-commerce Automation</h3>
               <p className="text-white/80 mb-4">
                 Automated customer service and inventory management for a major retailer, 
@@ -51,11 +51,11 @@ export default function Cases() {
               </p>
               <div className="text-[#4746a4] font-semibold">50% Faster Processing</div>
             </div>
+            </div>
           </div>
         </div>
-        </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }

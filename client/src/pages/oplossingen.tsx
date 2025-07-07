@@ -19,13 +19,13 @@ export default function Oplossingen() {
       
       <div className="relative z-10 min-h-screen overflow-y-auto">
         <Navbar />
-      <div className="pt-24 pb-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            Oplossingen
-          </h1>
-          <div className="space-y-8">
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+        <div className="pt-24 pb-24 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+              Oplossingen
+            </h1>
+            <div className="space-y-8">
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
               <h3 className="text-2xl font-semibold text-white mb-4">Agentische AI Systemen</h3>
               <p className="text-white/80 mb-6">
                 Autonome AI-agenten die complexe taken uitvoeren zonder menselijke tussenkomst.
@@ -75,11 +75,11 @@ export default function Oplossingen() {
                 <span className="bg-[#4746a4]/20 text-[#4746a4] px-3 py-1 rounded-full text-sm">Integration Solutions</span>
               </div>
             </div>
+            </div>
           </div>
         </div>
-        </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 }
