@@ -1,6 +1,7 @@
 import { OrbitControls, Stars } from "@react-three/drei";
 import { Globe } from "./Globe";
 import { Lights } from "./Lights";
+import { FallingStars } from "./FallingStars";
 
 export function Scene() {
   return (
@@ -20,6 +21,9 @@ export function Scene() {
       
       {/* Main Globe */}
       <Globe />
+      
+      {/* Falling Stars */}
+      <FallingStars />
       
       {/* Camera Controls */}
       <OrbitControls
