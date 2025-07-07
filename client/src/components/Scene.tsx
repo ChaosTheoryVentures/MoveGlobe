@@ -29,6 +29,9 @@ export function Scene() {
         rotateSpeed={0.4}
         maxPolarAngle={Math.PI}
         minPolarAngle={0}
+        target={[0, 0, 0]}
+        autoRotate={false}
+        autoRotateSpeed={0}
       />
     </>
   );
