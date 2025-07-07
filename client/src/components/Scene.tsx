@@ -24,14 +24,26 @@ export function Scene() {
       {/* Camera Controls */}
       <OrbitControls
         enablePan={false}
-        enableZoom={false}
+        enableZoom={true}
         enableRotate={true}
         rotateSpeed={0.4}
+        zoomSpeed={0.6}
+        minDistance={4}
+        maxDistance={15}
         maxPolarAngle={Math.PI}
         minPolarAngle={0}
         target={[0, 0, 0]}
         autoRotate={false}
         autoRotateSpeed={0}
+        touches={{
+          ONE: 2, // Touch rotate
+          TWO: 1  // Touch zoom
+        }}
+        mouseButtons={{
+          LEFT: 2,  // Mouse rotate
+          MIDDLE: 1, // Mouse zoom
+          RIGHT: 0   // Mouse pan disabled
+        }}
       />
     </>
   );

@@ -6,7 +6,12 @@ import "@fontsource/inter";
 
 function App() {
   return (
-    <div style={{ width: '100vw', height: '100vh', background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)' }}>
+    <div style={{ 
+      width: '100vw', 
+      height: '100vh', 
+      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)',
+      overflow: 'hidden'
+    }}>
       <Canvas
         shadows
         camera={{
@@ -18,6 +23,11 @@ function App() {
         gl={{
           antialias: true,
           powerPreference: "default"
+        }}
+        style={{ 
+          width: '100%', 
+          height: '100%',
+          touchAction: 'none'
         }}
       >
         <Suspense fallback={null}>
