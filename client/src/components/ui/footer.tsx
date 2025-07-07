@@ -8,7 +8,7 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-3 sm:space-y-0">
             {/* Copyright */}
             <div className="text-white/60 text-xs sm:text-sm order-2 sm:order-1">
-              © 2025 AIGlobe. All rights reserved.
+              © 2025 Move. All rights reserved.
             </div>
 
             {/* Footer Links */}

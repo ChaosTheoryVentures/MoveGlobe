@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from './button';
+import { MoveLogo } from './move-logo';
 
 export function Navbar() {
   return (
@@ -8,9 +9,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold text-white">
-              AI<span className="text-blue-400">Globe</span>
-            </div>
+            <MoveLogo className="h-8 sm:h-10 md:h-12 w-auto text-white" />
           </div>
 
           {/* Navigation Links - Hidden on mobile */}
