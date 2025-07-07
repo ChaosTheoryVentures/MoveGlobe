@@ -45,53 +45,46 @@ export function Footer() {
   const currentContent = content[language];
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0">
+    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-sm border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 py-2">
+        <div className="flex items-center justify-between text-xs">
           
-          {/* Left Section: Logo + Rights */}
-          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 order-2 lg:order-1">
-            <a href="/">
+          {/* Left Side: Logo + Copyright + Links */}
+          <div className="flex items-center space-x-4 text-white/50">
+            <a href="/" className="flex-shrink-0">
               <img 
                 src="/logo.svg" 
                 alt="MOVE Logo" 
-                className="h-6 sm:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-200"
+                className="h-5 w-auto opacity-60 hover:opacity-80 transition-opacity"
               />
             </a>
-            <span className="text-white/60 text-xs sm:text-sm whitespace-nowrap">
+            <span className="whitespace-nowrap">
               © 2025 MOVE - {currentContent.rights}
             </span>
-          </div>
-
-          {/* Center Section: Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 order-1 lg:order-2">
-            <span className="text-white/60 text-xs sm:text-sm">
-              {currentContent.privacyNotice}
-            </span>
-            <span className="text-white/40">•</span>
+            <span className="text-white/30">•</span>
             <a 
               href="/privacy" 
-              className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
+              className="hover:text-white/70 transition-colors whitespace-nowrap"
             >
               {currentContent.privacy}
             </a>
-            <span className="text-white/40">•</span>
+            <span className="text-white/30">•</span>
             <a 
               href="/voorwaarden" 
-              className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
+              className="hover:text-white/70 transition-colors whitespace-nowrap"
             >
               {currentContent.terms}
             </a>
-          </nav>
+          </div>
 
-          {/* Right Section: Language + Contact Button */}
-          <div className="flex items-center space-x-3 order-3">
+          {/* Right Side: Language + Contact */}
+          <div className="flex items-center space-x-3">
             {/* Language Switcher */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200"
+              className="flex items-center px-2 py-1 bg-white/5 hover:bg-white/10 rounded transition-colors"
             >
-              <span className="text-white text-xs sm:text-sm">
+              <span className="text-white/60 text-xs">
                 {language === 'en' ? '🇺🇸' : '🇳🇱'}
               </span>
             </button>
@@ -99,7 +92,7 @@ export function Footer() {
             {/* Contact Button */}
             <a 
               href="/contact"
-              className="bg-[#4746a4] hover:bg-[#4746a4]/80 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 whitespace-nowrap"
+              className="bg-[#4746a4]/80 hover:bg-[#4746a4] text-white px-3 py-1 rounded text-xs font-medium transition-colors whitespace-nowrap"
             >
               {currentContent.contact}
             </a>
