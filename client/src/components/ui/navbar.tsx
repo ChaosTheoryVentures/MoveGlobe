@@ -91,12 +91,20 @@ export function Navbar() {
               )}
             </div>
 
-            {/* Consult Link */}
+            {/* AI Consult Link */}
             <a 
               href="/consult" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
-              Consult
+              AI Consult
+            </a>
+
+            {/* Contact Link */}
+            <a 
+              href="/contact" 
+              className="text-white hover:text-[#4746a4] transition-colors"
+            >
+              Contact
             </a>
           </div>
 
@@ -173,13 +181,22 @@ export function Navbar() {
                 )}
               </div>
 
-              {/* Consult Mobile Link */}
+              {/* AI Consult Mobile Link */}
               <a 
                 href="/consult" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Consult
+                AI Consult
+              </a>
+
+              {/* Contact Mobile Link */}
+              <a 
+                href="/contact" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
               </a>
             </div>
           </div>

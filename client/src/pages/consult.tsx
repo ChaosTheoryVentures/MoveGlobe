@@ -22,7 +22,7 @@ export default function Consult() {
         <div className="pt-24 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
-            Consult
+            AI Consult
           </h1>
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
             <p className="text-white/90 text-lg mb-6">
