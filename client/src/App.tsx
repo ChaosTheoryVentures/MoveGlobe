@@ -24,11 +24,7 @@ function App() {
         </Suspense>
       </Canvas>
       
-      {/* UI Overlay */}
-      <div className="absolute top-4 left-4 text-white z-10">
-        <h1 className="text-2xl font-bold mb-2">Earth Globe</h1>
-        <p className="text-sm opacity-80">Drag to rotate • Scroll to zoom</p>
-      </div>
+
     </div>
   );
 }
