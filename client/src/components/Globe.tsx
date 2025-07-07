@@ -70,25 +70,37 @@ export function Globe() {
         />
       </mesh>
       
-      {/* Subtle blue rim glow - Main atmospheric layer */}
-      <mesh scale={[2.05, 2.05, 2.05]}>
+      {/* Smooth atmospheric glow effect */}
+      <mesh scale={[2.08, 2.08, 2.08]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
-          color={new THREE.Color(0x2080ff)}
+          color={new THREE.Color(0x4499ff)}
           transparent={true}
-          opacity={0.4}
+          opacity={0.6}
           side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
       
-      {/* Outer atmospheric glow */}
-      <mesh scale={[2.12, 2.12, 2.12]}>
+      <mesh scale={[2.15, 2.15, 2.15]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
-          color={new THREE.Color(0x1870ff)}
+          color={new THREE.Color(0x3388ff)}
           transparent={true}
-          opacity={0.2}
+          opacity={0.3}
           side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
+      
+      <mesh scale={[2.25, 2.25, 2.25]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshBasicMaterial
+          color={new THREE.Color(0x2277ff)}
+          transparent={true}
+          opacity={0.15}
+          side={THREE.BackSide}
+          blending={THREE.AdditiveBlending}
         />
       </mesh>
     </group>
