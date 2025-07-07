@@ -62,37 +62,37 @@ export function Footer() {
           {/* Navigation Links */}
           <nav className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 lg:gap-8 order-1 md:order-2">
             <a 
-              href="#privacy" 
+              href="/privacy" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.privacy}
             </a>
             <a 
-              href="#terms" 
+              href="/voorwaarden" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.terms}
             </a>
             <a 
-              href="#cases" 
+              href="/cases" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.cases}
             </a>
             <a 
-              href="#industries" 
+              href="/sectoren" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.industries}
             </a>
             <a 
-              href="#solutions" 
+              href="/oplossingen" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.solutions}
             </a>
             <a 
-              href="#consult" 
+              href="/consult" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
             >
               {currentContent.consult}

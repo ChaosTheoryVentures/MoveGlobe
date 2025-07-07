@@ -1,46 +1,28 @@
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
-import { Scene } from "./components/Scene";
-import { Navbar } from "./components/ui/navbar";
-import { Footer } from "./components/ui/footer";
-import { Overlay } from "./components/ui/overlay";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/home";
+import Consult from "./pages/consult";
+import Privacy from "./pages/privacy";
+import Voorwaarden from "./pages/voorwaarden";
+import Cases from "./pages/cases";
+import Sectoren from "./pages/sectoren";
+import Oplossingen from "./pages/oplossingen";
+import NotFound from "./pages/not-found";
 import "@fontsource/inter";
 
 function App() {
   return (
-    <div style={{ 
-      width: '100vw', 
-      height: '100vh', 
-      background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)',
-      overflow: 'hidden'
-    }}>
-      <Canvas
-        shadows
-        camera={{
-          position: [3, 2, 6],
-          fov: 45,
-          near: 0.1,
-          far: 1000
-        }}
-        gl={{
-          antialias: true,
-          powerPreference: "default"
-        }}
-        style={{ 
-          width: '100%', 
-          height: '100%',
-          touchAction: 'none'
-        }}
-      >
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-      </Canvas>
-      
-      <Overlay />
-      <Navbar />
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/consult" element={<Consult />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/voorwaarden" element={<Voorwaarden />} />
+        <Route path="/cases" element={<Cases />} />
+        <Route path="/sectoren" element={<Sectoren />} />
+        <Route path="/oplossingen" element={<Oplossingen />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 

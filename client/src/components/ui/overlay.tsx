@@ -38,7 +38,7 @@ export function Overlay() {
         'for customer service',
         'to optimize operations'
       ],
-      description: 'We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, understanding and autonomy for the future of business.',
+      description: 'We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, efficiency and autonomy for the future of business.',
       cta: 'Get ready for AI within 24 hrs'
     },
     nl: {
@@ -52,7 +52,7 @@ export function Overlay() {
         'voor klantenservice',
         'om operaties te optimaliseren'
       ],
-      description: 'Wij helpen organisaties hun financiële en operationele doelen te bereiken door het implementeren van agentische AI en automatiseringen. We creëren diepgaande inzichten, begrip en autonomie voor de toekomst van het bedrijfsleven.',
+      description: 'Wij helpen organisaties hun financiële en operationele doelen te bereiken door het implementeren van agentische AI en automatiseringen. We creëren diepgaande inzichten, efficiëntie en autonomie voor de toekomst van het bedrijfsleven.',
       cta: 'Klaar voor AI binnen 24 uur'
     }
   };

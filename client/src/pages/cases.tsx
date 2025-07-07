@@ -1,0 +1,46 @@
+import { Navbar } from "../components/ui/navbar";
+import { Footer } from "../components/ui/footer";
+
+export default function Cases() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800">
+      <Navbar />
+      <div className="pt-20 pb-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+            Case Studies
+          </h1>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-3">E-commerce Automation</h3>
+              <p className="text-white/80 mb-4">
+                Automated customer service and inventory management for a major retailer, 
+                reducing response times by 80% and increasing customer satisfaction.
+              </p>
+              <div className="text-[#4746a4] font-semibold">60% Cost Reduction</div>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-3">Financial Analytics</h3>
+              <p className="text-white/80 mb-4">
+                Implemented AI-driven financial analysis system for investment firm, 
+                improving prediction accuracy and portfolio performance.
+              </p>
+              <div className="text-[#4746a4] font-semibold">35% Better ROI</div>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-3">Healthcare Optimization</h3>
+              <p className="text-white/80 mb-4">
+                Streamlined patient scheduling and resource allocation for healthcare provider, 
+                improving efficiency and patient care quality.
+              </p>
+              <div className="text-[#4746a4] font-semibold">50% Faster Processing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+}
