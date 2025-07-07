@@ -76,7 +76,7 @@ export default function Consult() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="relative z-10 overflow-y-auto">
+      <div className="relative z-10 h-screen overflow-y-auto">
         <div className="bg-[#4746a4] text-white text-center py-2 px-4">
           <p className="text-sm font-medium">
             {language === 'en' ? 'Limited time: €750 comprehensive AI audit (normally €1,200)' : 'Beperkte tijd: €750 uitgebreide AI-audit (normaal €1,200)'}
