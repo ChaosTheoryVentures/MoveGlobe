@@ -85,7 +85,7 @@ export function Footer() {
             className="flex items-center space-x-2 px-3 py-1 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200"
           >
             <span className="text-white text-sm">
-              Taal/Language:
+              {language === 'en' ? 'Language:' : 'Taal:'}
             </span>
             <span className="text-white text-sm">
               {language === 'en' ? '🇺🇸' : '🇳🇱'}
