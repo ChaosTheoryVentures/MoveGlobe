@@ -48,42 +48,36 @@ export function Footer() {
             <a 
               href="#privacy" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.privacy}
             </a>
             <a 
               href="#terms" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.terms}
             </a>
             <a 
               href="#cases" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.cases}
             </a>
             <a 
               href="#industries" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.industries}
             </a>
             <a 
               href="#solutions" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.solutions}
             </a>
             <a 
               href="#consult" 
               className="text-white/70 hover:text-white transition-colors duration-200 text-xs sm:text-sm whitespace-nowrap"
-              style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}
             >
               {currentContent.consult}
             </a>
@@ -94,7 +88,7 @@ export function Footer() {
             onClick={toggleLanguage}
             className="flex items-center space-x-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200 order-3"
           >
-            <span className="text-white text-xs sm:text-sm" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.6)' }}>
+            <span className="text-white text-xs sm:text-sm">
               {language === 'en' ? 'Language:' : 'Taal:'}
             </span>
             <span className="text-white text-sm">
