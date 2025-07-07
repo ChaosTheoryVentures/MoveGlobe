@@ -6,7 +6,7 @@ import { StarField } from "../components/StarField";
 
 export default function Sectoren() {
   return (
-    <div className="min-h-screen relative overflow-auto" style={{ 
+    <div className="min-h-screen relative" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
     }}>
       <div className="fixed inset-0 z-0">
@@ -17,7 +17,7 @@ export default function Sectoren() {
         </Canvas>
       </div>
       
-      <div className="relative z-10">
+      <div className="relative z-10 min-h-screen overflow-y-auto">
         <Navbar />
       <div className="pt-20 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
