@@ -77,10 +77,6 @@ This is a full-stack web application built with React, Express, and TypeScript t
 ## Changelog
 
 - July 07, 2025. Initial setup
-- July 07, 2025. Implemented 3D spinning globe with authentic landmask texture
-- July 07, 2025. Added dynamic typing text overlay and CTA button
-- July 07, 2025. Created navbar and footer components
-- July 07, 2025. Mobile optimized all components for responsive design
 
 ## User Preferences
 
