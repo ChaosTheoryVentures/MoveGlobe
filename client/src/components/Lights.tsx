@@ -3,13 +3,10 @@ import * as THREE from "three";
 export function Lights() {
   return (
     <>
-      {/* Ambient light for overall illumination */}
-      <ambientLight intensity={0.2} color={0x404040} />
-      
-      {/* Primary highlight at 10 o'clock position */}
+      {/* Head light - frontal illumination */}
       <directionalLight
-        position={[-5, 8, 5]}
-        intensity={0.9}
+        position={[0, 0, 10]}
+        intensity={0.4}
         color={0xffffff}
         castShadow
         shadow-mapSize-width={2048}
@@ -21,28 +18,22 @@ export function Lights() {
         shadow-camera-bottom={-10}
       />
       
-      {/* Secondary highlight at 4 o'clock position */}
+      {/* Back light - blue illumination from behind */}
       <directionalLight
-        position={[8, -5, 5]}
-        intensity={0.7}
-        color={0xffffff}
+        position={[0, 0, -10]}
+        intensity={0.8}
+        color={0x00a8ff}
       />
       
-      {/* Under glow - blue underglow from below */}
+      {/* Ground glow - blue underglow from below */}
       <directionalLight
-        position={[0, -8, -5]}
+        position={[0, -8, 0]}
         intensity={0.6}
         color={0x0094ff}
       />
       
-      {/* Subtle rim lighting */}
-      <pointLight
-        position={[0, 0, 10]}
-        intensity={0.3}
-        color={0x007bff}
-        distance={20}
-        decay={2}
-      />
+      {/* Ambient light for subtle overall illumination */}
+      <ambientLight intensity={0.1} color={0x404040} />
     </>
   );
 }

@@ -6,129 +6,129 @@ import { TextureLoader } from "three";
 export function Globe() {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  // Create orthographic earth texture with continents and dot grid
-  const createOrthographicEarthTexture = () => {
+  // Convert lat/lon bounds to spherical coordinates and generate dots
+  const createProcuralGlobeTexture = () => {
     const canvas = document.createElement('canvas');
-    canvas.width = 1024;
-    canvas.height = 1024; // Square for orthographic projection
+    canvas.width = 2048;
+    canvas.height = 1024; // 2:1 aspect ratio for equirectangular
     const ctx = canvas.getContext('2d')!;
     
     // Fill with base color
     ctx.fillStyle = '#001b54';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const radius = Math.min(canvas.width, canvas.height) / 2 - 20;
-    
-    // Create circular mask for globe
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-    ctx.clip();
-    
-    // Function to convert normalized coordinates to canvas coordinates
-    const normToCanvas = (xNorm: number, yNorm: number) => ({
-      x: xNorm * canvas.width,
-      y: yNorm * canvas.height
-    });
-    
-    // Draw continents with high-density dots
     const continents = [
-      // Africa - Central focus with pronounced west-coast bulge
-      { name: 'Africa', anchor: { xNorm: 0.50, yNorm: 0.55 }, density: 'high', 
-        shape: [
-          [0.48, 0.45], [0.52, 0.45], [0.54, 0.50], [0.52, 0.55], 
-          [0.50, 0.65], [0.48, 0.70], [0.46, 0.65], [0.44, 0.55], 
-          [0.46, 0.50], [0.48, 0.45]
-        ] 
+      {
+        name: "Africa",
+        bounds: { latMin: -35, latMax: 38, lonMin: -17, lonMax: 52 },
+        density: "high"
       },
-      // Europe - Compact cluster
-      { name: 'Europe', anchor: { xNorm: 0.62, yNorm: 0.33 }, density: 'medium',
-        shape: [
-          [0.60, 0.30], [0.65, 0.30], [0.67, 0.35], [0.65, 0.38], 
-          [0.60, 0.38], [0.58, 0.35], [0.60, 0.30]
-        ]
+      {
+        name: "Europe", 
+        bounds: { latMin: 35, latMax: 71, lonMin: -25, lonMax: 40 },
+        density: "medium"
       },
-      // Middle East - Arabian Peninsula arc
-      { name: 'MiddleEast', anchor: { xNorm: 0.70, yNorm: 0.45 }, density: 'medium',
-        shape: [
-          [0.68, 0.42], [0.72, 0.42], [0.74, 0.47], [0.72, 0.50], 
-          [0.68, 0.50], [0.68, 0.42]
-        ]
+      {
+        name: "Asia",
+        bounds: { latMin: 0, latMax: 77, lonMin: 26, lonMax: 180 },
+        density: "medium"
       },
-      // South America - Triangular with Brazil bump
-      { name: 'SouthAmerica', anchor: { xNorm: 0.25, yNorm: 0.70 }, density: 'medium',
-        shape: [
-          [0.22, 0.65], [0.28, 0.65], [0.30, 0.72], [0.26, 0.80], 
-          [0.22, 0.75], [0.20, 0.70], [0.22, 0.65]
-        ]
+      {
+        name: "North America",
+        bounds: { latMin: 7, latMax: 83, lonMin: -169, lonMax: -52 },
+        density: "medium"
       },
-      // North America Atlantic Rim - Sparse tilted patch
-      { name: 'NorthAmericaAtlanticRim', anchor: { xNorm: 0.18, yNorm: 0.25 }, density: 'low',
-        shape: [
-          [0.15, 0.22], [0.22, 0.22], [0.24, 0.28], [0.20, 0.32], 
-          [0.15, 0.30], [0.13, 0.25], [0.15, 0.22]
-        ]
+      {
+        name: "South America",
+        bounds: { latMin: -56, latMax: 13, lonMin: -81, lonMax: -34 },
+        density: "medium"
+      },
+      {
+        name: "Oceania",
+        bounds: { latMin: -48, latMax: 0, lonMin: 112, lonMax: 180 },
+        density: "low"
+      },
+      {
+        name: "Antarctica",
+        bounds: { latMin: -90, latMax: -60, lonMin: -180, lonMax: 180 },
+        density: "low"
+      },
+      {
+        name: "Greenland",
+        bounds: { latMin: 58, latMax: 83, lonMin: -73, lonMax: -12 },
+        density: "low"
       }
     ];
-    
-    // Draw continent shapes with dots
+
+    // Convert lat/lon to canvas coordinates
+    const latLonToCanvas = (lat: number, lon: number) => {
+      const x = ((lon + 180) / 360) * canvas.width;
+      const y = ((90 - lat) / 180) * canvas.height;
+      return { x, y };
+    };
+
+    // Generate dots for each continent
     continents.forEach(continent => {
-      const densityMap = { high: 3, medium: 5, low: 8 };
+      const densityMap = { high: 4, medium: 6, low: 12 };
       const spacing = densityMap[continent.density as keyof typeof densityMap];
       
-      // Fill continent area with dots
-      continent.shape.forEach(([xNorm, yNorm]) => {
-        const { x, y } = normToCanvas(xNorm, yNorm);
-        
-        // Add dots in area around each point
-        for (let dx = -spacing * 3; dx <= spacing * 3; dx += spacing) {
-          for (let dy = -spacing * 3; dy <= spacing * 3; dy += spacing) {
-            const dotX = x + dx;
-            const dotY = y + dy;
+      const { latMin, latMax, lonMin, lonMax } = continent.bounds;
+      
+      // Generate dots within bounds using Poisson-disk-like sampling
+      for (let lat = latMin; lat <= latMax; lat += spacing * 0.1) {
+        for (let lon = lonMin; lon <= lonMax; lon += spacing * 0.1) {
+          // Add some randomness for natural distribution
+          if (Math.random() < 0.6) {
+            const jitteredLat = lat + (Math.random() - 0.5) * spacing * 0.05;
+            const jitteredLon = lon + (Math.random() - 0.5) * spacing * 0.05;
             
-            // Check if point is within continent shape (simplified)
-            if (dotX >= 0 && dotX < canvas.width && dotY >= 0 && dotY < canvas.height) {
-              // Calculate distance from center for vignette effect
-              const distFromCenter = Math.sqrt(
-                Math.pow(dotX - centerX, 2) + Math.pow(dotY - centerY, 2)
-              );
-              const normalizedDist = distFromCenter / radius;
-              
-              // Vignette toward center (brighter at rim)
-              const vignetteIntensity = Math.max(0.4, 1 - normalizedDist * 0.6);
-              
-              // Draw white dot with blue halo
-              ctx.fillStyle = `rgba(0, 168, 255, ${vignetteIntensity * 0.8})`;
-              ctx.beginPath();
-              ctx.arc(dotX, dotY, 3, 0, Math.PI * 2);
-              ctx.fill();
-              
-              ctx.fillStyle = `rgba(255, 255, 255, ${vignetteIntensity})`;
-              ctx.beginPath();
-              ctx.arc(dotX, dotY, 1, 0, Math.PI * 2);
-              ctx.fill();
-            }
+            const { x, y } = latLonToCanvas(jitteredLat, jitteredLon);
+            
+            // Calculate falloff toward core (center of texture)
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const distFromCenter = Math.sqrt(
+              Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
+            );
+            const maxDist = Math.sqrt(centerX * centerX + centerY * centerY);
+            const normalizedDist = distFromCenter / maxDist;
+            
+            // Falloff toward core - brighter at edges
+            const falloffIntensity = Math.max(0.3, 1 - normalizedDist * 0.7);
+            
+            // Draw blue halo first
+            ctx.fillStyle = `rgba(0, 180, 255, ${falloffIntensity * 0.6})`;
+            ctx.beginPath();
+            ctx.arc(x, y, 2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Draw white dot center
+            ctx.fillStyle = `rgba(255, 255, 255, ${falloffIntensity})`;
+            ctx.beginPath();
+            ctx.arc(x, y, 1, 0, Math.PI * 2);
+            ctx.fill();
           }
         }
-      });
+      }
     });
     
-    // Add regular grid of ocean dots
-    const oceanDotSpacing = 6;
-    for (let x = oceanDotSpacing; x < canvas.width; x += oceanDotSpacing) {
-      for (let y = oceanDotSpacing; y < canvas.height; y += oceanDotSpacing) {
-        const distFromCenter = Math.sqrt(
-          Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
-        );
-        
-        if (distFromCenter < radius) {
-          const normalizedDist = distFromCenter / radius;
-          const vignetteIntensity = Math.max(0.2, 1 - normalizedDist * 0.8);
+    // Add sparse ocean dots
+    for (let lat = -80; lat <= 80; lat += 8) {
+      for (let lon = -180; lon <= 180; lon += 8) {
+        if (Math.random() < 0.2) { // Very sparse
+          const { x, y } = latLonToCanvas(lat, lon);
           
-          // Smaller, dimmer dots for ocean
-          ctx.fillStyle = `rgba(0, 168, 255, ${vignetteIntensity * 0.3})`;
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+          const distFromCenter = Math.sqrt(
+            Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
+          );
+          const maxDist = Math.sqrt(centerX * centerX + centerY * centerY);
+          const normalizedDist = distFromCenter / maxDist;
+          const falloffIntensity = Math.max(0.1, 1 - normalizedDist * 0.9);
+          
+          // Tiny ocean dots
+          ctx.fillStyle = `rgba(0, 180, 255, ${falloffIntensity * 0.2})`;
           ctx.beginPath();
           ctx.arc(x, y, 0.5, 0, Math.PI * 2);
           ctx.fill();
@@ -136,44 +136,42 @@ export function Globe() {
       }
     }
     
-    ctx.restore();
-    
     return new THREE.CanvasTexture(canvas);
   };
   
-  const orthographicEarthTexture = createOrthographicEarthTexture();
+  const proceduralGlobeTexture = createProcuralGlobeTexture();
   
-  // Continuous rotation
+  // Rotation: one full turn every 30 seconds (linear easing)
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += delta * 0.2; // Rotate around Y axis
+      meshRef.current.rotation.y += delta * (Math.PI * 2) / 30; // 360° in 30 seconds
     }
   });
   
   return (
     <group>
-      {/* Main Digital Earth sphere */}
+      {/* Main Globe sphere - radius 1.0 */}
       <mesh ref={meshRef} castShadow receiveShadow>
-        <sphereGeometry args={[2, 64, 64]} />
+        <sphereGeometry args={[1.0, 64, 64]} />
         <meshBasicMaterial
-          map={orthographicEarthTexture}
+          map={proceduralGlobeTexture}
           transparent={false}
         />
       </mesh>
       
-      {/* Rim glow - 2% thickness as specified */}
-      <mesh scale={[2.04, 2.04, 2.04]}>
+      {/* Rim glow - 2% thickness for radius 1.0 */}
+      <mesh scale={[1.02, 1.02, 1.02]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
           color={new THREE.Color(0x007bff)}
           transparent={true}
-          opacity={0.8}
+          opacity={1.0}
           side={THREE.BackSide}
         />
       </mesh>
       
-      {/* Under glow - subtle blue underglow */}
-      <mesh scale={[2.02, 2.02, 2.02]}>
+      {/* Ground glow - blue underglow */}
+      <mesh scale={[1.01, 1.01, 1.01]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
           color={new THREE.Color(0x0094ff)}
