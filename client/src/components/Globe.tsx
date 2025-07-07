@@ -72,14 +72,36 @@ export function Globe() {
         />
       </mesh>
       
-      {/* Atmosphere glow */}
-      <mesh scale={[2.1, 2.1, 2.1]}>
+      {/* Atmosphere glow - Inner layer */}
+      <mesh scale={[2.05, 2.05, 2.05]}>
         <sphereGeometry args={[1, 64, 64]} />
         <meshBasicMaterial
-          color={new THREE.Color(0x88ccff)}
+          color={new THREE.Color(0x4488ff)}
           transparent={true}
-          opacity={0.1}
+          opacity={0.3}
           side={THREE.BackSide}
+        />
+      </mesh>
+      
+      {/* Atmosphere glow - Outer layer */}
+      <mesh scale={[2.15, 2.15, 2.15]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshBasicMaterial
+          color={new THREE.Color(0x2266ff)}
+          transparent={true}
+          opacity={0.15}
+          side={THREE.BackSide}
+        />
+      </mesh>
+      
+      {/* Blue rim glow */}
+      <mesh scale={[2.02, 2.02, 2.02]}>
+        <sphereGeometry args={[1, 64, 64]} />
+        <meshBasicMaterial
+          color={new THREE.Color(0x0088ff)}
+          transparent={true}
+          opacity={0.4}
+          side={THREE.FrontSide}
         />
       </mesh>
     </group>
