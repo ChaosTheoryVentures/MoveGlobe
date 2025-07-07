@@ -34,9 +34,13 @@ export function Footer() {
     <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-t border-white/10">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex flex-col lg:flex-row items-center justify-between space-y-3 lg:space-y-0">
-          {/* Company Name */}
-          <div className="text-white font-bold text-lg sm:text-xl order-1 lg:order-1">
-            MOVE
+          {/* Company Logo */}
+          <div className="flex items-center order-1 lg:order-1">
+            <img 
+              src="/logo.svg" 
+              alt="MOVE Logo" 
+              className="h-6 sm:h-8 w-auto"
+            />
           </div>
 
           {/* Navigation Links */}
