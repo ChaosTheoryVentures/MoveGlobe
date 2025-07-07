@@ -2,11 +2,14 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Scene } from "./components/Scene";
 import { Interface } from "./components/ui/interface";
+import { Navbar } from "./components/ui/navbar";
+import { Footer } from "./components/ui/footer";
 import "@fontsource/inter";
 
 function App() {
   return (
     <div style={{ width: '100vw', height: '100vh', background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)' }}>
+      <Navbar />
       <Canvas
         shadows
         camera={{
@@ -25,6 +28,7 @@ function App() {
         </Suspense>
       </Canvas>
       <Interface />
+      <Footer />
     </div>
   );
 }
