@@ -4,6 +4,7 @@ export function Footer() {
   const [language, setLanguage] = useState<'en' | 'nl'>(() => {
     return localStorage.getItem('language') as 'en' | 'nl' || 'en';
   });
+  const [isVisible, setIsVisible] = useState(false);
 
   const toggleLanguage = () => {
     const newLang = language === 'en' ? 'nl' : 'en';
@@ -18,8 +19,18 @@ export function Footer() {
     };
     window.addEventListener('languageChange' as any, handleLanguageChange);
     
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      // Show footer when scrolled at least 50% of viewport height
+      setIsVisible(scrollY > windowHeight * 0.5);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
     return () => {
       window.removeEventListener('languageChange' as any, handleLanguageChange);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -47,7 +58,9 @@ export function Footer() {
   const currentContent = content[language];
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-t border-white/10">
+    <footer className={`fixed bottom-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-t border-white/10 transition-transform duration-300 ${
+      isVisible ? 'translate-y-0' : 'translate-y-full'
+    }`}>
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
           {/* Company Logo */}
