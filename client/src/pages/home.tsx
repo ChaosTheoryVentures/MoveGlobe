@@ -26,8 +26,12 @@ export default function Home() {
           powerPreference: "default"
         }}
         style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
           width: '100%', 
-          height: '100%',
+          height: '100vh',
+          zIndex: 0,
           touchAction: 'none'
         }}
       >
