@@ -9,9 +9,10 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/move-logo.png" 
+              src="/move-logo-3d.png" 
               alt="Move" 
-              className="h-6 sm:h-8 md:h-10 w-auto"
+              className="h-6 sm:h-8 md:h-10 w-auto mix-blend-screen"
+              style={{ filter: 'brightness(1.2) contrast(1.1)' }}
             />
           </div>
 
