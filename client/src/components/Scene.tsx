@@ -24,13 +24,9 @@ export function Scene() {
       {/* Camera Controls */}
       <OrbitControls
         enablePan={false}
-        enableZoom={true}
+        enableZoom={false}
         enableRotate={true}
-        zoomSpeed={0.6}
-        panSpeed={0.5}
         rotateSpeed={0.4}
-        minDistance={3}
-        maxDistance={20}
         maxPolarAngle={Math.PI}
         minPolarAngle={0}
       />
