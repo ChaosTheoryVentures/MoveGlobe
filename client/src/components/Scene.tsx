@@ -2,6 +2,7 @@ import { OrbitControls, Stars } from "@react-three/drei";
 import { Globe } from "./Globe";
 import { Lights } from "./Lights";
 import { FallingStars } from "./FallingStars";
+import { NetworkNodes } from "./NetworkNodes";
 
 export function Scene() {
   return (
@@ -21,6 +22,9 @@ export function Scene() {
       
       {/* Main Globe */}
       <Globe />
+      
+      {/* Network Nodes and Connections */}
+      <NetworkNodes />
       
       {/* Falling Stars */}
       <FallingStars />
