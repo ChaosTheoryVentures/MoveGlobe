@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 export function Navbar() {
   const [sectorenOpen, setSectorenOpen] = useState(false);
   const [oplossingenOpen, setOplossingenOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sectorenItems = [
     { label: "Financiële Dienstverlening", href: "/sectoren#financieel" },
@@ -101,13 +102,88 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button className="text-white hover:text-[#4746a4] transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-white hover:text-[#4746a4] transition-colors"
+            >
+              {mobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
+            <div className="px-4 py-4 space-y-4">
+              {/* Sectoren Mobile Dropdown */}
+              <div>
+                <button 
+                  onClick={() => setSectorenOpen(!sectorenOpen)}
+                  className="flex items-center justify-between w-full text-white hover:text-[#4746a4] transition-colors"
+                >
+                  <span>Sectoren</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${sectorenOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {sectorenOpen && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    {sectorenItems.map((item, index) => (
+                      <a
+                        key={index}
+                        href={item.href}
+                        className="block text-white/80 hover:text-white transition-colors py-1"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Oplossingen Mobile Dropdown */}
+              <div>
+                <button 
+                  onClick={() => setOplossingenOpen(!oplossingenOpen)}
+                  className="flex items-center justify-between w-full text-white hover:text-[#4746a4] transition-colors"
+                >
+                  <span>Oplossingen</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${oplossingenOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {oplossingenOpen && (
+                  <div className="mt-2 ml-4 space-y-2">
+                    {oplossingenItems.map((item, index) => (
+                      <a
+                        key={index}
+                        href={item.href}
+                        className="block text-white/80 hover:text-white transition-colors py-1"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Consult Mobile Link */}
+              <a 
+                href="/consult" 
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Consult
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
