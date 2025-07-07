@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './button';
+import { BusinessFormModal } from './business-form-modal';
 
 const dynamicTexts = [
   "Healthcare",
@@ -17,6 +18,7 @@ export function Interface() {
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const currentText = dynamicTexts[currentTextIndex];
@@ -65,14 +67,17 @@ export function Interface() {
       <div className="pointer-events-auto">
         <Button 
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap"
-          onClick={() => {
-            // Add your CTA action here
-            console.log('CTA clicked: Personalized advice in 24 hrs');
-          }}
+          onClick={() => setIsModalOpen(true)}
         >
           Personalized advice in 24 hrs
         </Button>
       </div>
+
+      {/* Business Form Modal */}
+      <BusinessFormModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 }
