@@ -43,14 +43,22 @@ export function MatrixText({ texts, baseText }: MatrixTextProps) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
-      <div className="text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+      <div className="text-center px-4 max-w-4xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           {baseText}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400">
             {displayText}
           </span>
           <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-green-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
         </h1>
+        
+        <p className="text-white/80 text-sm sm:text-base md:text-lg mb-8 leading-relaxed px-4">
+          We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, understanding and autonomy for the future of business.
+        </p>
+        
+        <button className="pointer-events-auto px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors duration-200 text-white text-sm sm:text-base font-medium">
+          Get ready for AI within 24 hrs
+        </button>
       </div>
     </div>
   );
