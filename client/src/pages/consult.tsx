@@ -17,9 +17,9 @@ export default function Consult() {
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 h-screen overflow-y-auto">
         <Navbar />
-        <div className="pt-20 pb-16 px-4">
+        <div className="pt-20 pb-16 px-4 min-h-full">
           <div className="max-w-6xl mx-auto">
             {/* Hero Section */}
             <div className="max-w-4xl mx-auto text-center mb-16">

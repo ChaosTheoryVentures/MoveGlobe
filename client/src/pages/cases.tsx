@@ -17,7 +17,7 @@ export default function Cases() {
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 h-screen overflow-y-auto">
         <Navbar />
       <div className="pt-20 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
