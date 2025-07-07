@@ -48,10 +48,10 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
       <div className="text-center px-4 max-w-4xl">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
           {baseText}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-[#4746a4]">
             {displayText}
           </span>
-          <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-green-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
+          <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-[#4746a4] ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
         </h1>
         
         <p className="text-white text-base sm:text-lg md:text-xl mb-8 leading-relaxed px-4 font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4)' }}>
@@ -63,7 +63,7 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-white/10 rounded-full"></div>
           
           {/* Hover glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/20 to-green-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/20 to-[#4746a4]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
           
           {/* Animated shine effect */}
           <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1000 ease-out"></div>
@@ -80,7 +80,7 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           </span>
           
           {/* Bottom glow on hover */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#4746a4] to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
         </button>
       </div>
     </div>
