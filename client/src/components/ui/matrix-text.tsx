@@ -44,14 +44,13 @@ export function MatrixText({ texts, baseText }: MatrixTextProps) {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-40 pointer-events-none">
       <div className="text-center px-4">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
           {baseText}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400">
             {displayText}
           </span>
           <span className={`inline-block w-1 h-8 sm:h-10 md:h-12 lg:h-14 bg-green-400 ml-1 ${isTyping ? 'animate-pulse' : 'animate-ping'}`}></span>
         </h1>
-        <div className="h-1 w-32 sm:w-48 md:w-64 bg-gradient-to-r from-transparent via-green-400 to-transparent mx-auto opacity-50"></div>
       </div>
     </div>
   );
