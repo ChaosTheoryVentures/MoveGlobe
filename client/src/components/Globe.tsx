@@ -1,19 +1,22 @@
-import { useFrame, useLoader } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
-import { TextureLoader } from "three";
+import { useTexture } from "@react-three/drei";
 
 export function Globe() {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  // Create a futuristic digital earth texture with data point grid
+  // Load the authentic landmask texture
+  const landTexture = useTexture("/land_dotted.png");
+  
+  // Create enhanced digital earth texture using the authentic landmask
   const createDigitalEarthTexture = () => {
     const canvas = document.createElement('canvas');
     canvas.width = 1024;
     canvas.height = 512;
     const ctx = canvas.getContext('2d')!;
     
-    // Create radial gradient from dark navy center to brighter blue at edges
+    // Create radial gradient base from dark navy center to brighter blue at edges
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     const radius = Math.max(canvas.width, canvas.height) / 2;
@@ -27,32 +30,13 @@ export function Globe() {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Add regular grid of data points (dots)
-    const dotSpacing = 24;
-    const dotRadius = 2;
-    
-    for (let x = dotSpacing; x < canvas.width; x += dotSpacing) {
-      for (let y = dotSpacing; y < canvas.height; y += dotSpacing) {
-        // Calculate distance from center for intensity variation
-        const distFromCenter = Math.sqrt(
-          Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2)
-        );
-        const normalizedDist = distFromCenter / radius;
-        
-        // Brightest at rim, fading toward center
-        const intensity = Math.max(0.3, 1 - normalizedDist * 0.7);
-        
-        ctx.fillStyle = `rgba(0, 114, 255, ${intensity})`;
-        ctx.beginPath();
-        ctx.arc(x, y, dotRadius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-    
     return new THREE.CanvasTexture(canvas);
   };
   
   const digitalEarthTexture = createDigitalEarthTexture();
+  
+  // Configure the land texture
+  landTexture.wrapS = landTexture.wrapT = THREE.RepeatWrapping;
   
   // Continuous rotation
   useFrame((state, delta) => {
@@ -67,7 +51,7 @@ export function Globe() {
       <mesh ref={meshRef} castShadow receiveShadow>
         <sphereGeometry args={[2, 64, 64]} />
         <meshBasicMaterial
-          map={digitalEarthTexture}
+          map={landTexture}
           transparent={false}
         />
       </mesh>
