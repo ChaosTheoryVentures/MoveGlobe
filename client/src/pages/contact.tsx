@@ -37,15 +37,15 @@ export default function Contact() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">{t('contact.email')}</h3>
-                    <a href="mailto:info@move.ai" className="text-[#4746a4] hover:text-white transition-colors">
-                      info@move.ai
+                    <a href="mailto:info@workwithmove.com" className="text-[#4746a4] hover:text-white transition-colors">
+                      info@workwithmove.com
                     </a>
                   </div>
                   
                   <div>
                     <h3 className="text-lg font-medium text-white mb-2">{t('contact.phone')}</h3>
-                    <a href="tel:+31123456789" className="text-[#4746a4] hover:text-white transition-colors">
-                      +31 (0) 12 345 6789
+                    <a href="tel:+31617858386" className="text-[#4746a4] hover:text-white transition-colors">
+                      +31 6 1785 8386
                     </a>
                   </div>
                   
@@ -69,7 +69,7 @@ export default function Contact() {
                     <h3 className="text-lg font-medium text-white mb-2">{t('contact.followUs')}</h3>
                     <div className="flex space-x-4">
                       <a 
-                        href="https://linkedin.com/company/move-ai" 
+                        href="https://www.linkedin.com/in/erik-wessels" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 text-[#4746a4] hover:text-white transition-colors"
@@ -78,7 +78,7 @@ export default function Contact() {
                         <span>LinkedIn</span>
                       </a>
                       <a 
-                        href="https://instagram.com/moveai" 
+                        href="https://www.instagram.com/workwithmove.ai" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center space-x-2 text-[#4746a4] hover:text-white transition-colors"

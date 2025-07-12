@@ -40,7 +40,7 @@ export function Footer() {
           <div className="flex items-center space-x-3">
             {/* Social Media Icons */}
             <a 
-              href="https://linkedin.com/company/move-ai" 
+              href="https://www.linkedin.com/in/erik-wessels/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/50 hover:text-white/80 transition-colors"
@@ -49,7 +49,7 @@ export function Footer() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a 
-              href="https://instagram.com/moveai" 
+              href="https://www.instagram.com/workwithmove.ai" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white/50 hover:text-white/80 transition-colors"

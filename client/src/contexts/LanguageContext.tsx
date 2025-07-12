@@ -12,7 +12,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   // Navigation
-  'nav.sectoren': { en: 'Sectors', nl: 'Sectoren' },
+  'nav.sectoren': { en: 'Industries', nl: 'Sectoren' },
   'nav.oplossingen': { en: 'Solutions', nl: 'Oplossingen' },
   'nav.aiConsult': { en: 'AI Consult', nl: 'AI Consult' },
   'nav.kennisbank': { en: 'Knowledge Base', nl: 'Kennisbank' },
@@ -36,7 +36,7 @@ const translations = {
   'home.aiUseCases.optimization': { en: 'to optimize operations', nl: 'om operaties te optimaliseren' },
   'home.description': {
     en: 'We help organisations achieve their financial and operational goals by implementing agentic AI and automations. We create deep insights, efficiency and autonomy for the future of business.',
-    nl: 'Wij helpen organisaties hun financiële en operationele doelen te bereiken door het implementeren van agentische AI en automatiseringen. We creëren diepgaande inzichten, efficiëntie en autonomie voor de toekomst van het bedrijfsleven.'
+    nl: 'Wij helpen organisaties hun financiële en operationele doelen te bereiken door het implementeren van AI agents en automatiseringen. We creëren diepgaande inzichten, efficiëntie en autonomie voor de toekomst van het bedrijven.'
   },
   'home.cta': { en: 'Get ready for AI within 24 hrs', nl: 'Klaar voor AI binnen 24 uur' },
 
