@@ -5,7 +5,7 @@ export function Footer() {
   const { language, toggleLanguage, t } = useLanguage();
 
   return (
-    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/10 backdrop-blur-sm border-t border-white/5">
+    <footer className="relative bg-black/10 backdrop-blur-sm border-t border-white/5 mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-3">
         
         {/* Desktop Layout */}

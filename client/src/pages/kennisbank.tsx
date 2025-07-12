@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
-import { StarField } from "../components/StarField";
+import { StarsBackground } from "../components/StarsBackground";
 import { FileText, Brain, Lightbulb, TrendingUp } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -59,14 +59,14 @@ export default function Kennisbank() {
       <div className="fixed inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
           <Suspense fallback={null}>
-            <StarField />
+            <StarsBackground />
           </Suspense>
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 flex-1 flex flex-col overflow-y-auto">
         <Navbar />
-        <div className="pt-24 pb-16 px-4">
+        <div className="flex-1 pt-24 pb-16 px-4">
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">

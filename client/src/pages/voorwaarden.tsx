@@ -2,24 +2,24 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
-import { StarField } from "../components/StarField";
+import { StarsBackground } from "../components/StarsBackground";
 
 export default function Voorwaarden() {
   return (
-    <div className="min-h-screen relative" style={{ 
+    <div className="min-h-screen relative flex flex-col" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
     }}>
       <div className="fixed inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
           <Suspense fallback={null}>
-            <StarField />
+            <StarsBackground />
           </Suspense>
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 flex-1 flex flex-col overflow-y-auto">
         <Navbar />
-        <div className="pt-24 pb-24 px-4">
+        <div className="flex-1 pt-24 pb-24 px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
               Algemene Voorwaarden

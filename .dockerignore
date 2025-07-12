@@ -1,0 +1,26 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.env
+.nyc_output
+coverage
+.cache
+.vscode
+.idea
+*.log
+*.md
+.DS_Store
+Thumbs.db
+
+# Development files
+dev-server.sh
+nginx.conf
+test-scrolling.html
+attached_assets/
+
+# Build artifacts (will be built in container)
+dist/
+*.tgz
+*.tar.gz

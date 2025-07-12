@@ -21,14 +21,6 @@ export function Navbar() {
 
           {/* Navigation Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Sectoren Link */}
-            <Link 
-              to="/sectoren" 
-              className="text-white hover:text-[#4746a4] transition-colors"
-            >
-              {t('nav.sectoren')}
-            </Link>
-
             {/* Oplossingen Link */}
             <Link 
               to="/oplossingen" 
@@ -93,15 +85,6 @@ export function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
             <div className="px-4 py-4 space-y-4">
-              {/* Sectoren Mobile Link */}
-              <Link 
-                to="/sectoren" 
-                className="block text-white hover:text-[#4746a4] transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('nav.sectoren')}
-              </Link>
-
               {/* Oplossingen Mobile Link */}
               <Link 
                 to="/oplossingen" 

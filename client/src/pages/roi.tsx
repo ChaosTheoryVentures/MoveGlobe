@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
-import { StarField } from "../components/StarField";
+import { StarsBackground } from "../components/StarsBackground";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Calculator, TrendingUp, DollarSign, Clock, CheckCircle, ArrowRight, BarChart3 } from 'lucide-react';
 import { Link } from "react-router-dom";
@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 interface ROICalculatorData {
   revenue: string;
   employees: string;
-  industry: string;
   challenges: string[];
 }
 
@@ -34,7 +33,6 @@ export default function ROI() {
   const [calculatorData, setCalculatorData] = useState<ROICalculatorData>({
     revenue: '',
     employees: '',
-    industry: '',
     challenges: []
   });
   const [results, setResults] = useState<ROIResults | null>(null);
@@ -107,7 +105,7 @@ export default function ROI() {
     const baseSavings = revenueData.base * revenueData.multiplier;
     
     const employeeMultiplier = employeeMultipliers[calculatorData.employees as keyof typeof employeeMultipliers] || 1;
-    const industryMultiplier = industryMultipliers[calculatorData.industry as keyof typeof industryMultipliers] || 1;
+    const industryMultiplier = 1;
     
     const challengeMultiplier = calculatorData.challenges.reduce((sum, challenge) => {
       return sum + (challengeValues[challenge as keyof typeof challengeValues] || 0);
@@ -162,24 +160,24 @@ export default function ROI() {
     }).format(amount);
   };
 
-  const canProceedToStep2 = calculatorData.revenue && calculatorData.employees && calculatorData.industry;
+  const canProceedToStep2 = calculatorData.revenue && calculatorData.employees;
   const canCalculate = canProceedToStep2 && calculatorData.challenges.length > 0;
 
   return (
-    <div className="min-h-screen relative" style={{ 
+    <div className="min-h-screen relative flex flex-col" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
     }}>
       <div className="fixed inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
           <Suspense fallback={null}>
-            <StarField />
+            <StarsBackground />
           </Suspense>
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 flex-1 flex flex-col overflow-y-auto">
         <Navbar />
-        <div className="pt-24 pb-24 px-4">
+        <div className="flex-1 pt-24 pb-24 px-4">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
@@ -262,25 +260,6 @@ export default function ROI() {
                     </select>
                   </div>
 
-                  {/* Industry */}
-                  <div>
-                    <label className="block text-white/80 mb-3 text-lg font-medium">
-                      {t('roi.industry.label')}
-                    </label>
-                    <select
-                      value={calculatorData.industry}
-                      onChange={(e) => setCalculatorData(prev => ({ ...prev, industry: e.target.value }))}
-                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white focus:border-[#4746a4] focus:outline-none transition-colors [&>option]:bg-gray-800 [&>option]:text-white"
-                    >
-                      <option value="">{t('roi.industry.placeholder')}</option>
-                      <option value="financial">{t('roi.industry.financial')}</option>
-                      <option value="healthcare">{t('roi.industry.healthcare')}</option>
-                      <option value="retail">{t('roi.industry.retail')}</option>
-                      <option value="manufacturing">{t('roi.industry.manufacturing')}</option>
-                      <option value="technology">{t('roi.industry.technology')}</option>
-                      <option value="other">{t('roi.industry.other')}</option>
-                    </select>
-                  </div>
                 </div>
 
                 <div className="mt-8 flex justify-end">

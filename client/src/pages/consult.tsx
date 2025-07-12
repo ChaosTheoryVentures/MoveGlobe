@@ -2,7 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { Suspense, useState } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
-import { StarField } from "../components/StarField";
+import { StarsBackground } from "../components/StarsBackground";
 import { CheckCircle, Clock, Zap, Shield } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -15,7 +15,6 @@ export default function Consult() {
     email: '',
     phone: '',
     employees: '',
-    industry: '',
     challenges: '',
     budget: '',
     timeline: ''
@@ -35,20 +34,20 @@ export default function Consult() {
   };
 
   return (
-    <div className="min-h-screen relative" style={{ 
+    <div className="min-h-screen relative flex flex-col" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
     }}>
       <div className="fixed inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
           <Suspense fallback={null}>
-            <StarField />
+            <StarsBackground />
           </Suspense>
         </Canvas>
       </div>
       
-      <div className="relative z-10 min-h-screen overflow-y-auto">
+      <div className="relative z-10 flex-1 flex flex-col overflow-y-auto">
         <Navbar />
-        <div className="pt-24 pb-24 px-4">
+        <div className="flex-1 pt-24 pb-24 px-4">
           <div className="max-w-6xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
@@ -183,39 +182,21 @@ export default function Consult() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-white/80 mb-2">Aantal medewerkers</label>
-                      <select 
-                        name="employees"
-                        value={formData.employees}
-                        onChange={handleChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors [&>option]:bg-gray-800 [&>option]:text-white"
-                      >
-                        <option value="">Selecteer</option>
-                        <option value="1-10">1-10</option>
-                        <option value="11-50">11-50</option>
-                        <option value="51-200">51-200</option>
-                        <option value="201-500">201-500</option>
-                        <option value="500+">500+</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-white/80 mb-2">Sector</label>
-                      <select 
-                        name="industry"
-                        value={formData.industry}
-                        onChange={handleChange}
-                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors [&>option]:bg-gray-800 [&>option]:text-white"
-                      >
-                        <option value="">Selecteer</option>
-                        <option value="financial">Financiële dienstverlening</option>
-                        <option value="healthcare">Gezondheidszorg</option>
-                        <option value="retail">Retail & E-commerce</option>
-                        <option value="manufacturing">Productie & Logistiek</option>
-                        <option value="other">Anders</option>
-                      </select>
-                    </div>
+                  <div>
+                    <label className="block text-white/80 mb-2">Aantal medewerkers</label>
+                    <select 
+                      name="employees"
+                      value={formData.employees}
+                      onChange={handleChange}
+                      className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors [&>option]:bg-gray-800 [&>option]:text-white"
+                    >
+                      <option value="">Selecteer</option>
+                      <option value="1-10">1-10</option>
+                      <option value="11-50">11-50</option>
+                      <option value="51-200">51-200</option>
+                      <option value="201-500">201-500</option>
+                      <option value="500+">500+</option>
+                    </select>
                   </div>
 
                   <div>

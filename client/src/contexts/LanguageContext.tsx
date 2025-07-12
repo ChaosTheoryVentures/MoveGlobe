@@ -12,7 +12,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const translations = {
   // Navigation
+<<<<<<< HEAD
   'nav.sectoren': { en: 'Industries', nl: 'Sectoren' },
+=======
+>>>>>>> 9a019eb (footer, solutions, stars)
   'nav.oplossingen': { en: 'Solutions', nl: 'Oplossingen' },
   'nav.aiConsult': { en: 'AI Consult', nl: 'AI Consult' },
   'nav.kennisbank': { en: 'Knowledge Base', nl: 'Kennisbank' },
@@ -124,11 +127,6 @@ const translations = {
   'consult.form.employees.51-200': { en: '51-200', nl: '51-200' },
   'consult.form.employees.201-500': { en: '201-500', nl: '201-500' },
   'consult.form.employees.500+': { en: '500+', nl: '500+' },
-  'consult.form.sector.financial': { en: 'Financial Services', nl: 'Financiële dienstverlening' },
-  'consult.form.sector.healthcare': { en: 'Healthcare', nl: 'Gezondheidszorg' },
-  'consult.form.sector.retail': { en: 'Retail & E-commerce', nl: 'Retail & E-commerce' },
-  'consult.form.sector.manufacturing': { en: 'Manufacturing & Logistics', nl: 'Productie & Logistiek' },
-  'consult.form.sector.other': { en: 'Other', nl: 'Anders' },
   'consult.form.budget.<10k': { en: 'Less than €10,000', nl: 'Minder dan €10.000' },
   'consult.form.budget.10-50k': { en: '€10,000 - €50,000', nl: '€10.000 - €50.000' },
   'consult.form.budget.50-100k': { en: '€50,000 - €100,000', nl: '€50.000 - €100.000' },
@@ -170,32 +168,6 @@ const translations = {
   'kennisbank.newsletter.button': { en: 'Subscribe', nl: 'Aanmelden' },
   'kennisbank.readTime': { en: 'min read', nl: 'min leestijd' },
 
-  // Sectoren page
-  'sectoren.title': { en: 'Sectors', nl: 'Sectoren' },
-  'sectoren.subtitle': {
-    en: 'Discover how AI transforms industries and creates competitive advantages across different sectors.',
-    nl: 'Ontdek hoe AI industrieën transformeert en concurrentievoordelen creëert in verschillende sectoren.'
-  },
-  'sectoren.financial.title': { en: 'Financial Services', nl: 'Financiële Dienstverlening' },
-  'sectoren.financial.description': {
-    en: 'Automate risk assessment, fraud detection, and customer service with intelligent AI solutions.',
-    nl: 'Automatiseer risicobeoordeling, fraudedetectie en klantenservice met intelligente AI-oplossingen.'
-  },
-  'sectoren.healthcare.title': { en: 'Healthcare', nl: 'Gezondheidszorg' },
-  'sectoren.healthcare.description': {
-    en: 'Enhance patient care, streamline operations, and accelerate medical research with AI.',
-    nl: 'Verbeter patiëntenzorg, stroomlijn operaties en versnel medisch onderzoek met AI.'
-  },
-  'sectoren.retail.title': { en: 'Retail & E-commerce', nl: 'Retail & E-commerce' },
-  'sectoren.retail.description': {
-    en: 'Optimize inventory, personalize customer experiences, and boost sales with smart automation.',
-    nl: 'Optimaliseer voorraad, personaliseer klantervaringen en verhoog verkoop met slimme automatisering.'
-  },
-  'sectoren.manufacturing.title': { en: 'Manufacturing & Logistics', nl: 'Productie & Logistiek' },
-  'sectoren.manufacturing.description': {
-    en: 'Improve efficiency, reduce costs, and ensure quality with predictive AI systems.',
-    nl: 'Verbeter efficiëntie, verlaag kosten en zorg voor kwaliteit met voorspellende AI-systemen.'
-  },
 
   // Oplossingen page
   'oplossingen.title': { en: 'Solutions', nl: 'Oplossingen' },
@@ -277,14 +249,6 @@ const translations = {
   'roi.employees.201-500': { en: '201-500 employees', nl: '201-500 medewerkers' },
   'roi.employees.500+': { en: '500+ employees', nl: '500+ medewerkers' },
   
-  'roi.industry.label': { en: 'Industry', nl: 'Branche' },
-  'roi.industry.placeholder': { en: 'Select your industry', nl: 'Selecteer uw branche' },
-  'roi.industry.financial': { en: 'Financial Services', nl: 'Financiële Dienstverlening' },
-  'roi.industry.healthcare': { en: 'Healthcare', nl: 'Gezondheidszorg' },
-  'roi.industry.retail': { en: 'Retail & E-commerce', nl: 'Retail & E-commerce' },
-  'roi.industry.manufacturing': { en: 'Manufacturing & Logistics', nl: 'Productie & Logistiek' },
-  'roi.industry.technology': { en: 'Technology', nl: 'Technologie' },
-  'roi.industry.other': { en: 'Other', nl: 'Anders' },
   
   'roi.challenges.label': { en: 'Biggest Challenges (select all that apply)', nl: 'Grootste Uitdagingen (selecteer alle die van toepassing zijn)' },
   'roi.challenge.manual-processes': { en: 'Manual, repetitive processes', nl: 'Handmatige, repetitieve processen' },

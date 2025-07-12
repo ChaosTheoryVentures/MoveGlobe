@@ -6,7 +6,6 @@ import Contact from "./pages/contact";
 import Privacy from "./pages/privacy";
 import Voorwaarden from "./pages/voorwaarden";
 import Cases from "./pages/cases";
-import Sectoren from "./pages/sectoren";
 import Oplossingen from "./pages/oplossingen";
 import Kennisbank from "./pages/kennisbank";
 import ROI from "./pages/roi";
@@ -24,7 +23,6 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/voorwaarden" element={<Voorwaarden />} />
           <Route path="/cases" element={<Cases />} />
-          <Route path="/sectoren" element={<Sectoren />} />
           <Route path="/oplossingen" element={<Oplossingen />} />
           <Route path="/kennisbank" element={<Kennisbank />} />
           <Route path="/roi" element={<ROI />} />
