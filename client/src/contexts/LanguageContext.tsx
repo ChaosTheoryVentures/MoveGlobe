@@ -167,31 +167,95 @@ const translations = {
 
 
   // Oplossingen page
-  'oplossingen.title': { en: 'Solutions', nl: 'Oplossingen' },
+  'oplossingen.title': { en: 'AI Solutions', nl: 'AI Oplossingen' },
   'oplossingen.subtitle': {
-    en: 'Comprehensive AI solutions designed to solve your specific business challenges and drive growth.',
-    nl: 'Uitgebreide AI-oplossingen ontworpen om uw specifieke bedrijfsuitdagingen op te lossen en groei te stimuleren.'
+    en: 'Transform your business with intelligent AI agents and centralized data management. From automated workflows to custom integrations.',
+    nl: 'Transformeer uw bedrijf met intelligente AI-agents en gecentraliseerd databeheer. Van geautomatiseerde workflows tot custom integraties.'
   },
-  'oplossingen.analytics.title': { en: 'AI-Powered Analytics', nl: 'AI-Powered Analytics' },
-  'oplossingen.analytics.description': {
-    en: 'Transform your data into actionable insights with advanced machine learning algorithms.',
-    nl: 'Transformeer uw data naar bruikbare inzichten met geavanceerde machine learning algoritmes.'
+
+  // Core Products
+  'oplossingen.products.title': { en: 'Our Core Products', nl: 'Onze Kernproducten' },
+  
+  'oplossingen.agent1.title': { en: 'Customer Service Agent', nl: 'Klantenservice Agent' },
+  'oplossingen.agent1.description': {
+    en: 'Intelligent AI agent that handles customer inquiries 24/7, processes orders, and provides personalized support across all channels.',
+    nl: 'Intelligente AI-agent die 24/7 klantenvragen afhandelt, bestellingen verwerkt en gepersonaliseerde ondersteuning biedt via alle kanalen.'
   },
-  'oplossingen.automation.title': { en: 'Process Automation', nl: 'Procesautomatisering' },
-  'oplossingen.automation.description': {
-    en: 'Automate repetitive tasks and workflows to increase efficiency and reduce human error.',
-    nl: 'Automatiseer repetitieve taken en workflows om efficiëntie te verhogen en menselijke fouten te verminderen.'
+  'oplossingen.agent1.features': {
+    en: '• Multi-language support\n• Order processing\n• Live chat integration\n• CRM synchronization',
+    nl: '• Meertalige ondersteuning\n• Orderverwerking\n• Live chat integratie\n• CRM synchronisatie'
   },
-  'oplossingen.predictive.title': { en: 'Predictive Intelligence', nl: 'Predictive Intelligence' },
-  'oplossingen.predictive.description': {
-    en: 'Anticipate future trends and make data-driven decisions with predictive AI models.',
-    nl: 'Voorzie toekomstige trends en neem datagedreven beslissingen met voorspellende AI-modellen.'
+
+  'oplossingen.agent2.title': { en: 'Operations Agent', nl: 'Operationele Agent' },
+  'oplossingen.agent2.description': {
+    en: 'Automates business operations, manages inventory, schedules tasks, and optimizes workflows to maximize efficiency.',
+    nl: 'Automatiseert bedrijfsoperaties, beheert voorraad, plant taken en optimaliseert workflows voor maximale efficiëntie.'
   },
-  'oplossingen.custom.title': { en: 'Custom AI Solutions', nl: 'Custom AI Solutions' },
+  'oplossingen.agent2.features': {
+    en: '• Inventory management\n• Task scheduling\n• Workflow optimization\n• Performance monitoring',
+    nl: '• Voorraadbeheer\n• Taakplanning\n• Workflow optimalisatie\n• Prestatiemonitoring'
+  },
+
+  'oplossingen.datahub.title': { en: 'Centralized Data Hub', nl: 'Gecentraliseerde Data Hub' },
+  'oplossingen.datahub.description': {
+    en: 'Unified data platform that connects all your systems, provides real-time analytics, and enables intelligent decision-making.',
+    nl: 'Uniforme dataplatform dat al uw systemen verbindt, real-time analytics biedt en intelligente besluitvorming mogelijk maakt.'
+  },
+  'oplossingen.datahub.features': {
+    en: '• System integration\n• Real-time analytics\n• Data visualization\n• Predictive insights',
+    nl: '• Systeemintegratie\n• Real-time analytics\n• Datavisualisatie\n• Voorspellende inzichten'
+  },
+
+  // Custom Solutions
+  'oplossingen.custom.title': { en: 'Custom AI Integration', nl: 'Custom AI Integratie' },
+  'oplossingen.custom.subtitle': {
+    en: 'Any Business Process. Any System. AI-Powered.',
+    nl: 'Elk Bedrijfsproces. Elk Systeem. AI-Powered.'
+  },
   'oplossingen.custom.description': {
-    en: 'Tailor-made AI solutions designed specifically for your unique business requirements.',
-    nl: 'Op maat gemaakte AI-oplossingen specifiek ontworpen voor uw unieke bedrijfsvereisten.'
+    en: 'We integrate AI into any existing business process or system. From legacy software to modern platforms - we make it intelligent.',
+    nl: 'Wij integreren AI in elk bestaand bedrijfsproces of systeem. Van legacy software tot moderne platformen - wij maken het intelligent.'
   },
+  'oplossingen.custom.capabilities': {
+    en: '• Legacy system modernization\n• API integrations\n• Custom AI models\n• Workflow automation\n• Data pipeline creation\n• Real-time processing',
+    nl: '• Legacy systeem modernisering\n• API integraties\n• Custom AI modellen\n• Workflow automatisering\n• Data pipeline creatie\n• Real-time verwerking'
+  },
+
+  // Consulting Service
+  'oplossingen.consulting.title': { en: 'AI Readiness Assessment', nl: 'AI Readiness Assessment' },
+  'oplossingen.consulting.price': { en: '€1,200', nl: '€1.200' },
+  'oplossingen.consulting.subtitle': { en: 'Complete AI Strategy in One Day', nl: 'Complete AI Strategie op Één Dag' },
+  'oplossingen.consulting.description': {
+    en: 'Get everything you need to start your AI transformation. Our comprehensive one-day assessment gives you a complete roadmap.',
+    nl: 'Krijg alles wat u nodig heeft om uw AI-transformatie te starten. Onze uitgebreide one-day assessment geeft u een complete roadmap.'
+  },
+  'oplossingen.consulting.includes': { en: 'What\'s Included:', nl: 'Wat is Inbegrepen:' },
+  'oplossingen.consulting.discovery': { en: 'Business Process Discovery', nl: 'Bedrijfsproces Ontdekking' },
+  'oplossingen.consulting.discovery.desc': {
+    en: 'Deep analysis of your current workflows and pain points',
+    nl: 'Diepgaande analyse van uw huidige workflows en pijnpunten'
+  },
+  'oplossingen.consulting.advice': { en: 'Strategic AI Advice', nl: 'Strategisch AI Advies' },
+  'oplossingen.consulting.advice.desc': {
+    en: 'Personalized recommendations for AI implementation',
+    nl: 'Gepersonaliseerde aanbevelingen voor AI-implementatie'
+  },
+  'oplossingen.consulting.implementation': { en: 'Implementation Roadmap', nl: 'Implementatie Roadmap' },
+  'oplossingen.consulting.implementation.desc': {
+    en: 'Step-by-step plan with timelines and priorities',
+    nl: 'Stap-voor-stap plan met tijdlijnen en prioriteiten'
+  },
+  'oplossingen.consulting.roi': { en: 'ROI Calculation', nl: 'ROI Berekening' },
+  'oplossingen.consulting.roi.desc': {
+    en: 'Detailed financial projections and cost-benefit analysis',
+    nl: 'Gedetailleerde financiële projecties en kosten-batenanalyse'
+  },
+  'oplossingen.consulting.readiness': { en: 'AI Readiness Report', nl: 'AI Readiness Rapport' },
+  'oplossingen.consulting.readiness.desc': {
+    en: 'Complete assessment of your organization\'s AI preparedness',
+    nl: 'Complete beoordeling van uw organisatie\'s AI-gereedheid'
+  },
+  'oplossingen.consulting.cta': { en: 'Book Your Assessment', nl: 'Boek Uw Assessment' },
 
   // Voorwaarden page
   'voorwaarden.title': { en: 'Terms and Conditions', nl: 'Algemene Voorwaarden' },
