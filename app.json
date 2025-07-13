@@ -1,0 +1,27 @@
+{
+  "name": "MoveGlobe",
+  "description": "MoveGlobe application",
+  "keywords": ["node", "express", "react"],
+  "scripts": {
+    "dokku": {
+      "predeploy": "npm run build",
+      "postdeploy": "echo 'Deployment complete!'"
+    }
+  },
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
