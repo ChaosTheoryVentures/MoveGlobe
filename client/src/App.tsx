@@ -13,6 +13,10 @@ import Cases from "./pages/cases";
 import Oplossingen from "./pages/oplossingen";
 import FormSubmissions from "./pages/admin/form-submissions";
 import AdminLogin from "./pages/admin/login";
+import VSL from "./pages/vsl";
+import Application from "./pages/application";
+import HTO from "./pages/hto";
+import LTO from "./pages/lto";
 import NotFound from "./pages/not-found";
 import "@fontsource/inter";
 
@@ -36,6 +40,10 @@ function App() {
             <Router>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/vsl" element={<VSL />} />
+                <Route path="/application" element={<Application />} />
+                <Route path="/hto" element={<HTO />} />
+                <Route path="/lto" element={<LTO />} />
                 <Route path="/ai-analyse" element={<AIAnalyse />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/privacy" element={<Privacy />} />

@@ -9,7 +9,10 @@ MoveGlobe is an AI business consultancy web application featuring interactive 3D
 ## Development Commands
 
 ```bash
-# Start development server
+# Install dependencies
+npm install
+
+# Start development server (runs on http://localhost:5000)
 npm run dev
 
 # Build for production
@@ -25,11 +28,19 @@ npm run check
 npm run db:push
 ```
 
+## Environment Setup
+
+Create a `.env` file based on `.env.example`:
+- `DATABASE_URL`: PostgreSQL connection string (required)
+- `ADMIN_PASSWORD`: Password for admin panel access
+- `SESSION_SECRET`: Secure random string for session encryption
+- `PORT`: Server port (defaults to 5000)
+
 ## Architecture
 
 ### Tech Stack
 - **Frontend**: React 18.3 with TypeScript, Three.js/React Three Fiber for 3D graphics, Vite bundler
-- **Backend**: Express.js server with TypeScript
+- **Backend**: Express.js server with TypeScript  
 - **Database**: PostgreSQL with Drizzle ORM (Neon serverless)
 - **UI**: shadcn/ui components (Radix UI primitives), TailwindCSS
 - **State Management**: Zustand (audio, game state), React Query (TanStack Query)
@@ -37,46 +48,47 @@ npm run db:push
 - **Animations**: Framer Motion
 - **Build Tools**: esbuild for server, Vite for client
 
-### Directory Structure
-```
-├── client/             # Frontend React application
-│   ├── public/        # Static assets (fonts, 3D models, textures, sounds)
-│   └── src/
-│       ├── components/  # React components including Globe.tsx, Scene.tsx
-│       ├── contexts/    # React contexts (LanguageContext for i18n)
-│       ├── hooks/       # Custom React hooks (incl. use-form-submission)
-│       ├── lib/         # Utilities, stores (Zustand), forms.ts for submissions
-│       ├── pages/       # Route components
-│       │   ├── admin/   # Admin panel for form submissions
-│       │   └── ...      # Public pages (oplossingen, ai-analyse, contact)
-│       └── styles/      # Global styles
-├── server/             # Backend Express application
-│   ├── index.ts       # Server entry point with middleware
-│   ├── routes.ts      # API route definitions (forms, health check)
-│   ├── storage.ts     # Storage interface (IStorage)
-│   ├── db.ts          # PostgreSQL connection setup
-│   └── drizzle-storage.ts # Drizzle ORM implementation
-├── shared/            # Shared types and schemas
-│   └── schema.ts      # Drizzle database schema (users, forms system)
-└── scripts/           # Build and utility scripts
-```
+### High-Level Architecture
+
+The application follows a client-server architecture with a clear separation of concerns:
+
+1. **Client-Server Communication**: The frontend communicates with the backend via RESTful APIs under `/api/*` routes
+2. **Storage Abstraction**: The backend uses an interface-based storage pattern (`IStorage`) allowing seamless switching between in-memory and PostgreSQL storage
+3. **Form System Architecture**: Dynamic form system with database-driven form types and submissions
+4. **3D Rendering Pipeline**: Three.js scene graph with React Three Fiber for declarative 3D components
+5. **Authentication Flow**: Session-based authentication with Express sessions (implementation pending)
 
 ### Key Components
 
-1. **3D Globe**: Component-based 3D scene composition using React Three Fiber
+1. **3D Globe System**
    - Scene.tsx orchestrates Globe.tsx, Lights.tsx, and OrbitControls
    - Custom texture processing with canvas API
    - Responsive scaling (mobile: 0.6x, tablet: 0.8x, desktop: 1x)
    - Touch-optimized controls
-2. **Multilingual Support**: LanguageContext provides EN/NL translations throughout the app
-3. **UI Component Library**: Extensive shadcn/ui components in client/src/components/ui/
-4. **Form Submission System**: 
-   - Flexible form types (formTypes table)
-   - Form submissions with dynamic fields
-   - Admin panel at `/admin/form-submissions` for management
+   - GLTF model loading from public/geometries/
+
+2. **Multilingual System**
+   - LanguageContext provides EN/NL translations
+   - Translation keys defined in contexts/LanguageContext.tsx
+   - Language persistence via localStorage
+
+3. **Form Submission System**
+   - Database-driven form types (formTypes table)
+   - Dynamic field storage (formFields table) 
+   - File attachment support (formAttachments table)
+   - Admin panel at `/admin/form-submissions`
    - API endpoints: `/api/forms/submit`, `/api/forms/types`, `/api/forms/submissions`
-5. **Storage Abstraction**: Interface-based storage allowing switch between in-memory and PostgreSQL
-6. **Audio System**: Zustand-based audio management with background music and sound effects (default muted)
+   - Client hook: `use-form-submission.tsx` for form handling
+
+4. **Storage Architecture**
+   - Interface: `IStorage` in server/storage.ts
+   - Implementations: `InMemoryStorage`, `DrizzleStorage`
+   - Initialized based on DATABASE_URL availability
+
+5. **Audio System**
+   - Zustand store in `lib/audio-store.ts`
+   - Background music and sound effects
+   - Default muted, user-controlled
 
 ### Path Aliases
 - `@/` → `client/src/`
@@ -97,18 +109,6 @@ npm run db:push
 - Schema changes require running `npm run db:push`
 - Configuration in drizzle.config.ts
 - Tables: users, formTypes, formSubmissions, formFields, formAttachments
-
-### Form System
-- Dynamic form types stored in database
-- Form submissions stored with metadata and dynamic fields
-- Support for file attachments
-- Client utilities in `client/src/lib/forms.ts`
-- Hook for form handling: `use-form-submission.tsx`
-
-### Styling
-- TailwindCSS with extensive custom configuration
-- CSS variables for theming in globals.css
-- Custom animations defined in tailwind.config.ts
 
 ### Build Configuration
 - Client assets extended to support 3D models (.gltf, .glb) and audio files (.mp3, .ogg, .wav)

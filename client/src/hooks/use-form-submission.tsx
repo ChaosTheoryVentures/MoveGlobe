@@ -46,6 +46,72 @@ export function useContactForm() {
   };
 }
 
+export function useVSLForm() {
+  const { data: formTypes, isLoading: isLoadingFormTypes } = useFormTypes();
+  const submitMutation = useSubmitForm();
+
+  const submit = async (formData: {
+    email: string;
+  }) => {
+    const vslFormType = formTypes?.find((type: any) => type.name === 'vsl-lead');
+    if (!vslFormType) {
+      throw new Error('VSL form type not found');
+    }
+
+    const submissionData = prepareFormSubmission(vslFormType.id, formData);
+    return submitMutation.mutateAsync(submissionData);
+  };
+
+  return {
+    submit,
+    isLoading: submitMutation.isPending,
+    isLoadingFormTypes,
+    isSuccess: submitMutation.isSuccess,
+    isError: submitMutation.isError,
+    error: submitMutation.error,
+    reset: submitMutation.reset,
+  };
+}
+
+export function useApplicationForm() {
+  const { data: formTypes, isLoading: isLoadingFormTypes } = useFormTypes();
+  const submitMutation = useSubmitForm();
+
+  const submit = async (formData: {
+    companyName: string;
+    industry: string;
+    companySize: string;
+    website?: string;
+    annualRevenue: string;
+    currentChallenges: string;
+    businessGoals: string;
+    aiInterest: string;
+    timeline: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    preferredContact: string;
+  }) => {
+    const applicationFormType = formTypes?.find((type: any) => type.name === 'application');
+    if (!applicationFormType) {
+      throw new Error('Application form type not found');
+    }
+
+    const submissionData = prepareFormSubmission(applicationFormType.id, formData);
+    return submitMutation.mutateAsync(submissionData);
+  };
+
+  return {
+    submit,
+    isLoading: submitMutation.isPending,
+    isLoadingFormTypes,
+    isSuccess: submitMutation.isSuccess,
+    isError: submitMutation.isError,
+    error: submitMutation.error,
+    reset: submitMutation.reset,
+  };
+}
+
 export function useAIAnalysisForm() {
   const { data: formTypes, isLoading: isLoadingFormTypes } = useFormTypes();
   const submitMutation = useSubmitForm();
