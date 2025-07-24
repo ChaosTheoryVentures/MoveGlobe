@@ -1,13 +1,62 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarsBackground } from "../components/StarsBackground";
 import { Linkedin, Instagram } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
+import { useContactForm } from "../hooks/use-form-submission";
 
 export default function Contact() {
   const { t } = useLanguage();
+  const { submit, isLoading, isSuccess, isError, error, reset } = useContactForm();
+  const [showMessage, setShowMessage] = useState(false);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+
+  // Show success/error message when submission status changes
+  useEffect(() => {
+    if (isSuccess || isError) {
+      setShowMessage(true);
+      if (isSuccess) {
+        // Reset form on success
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: ''
+        });
+        // Hide success message after 5 seconds
+        const timer = setTimeout(() => {
+          setShowMessage(false);
+          reset();
+        }, 5000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isSuccess, isError, reset]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await submit(formData);
+    } catch (err) {
+      console.error('Form submission error:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen relative flex flex-col" style={{ 
@@ -95,11 +144,15 @@ export default function Contact() {
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
                 <h2 className="text-2xl font-semibold text-white mb-6">{t('contact.sendMessage')}</h2>
                 
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="block text-white/80 mb-2">{t('contact.name')}</label>
                     <input 
-                      type="text" 
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
                       placeholder={t('contact.namePlaceholder')}
                     />
@@ -108,7 +161,11 @@ export default function Contact() {
                   <div>
                     <label className="block text-white/80 mb-2">{t('contact.email')}</label>
                     <input 
-                      type="email" 
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
                       placeholder={t('contact.emailPlaceholder')}
                     />
@@ -117,7 +174,10 @@ export default function Contact() {
                   <div>
                     <label className="block text-white/80 mb-2">{t('contact.company')}</label>
                     <input 
-                      type="text" 
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors"
                       placeholder={t('contact.companyPlaceholder')}
                     />
@@ -125,18 +185,36 @@ export default function Contact() {
                   
                   <div>
                     <label className="block text-white/80 mb-2">{t('contact.message')}</label>
-                    <textarea 
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                       rows={4}
                       className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:border-[#4746a4] focus:outline-none transition-colors resize-none"
                       placeholder={t('contact.messagePlaceholder')}
                     ></textarea>
                   </div>
+
+                  {showMessage && (isSuccess || isError) && (
+                    <div className={`p-4 rounded-lg ${
+                      isSuccess 
+                        ? 'bg-green-500/20 border border-green-500/40 text-green-300' 
+                        : 'bg-red-500/20 border border-red-500/40 text-red-300'
+                    }`}>
+                      {isSuccess 
+                        ? (t('contact.successMessage') || 'Thank you! We will get back to you soon.')
+                        : (error?.message || 'Something went wrong. Please try again.')
+                      }
+                    </div>
+                  )}
                   
                   <button 
                     type="submit"
-                    className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                    disabled={isLoading}
+                    className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {t('contact.sendButton')}
+                    {isLoading ? 'Sending...' : t('contact.sendButton')}
                   </button>
                 </form>
               </div>

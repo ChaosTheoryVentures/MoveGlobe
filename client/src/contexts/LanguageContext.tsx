@@ -13,7 +13,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   // Navigation
   'nav.sectoren': { en: 'Industries', nl: 'Sectoren' },
-  'nav.oplossingen': { en: 'AI Agents', nl: 'AI Agents' },
+  'nav.oplossingen': { en: 'AI Agents', nl: 'Oplossingen' },
   'nav.aiConsult': { en: 'AI Analyse', nl: 'AI Analyse' },
   'nav.contact': { en: 'Contact', nl: 'Contact' },
 

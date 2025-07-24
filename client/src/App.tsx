@@ -6,7 +6,8 @@ import Contact from "./pages/contact";
 import Privacy from "./pages/privacy";
 import Voorwaarden from "./pages/voorwaarden";
 import Cases from "./pages/cases";
-import AIAgents from "./pages/ai-agents";
+import Oplossingen from "./pages/oplossingen";
+import FormSubmissions from "./pages/admin/form-submissions";
 import NotFound from "./pages/not-found";
 import "@fontsource/inter";
 
@@ -21,7 +22,8 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/voorwaarden" element={<Voorwaarden />} />
           <Route path="/cases" element={<Cases />} />
-          <Route path="/ai-agents" element={<AIAgents />} />
+          <Route path="/oplossingen" element={<Oplossingen />} />
+          <Route path="/admin/form-submissions" element={<FormSubmissions />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

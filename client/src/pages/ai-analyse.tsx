@@ -1,13 +1,16 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarsBackground } from "../components/StarsBackground";
 import { CheckCircle, Clock, Zap, Shield } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
+import { useAIAnalysisForm } from "../hooks/use-form-submission";
 
 export default function Consult() {
   const { t } = useLanguage();
+  const { submit, isLoading, isSuccess, isError, error, reset } = useAIAnalysisForm();
+  const [showMessage, setShowMessage] = useState(false);
   
   const [formData, setFormData] = useState({
     company: '',
@@ -20,10 +23,39 @@ export default function Consult() {
     timeline: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Show success/error message when submission status changes
+  useEffect(() => {
+    if (isSuccess || isError) {
+      setShowMessage(true);
+      if (isSuccess) {
+        // Reset form on success
+        setFormData({
+          company: '',
+          name: '',
+          email: '',
+          phone: '',
+          employees: '',
+          challenges: '',
+          budget: '',
+          timeline: ''
+        });
+        // Hide success message after 5 seconds
+        const timer = setTimeout(() => {
+          setShowMessage(false);
+          reset();
+        }, 5000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isSuccess, isError, reset]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    try {
+      await submit(formData);
+    } catch (err) {
+      console.error('Form submission error:', err);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -246,12 +278,26 @@ export default function Consult() {
                     </div>
                   </div>
 
+                  {showMessage && (isSuccess || isError) && (
+                    <div className={`p-4 rounded-lg ${
+                      isSuccess 
+                        ? 'bg-green-500/20 border border-green-500/40 text-green-300' 
+                        : 'bg-red-500/20 border border-red-500/40 text-red-300'
+                    }`}>
+                      {isSuccess 
+                        ? 'Thank you! We will send your AI Analysis report within 24 hours.'
+                        : (error?.message || 'Something went wrong. Please try again.')
+                      }
+                    </div>
+                  )}
+
                   <div className="pt-4">
                     <button 
                       type="submit"
-                      className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-4 px-6 rounded-lg transition-colors text-lg"
+                      disabled={isLoading}
+                      className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-4 px-6 rounded-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Ontvang Gratis AI Assessment
+                      {isLoading ? 'Verzenden...' : 'Ontvang Gratis AI Assessment'}
                     </button>
                     <p className="text-white/60 text-sm mt-4 text-center">
                       Binnen 24 uur ontvangt u uw persoonlijke AI-readiness rapport

@@ -23,7 +23,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             {/* AI Agents Link */}
             <Link 
-              to="/ai-agents" 
+              to="/oplossingen" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
               {t('nav.oplossingen')}
@@ -71,7 +71,7 @@ export function Navbar() {
             <div className="px-4 py-4 space-y-4">
               {/* AI Agents Mobile Link */}
               <Link 
-                to="/ai-agents" 
+                to="/oplossingen" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
