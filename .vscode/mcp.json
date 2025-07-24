@@ -8,7 +8,7 @@
         "--project-ref=kosthvcihsgqiymrfbjm"   // 🔓 write‑enabled (no --read-only flag)
       ],
       "env": {
-        "SUPABASE_ACCESS_TOKEN": "sbp_0f4dcd48ccb02d0b8bb3c30bc54fee1650eb5e27"
+        "SUPABASE_ACCESS_TOKEN": ""
       }
     }
   }
