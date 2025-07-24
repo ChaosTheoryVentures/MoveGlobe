@@ -22,7 +22,7 @@ export default function VSL() {
     e.preventDefault();
     
     if (!email) {
-      toast.error("Please enter your email address");
+      toast.error(t('vsl.form.emailRequired', 'Please enter your email address'));
       return;
     }
 
@@ -40,10 +40,10 @@ export default function VSL() {
         sessionStorage.setItem("vsl_email", email);
         navigate("/application");
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t('vsl.form.errorGeneral', 'Something went wrong. Please try again.'));
       }
     } catch (error) {
-      toast.error("Network error. Please check your connection and try again.");
+      toast.error(t('vsl.form.errorNetwork', 'Network error. Please check your connection and try again.'));
     } finally {
       setIsSubmitting(false);
     }
@@ -72,14 +72,13 @@ export default function VSL() {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Transform Your Business with 
+              {t('vsl.title', 'Transform Your Business with ')}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-[#4746a4]">
-                {" "}AI Automation
+                {" "}{t('vsl.titleHighlight', 'AI Automation')}
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Discover how companies like yours are using AI to increase revenue by 40%+ 
-              while reducing operational costs and saving hours of manual work every day.
+              {t('vsl.subtitle', 'Discover how companies like yours are using AI to increase revenue by 40%+ while reducing operational costs and saving hours of manual work every day.')}
             </p>
           </div>
 
@@ -92,10 +91,10 @@ export default function VSL() {
                     <Play className="w-8 h-8 text-white ml-1" fill="white" />
                   </div>
                   <h3 className="text-2xl font-semibold text-white mb-2">
-                    Watch: How AI Transformed These Businesses
+                    {t('vsl.video.title', 'Watch: How AI Transformed These Businesses')}
                   </h3>
                   <p className="text-white/70">
-                    Real case studies • 15 minutes • No fluff
+                    {t('vsl.video.description', 'Real case studies • 15 minutes • No fluff')}
                   </p>
                 </div>
               </div>
@@ -107,11 +106,10 @@ export default function VSL() {
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl">
               <div className="text-center mb-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Ready to See How AI Can Transform Your Business?
+                  {t('vsl.form.title', 'Ready to See How AI Can Transform Your Business?')}
                 </h2>
                 <p className="text-xl text-white/80 mb-8">
-                  Get instant access to our AI Transformation Blueprint and see exactly 
-                  how businesses in your industry are scaling with AI.
+                  {t('vsl.form.description', 'Get instant access to our AI Transformation Blueprint and see exactly how businesses in your industry are scaling with AI.')}
                 </p>
               </div>
 
@@ -119,7 +117,7 @@ export default function VSL() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Input
                     type="email"
-                    placeholder="Enter your business email"
+                    placeholder={t('vsl.form.emailPlaceholder', 'Enter your business email')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isSubmitting || isLoading}
@@ -131,23 +129,23 @@ export default function VSL() {
                     className="h-14 px-8 text-lg font-semibold bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white border-none shadow-lg hover:shadow-xl transition-all duration-300"
                     disabled={isSubmitting || isLoading}
                   >
-                    {isSubmitting || isLoading ? "Processing..." : "Get Instant Access"}
+                    {isSubmitting || isLoading ? t('vsl.form.processing', 'Processing...') : t('vsl.form.button', 'Get Instant Access')}
                   </Button>
                 </div>
                 <p className="text-sm text-center text-white/60 mt-4 flex items-center justify-center gap-2">
                   <Shield className="w-4 h-4" />
-                  100% secure. No spam. Unsubscribe anytime.
+                  {t('vsl.form.security', '100% secure. No spam. Unsubscribe anytime.')}
                 </p>
               </form>
 
               {/* Social Proof */}
               <div className="text-center text-white/70">
-                <p className="text-sm mb-2">Trusted by 500+ business owners</p>
+                <p className="text-sm mb-2">{t('vsl.socialProof.trusted', 'Trusted by 500+ business owners')}</p>
                 <div className="flex justify-center items-center gap-1">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-lg">★</span>
                   ))}
-                  <span className="ml-2 text-sm">4.9/5 average rating</span>
+                  <span className="ml-2 text-sm">{t('vsl.socialProof.rating', '4.9/5 average rating')}</span>
                 </div>
               </div>
             </div>
@@ -158,18 +156,18 @@ export default function VSL() {
             {[
               {
                 icon: TrendingUp,
-                title: "Increase Revenue by 40%+",
-                description: "Our clients see an average revenue increase of 40% within 6 months of implementing AI automation."
+                title: t('vsl.benefits.revenue.title', 'Increase Revenue by 40%+'),
+                description: t('vsl.benefits.revenue.description', 'Our clients see an average revenue increase of 40% within 6 months of implementing AI automation.')
               },
               {
                 icon: Clock,
-                title: "Save 20+ Hours Weekly",
-                description: "Automate repetitive tasks and free up your team to focus on high-value strategic work."
+                title: t('vsl.benefits.time.title', 'Save 20+ Hours Weekly'),
+                description: t('vsl.benefits.time.description', 'Automate repetitive tasks and free up your team to focus on high-value strategic work.')
               },
               {
                 icon: CheckCircle,
-                title: "Proven Implementation",
-                description: "Step-by-step roadmap based on 200+ successful AI transformations across industries."
+                title: t('vsl.benefits.proven.title', 'Proven Implementation'),
+                description: t('vsl.benefits.proven.description', 'Step-by-step roadmap based on 200+ successful AI transformations across industries.')
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center">

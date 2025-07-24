@@ -262,6 +262,398 @@ const translations = {
   },
 
 
+  // VSL Page
+  'vsl.title': { 
+    en: 'Transform Your Business with AI Automation', 
+    nl: 'Transformeer Uw Bedrijf met AI Automatisering' 
+  },
+  'vsl.subtitle': {
+    en: 'Discover how companies like yours are using AI to increase revenue by 40%+ while reducing operational costs and saving hours of manual work every day.',
+    nl: 'Ontdek hoe bedrijven zoals het uwe AI gebruiken om de omzet met 40%+ te verhogen terwijl ze operationele kosten verlagen en dagelijks uren handwerk besparen.'
+  },
+  'vsl.video.title': {
+    en: 'Watch: How AI Transformed These Businesses',
+    nl: 'Bekijk: Hoe AI Deze Bedrijven Transformeerde'
+  },
+  'vsl.video.subtitle': {
+    en: 'Real case studies • 15 minutes • No fluff',
+    nl: 'Echte casestudies • 15 minuten • Geen flauwekul'
+  },
+  'vsl.form.title': {
+    en: 'Ready to See How AI Can Transform Your Business?',
+    nl: 'Klaar om te Zien Hoe AI Uw Bedrijf Kan Transformeren?'
+  },
+  'vsl.form.subtitle': {
+    en: 'Get instant access to our AI Transformation Blueprint and see exactly how businesses in your industry are scaling with AI.',
+    nl: 'Krijg directe toegang tot onze AI Transformatie Blauwdruk en zie precies hoe bedrijven in uw sector schalen met AI.'
+  },
+  'vsl.form.placeholder': {
+    en: 'Enter your business email',
+    nl: 'Voer uw zakelijke e-mail in'
+  },
+  'vsl.form.button': {
+    en: 'Get Instant Access',
+    nl: 'Krijg Directe Toegang'
+  },
+  'vsl.form.privacy': {
+    en: '100% secure. No spam. Unsubscribe anytime.',
+    nl: '100% veilig. Geen spam. Altijd uitschrijven mogelijk.'
+  },
+  'vsl.social.trust': {
+    en: 'Trusted by 500+ business owners',
+    nl: 'Vertrouwd door 500+ ondernemers'
+  },
+  'vsl.social.rating': {
+    en: '4.9/5 average rating',
+    nl: '4,9/5 gemiddelde beoordeling'
+  },
+  'vsl.benefit1.title': {
+    en: 'Increase Revenue by 40%+',
+    nl: 'Verhoog Omzet met 40%+'
+  },
+  'vsl.benefit1.desc': {
+    en: 'Our clients see an average revenue increase of 40% within 6 months of implementing AI automation.',
+    nl: 'Onze klanten zien gemiddeld 40% omzetgroei binnen 6 maanden na implementatie van AI automatisering.'
+  },
+  'vsl.benefit2.title': {
+    en: 'Save 20+ Hours Weekly',
+    nl: 'Bespaar 20+ Uren per Week'
+  },
+  'vsl.benefit2.desc': {
+    en: 'Automate repetitive tasks and free up your team to focus on high-value strategic work.',
+    nl: 'Automatiseer repetitieve taken en geef uw team ruimte voor hoogwaardige strategische werkzaamheden.'
+  },
+  'vsl.benefit3.title': {
+    en: 'Proven Implementation',
+    nl: 'Bewezen Implementatie'
+  },
+  'vsl.benefit3.desc': {
+    en: 'Step-by-step roadmap based on 200+ successful AI transformations across industries.',
+    nl: 'Stap-voor-stap roadmap gebaseerd op 200+ succesvolle AI transformaties in verschillende sectoren.'
+  },
+
+  // Application Page
+  'application.title': {
+    en: 'AI Transformation Application',
+    nl: 'AI Transformatie Aanvraag'
+  },
+  'application.subtitle': {
+    en: 'Tell us about your business and discover how AI can transform your operations, increase revenue, and give you a competitive edge.',
+    nl: 'Vertel ons over uw bedrijf en ontdek hoe AI uw operaties kan transformeren, omzet kan verhogen en u een concurrentievoordeel kan geven.'
+  },
+  'application.step1': { en: 'Business Info', nl: 'Bedrijfsinfo' },
+  'application.step2': { en: 'Financials', nl: 'Financiën' },
+  'application.step3': { en: 'Goals & AI', nl: 'Doelen & AI' },
+  'application.step4': { en: 'Contact', nl: 'Contact' },
+  'application.progress': { en: 'Complete', nl: 'Voltooid' },
+  'application.step.of': { en: 'Step {current} of {total}', nl: 'Stap {current} van {total}' },
+  
+  // Step 1 - Business Info
+  'application.step1.title': {
+    en: 'Tell us about your business',
+    nl: 'Vertel ons over uw bedrijf'
+  },
+  'application.step1.subtitle': {
+    en: 'We need to understand your company to provide the best AI solutions',
+    nl: 'We moeten uw bedrijf begrijpen om de beste AI-oplossingen te bieden'
+  },
+  'application.companyName': { en: 'Company Name', nl: 'Bedrijfsnaam' },
+  'application.industry': { en: 'Industry', nl: 'Sector' },
+  'application.companySize': { en: 'Company Size', nl: 'Bedrijfsgrootte' },
+  'application.website': { en: 'Website', nl: 'Website' },
+  'application.optional': { en: 'Optional', nl: 'Optioneel' },
+  'application.placeholder.companyName': { en: 'Enter your company name', nl: 'Voer uw bedrijfsnaam in' },
+  'application.placeholder.industry': { en: 'Select your industry', nl: 'Selecteer uw sector' },
+  'application.placeholder.companySize': { en: 'Select company size', nl: 'Selecteer bedrijfsgrootte' },
+  'application.placeholder.website': { en: 'https://www.example.com', nl: 'https://www.voorbeeld.nl' },
+  
+  // Industries
+  'application.industry.technology': { en: 'Technology', nl: 'Technologie' },
+  'application.industry.retail': { en: 'Retail', nl: 'Detailhandel' },
+  'application.industry.manufacturing': { en: 'Manufacturing', nl: 'Productie' },
+  'application.industry.healthcare': { en: 'Healthcare', nl: 'Zorgverlening' },
+  'application.industry.finance': { en: 'Finance', nl: 'Financieel' },
+  'application.industry.consulting': { en: 'Consulting', nl: 'Consultancy' },
+  'application.industry.ecommerce': { en: 'E-commerce', nl: 'E-commerce' },
+  'application.industry.other': { en: 'Other', nl: 'Anders' },
+  
+  // Company sizes
+  'application.size.1-10': { en: '1-10 employees', nl: '1-10 medewerkers' },
+  'application.size.11-50': { en: '11-50 employees', nl: '11-50 medewerkers' },
+  'application.size.51-200': { en: '51-200 employees', nl: '51-200 medewerkers' },
+  'application.size.201-500': { en: '201-500 employees', nl: '201-500 medewerkers' },
+  'application.size.500+': { en: '500+ employees', nl: '500+ medewerkers' },
+  
+  // Step 2 - Financial Details
+  'application.step2.title': {
+    en: 'Financial Information',
+    nl: 'Financiële Informatie'
+  },
+  'application.step2.subtitle': {
+    en: 'Help us understand your business scale and current challenges',
+    nl: 'Help ons uw bedrijfsschaal en huidige uitdagingen te begrijpen'
+  },
+  'application.annualRevenue': { en: 'Annual Revenue (EUR)', nl: 'Jaaromzet (EUR)' },
+  'application.currentChallenges': { en: 'Current Business Challenges', nl: 'Huidige Bedrijfsuitdagingen' },
+  'application.placeholder.revenue': { en: 'Select your annual revenue', nl: 'Selecteer uw jaaromzet' },
+  'application.placeholder.challenges': { 
+    en: 'Describe your main business challenges and pain points...', 
+    nl: 'Beschrijf uw belangrijkste bedrijfsuitdagingen en pijnpunten...' 
+  },
+  
+  // Revenue ranges
+  'application.revenue.0': { en: 'Less than €100k', nl: 'Minder dan €100k' },
+  'application.revenue.100000': { en: '€100k - €250k', nl: '€100k - €250k' },
+  'application.revenue.250000': { en: '€250k - €500k', nl: '€250k - €500k' },
+  'application.revenue.500000': { en: '€500k - €1M', nl: '€500k - €1M' },
+  'application.revenue.1000000': { en: '€1M - €5M', nl: '€1M - €5M' },
+  'application.revenue.5000000': { en: '€5M - €10M', nl: '€5M - €10M' },
+  'application.revenue.10000000': { en: 'More than €10M', nl: 'Meer dan €10M' },
+  
+  // Step 3 - Goals & AI Interest
+  'application.step3.title': {
+    en: 'Goals & AI Interest',
+    nl: 'Doelen & AI Interesse'
+  },
+  'application.step3.subtitle': {
+    en: 'Tell us about your objectives and where AI can help',
+    nl: 'Vertel ons over uw doelstellingen en waar AI kan helpen'
+  },
+  'application.businessGoals': { en: 'Business Goals', nl: 'Bedrijfsdoelen' },
+  'application.aiInterest': { en: 'AI Interest Areas', nl: 'AI Interessegebieden' },
+  'application.timeline': { en: 'Implementation Timeline', nl: 'Implementatie Tijdlijn' },
+  'application.placeholder.goals': { 
+    en: 'What are your main business goals for the next 12 months?', 
+    nl: 'Wat zijn uw belangrijkste bedrijfsdoelen voor de komende 12 maanden?' 
+  },
+  'application.placeholder.aiInterest': { 
+    en: 'Which areas of your business would benefit most from AI automation?', 
+    nl: 'Welke gebieden van uw bedrijf zouden het meest profiteren van AI automatisering?' 
+  },
+  'application.placeholder.timeline': { en: 'When do you want to start?', nl: 'Wanneer wilt u beginnen?' },
+  
+  // Timeline options
+  'application.timeline.immediate': { en: 'Immediately', nl: 'Meteen' },
+  'application.timeline.1-3months': { en: '1-3 months', nl: '1-3 maanden' },
+  'application.timeline.3-6months': { en: '3-6 months', nl: '3-6 maanden' },
+  'application.timeline.6-12months': { en: '6-12 months', nl: '6-12 maanden' },
+  'application.timeline.12months+': { en: '12+ months', nl: '12+ maanden' },
+  
+  // Step 4 - Contact Details
+  'application.step4.title': {
+    en: 'Contact Information',
+    nl: 'Contactgegevens'
+  },
+  'application.step4.subtitle': {
+    en: 'Final step - how can we reach you?',
+    nl: 'Laatste stap - hoe kunnen we u bereiken?'
+  },
+  'application.fullName': { en: 'Full Name', nl: 'Volledige Naam' },
+  'application.email': { en: 'Email Address', nl: 'E-mailadres' },
+  'application.phone': { en: 'Phone Number', nl: 'Telefoonnummer' },
+  'application.preferredContact': { en: 'Preferred Contact Method', nl: 'Voorkeurs Contactmethode' },
+  'application.placeholder.fullName': { en: 'Enter your full name', nl: 'Voer uw volledige naam in' },
+  'application.placeholder.email': { en: 'your@email.com', nl: 'uw@email.nl' },
+  'application.placeholder.phone': { en: '+31 6 12345678', nl: '+31 6 12345678' },
+  
+  // Contact methods
+  'application.contact.email': { en: 'Email', nl: 'E-mail' },
+  'application.contact.phone': { en: 'Phone', nl: 'Telefoon' },
+  'application.contact.both': { en: 'Both', nl: 'Beide' },
+  
+  // Buttons
+  'application.button.previous': { en: 'Previous', nl: 'Vorige' },
+  'application.button.continue': { en: 'Continue', nl: 'Doorgaan' },
+  'application.button.submit': { en: 'Submit Application', nl: 'Aanvraag Indienen' },
+  'application.button.submitting': { en: 'Submitting...', nl: 'Indienen...' },
+  
+  // Validation
+  'application.validation.required': { en: 'Please fill in all required fields', nl: 'Vul alle verplichte velden in' },
+
+  // HTO Page
+  'hto.title': {
+    en: 'Congratulations! You Qualify for Our Premium AI Transformation Program',
+    nl: 'Gefeliciteerd! U Komt in Aanmerking voor Ons Premium AI Transformatie Programma'
+  },
+  'hto.greeting': {
+    en: 'Thank you, {name}. Based on your application, your business is perfectly positioned for AI transformation.',
+    nl: 'Dank u, {name}. Op basis van uw aanvraag is uw bedrijf perfect gepositioneerd voor AI transformatie.'
+  },
+  'hto.nextSteps': {
+    en: 'Schedule Your Strategy Call',
+    nl: 'Plan Uw Strategiegesprek'
+  },
+  'hto.strategyCall.desc': {
+    en: 'Book a 45-minute call with our AI transformation experts',
+    nl: 'Boek een gesprek van 45 minuten met onze AI transformatie experts'
+  },
+  'hto.calendly.title': {
+    en: 'AI Strategy Call Booking',
+    nl: 'AI Strategiegesprek Boeken'
+  },
+  'hto.calendly.placeholder': {
+    en: 'Calendly booking widget will be embedded here',
+    nl: 'Calendly boekingswidget wordt hier ingevoegd'
+  },
+  'hto.button.call': {
+    en: 'Call Now: +31 20 123 4567',
+    nl: 'Bel Nu: +31 20 123 4567'
+  },
+  'hto.button.email': {
+    en: 'Email: strategy@moveglobe.com',
+    nl: 'E-mail: strategy@moveglobe.com'
+  },
+  'hto.whatYouGet': {
+    en: 'What You\'ll Get From Your Strategy Call',
+    nl: 'Wat U Krijgt van Uw Strategiegesprek'
+  },
+  'hto.benefit1': {
+    en: 'Personalized AI Strategy',
+    nl: 'Gepersonaliseerde AI Strategie'
+  },
+  'hto.benefit1.desc': {
+    en: 'Custom roadmap designed for your business',
+    nl: 'Aangepaste roadmap ontworpen voor uw bedrijf'
+  },
+  'hto.benefit2': {
+    en: 'ROI Analysis',
+    nl: 'ROI Analyse'
+  },
+  'hto.benefit2.desc': {
+    en: 'Clear projections on AI investment returns',
+    nl: 'Duidelijke projecties van AI investeringsrendementen'
+  },
+  'hto.benefit3': {
+    en: 'Implementation Plan',
+    nl: 'Implementatieplan'
+  },
+  'hto.benefit3.desc': {
+    en: 'Step-by-step guide to AI transformation',
+    nl: 'Stap-voor-stap gids voor AI transformatie'
+  },
+  'hto.benefit4': {
+    en: 'Expert Guidance',
+    nl: 'Expert Begeleiding'
+  },
+  'hto.benefit4.desc': {
+    en: 'Direct access to AI consultants',
+    nl: 'Directe toegang tot AI consultants'
+  },
+  'hto.urgency': {
+    en: 'Limited spots available this week. Book your call now to secure your AI transformation journey.',
+    nl: 'Beperkte plekken beschikbaar deze week. Boek nu uw gesprek om uw AI transformatiereis veilig te stellen.'
+  },
+  'hto.social.proof': {
+    en: 'Join 200+ businesses that have already transformed with AI',
+    nl: 'Sluit u aan bij 200+ bedrijven die al zijn getransformeerd met AI'
+  },
+
+  // LTO Page
+  'lto.badge': {
+    en: 'Exclusive Offer for Growing Businesses',
+    nl: 'Exclusief Aanbod voor Groeiende Bedrijven'
+  },
+  'lto.title': {
+    en: 'Start Your AI Journey Today',
+    nl: 'Begin Vandaag Uw AI Reis'
+  },
+  'lto.greeting': {
+    en: '{name}, while you\'re building towards our premium program, these packages will help you get started with AI immediately.',
+    nl: '{name}, terwijl u opbouwt naar ons premium programma, helpen deze pakketten u om meteen te beginnen met AI.'
+  },
+  'lto.mostPopular': {
+    en: 'MOST POPULAR',
+    nl: 'MEEST POPULAIR'
+  },
+  
+  // Packages
+  'lto.starter.name': {
+    en: 'AI Starter Kit',
+    nl: 'AI Starter Kit'
+  },
+  'lto.starter.desc': {
+    en: 'Perfect for businesses ready to start their AI journey',
+    nl: 'Perfect voor bedrijven die klaar zijn om hun AI reis te beginnen'
+  },
+  'lto.growth.name': {
+    en: 'AI Growth Accelerator',
+    nl: 'AI Groei Accelerator'
+  },
+  'lto.growth.desc': {
+    en: 'For businesses serious about AI transformation',
+    nl: 'Voor bedrijven die serieus zijn over AI transformatie'
+  },
+  'lto.workshop.name': {
+    en: 'AI Workshop Series',
+    nl: 'AI Workshop Serie'
+  },
+  'lto.workshop.desc': {
+    en: 'Group learning experience with other businesses',
+    nl: 'Groepsleervaring met andere bedrijven'
+  },
+  
+  // Features
+  'lto.feature.assessment': { en: 'AI Readiness Assessment', nl: 'AI Gereedheid Assessment' },
+  'lto.feature.recommendations': { en: '3 AI Tool Recommendations', nl: '3 AI Tool Aanbevelingen' },
+  'lto.feature.checklist': { en: 'Implementation Checklist', nl: 'Implementatie Checklist' },
+  'lto.feature.strategyCall': { en: '30-min Strategy Call', nl: '30-min Strategiegesprek' },
+  'lto.feature.emailSupport': { en: 'Email Support (30 days)', nl: 'E-mail Ondersteuning (30 dagen)' },
+  'lto.feature.roadmap': { en: 'Custom AI Roadmap', nl: 'Aangepaste AI Roadmap' },
+  'lto.feature.implementations': { en: '5 AI Tool Implementations', nl: '5 AI Tool Implementaties' },
+  'lto.feature.weeklyCalls': { en: 'Weekly Progress Calls (4 weeks)', nl: 'Wekelijkse Voortgangsgesprekken (4 weken)' },
+  'lto.feature.slackSupport': { en: 'Slack Support (60 days)', nl: 'Slack Ondersteuning (60 dagen)' },
+  'lto.feature.dashboard': { en: 'ROI Tracking Dashboard', nl: 'ROI Tracking Dashboard' },
+  'lto.feature.workshop': { en: '4-Week Online Workshop', nl: '4-Weken Online Workshop' },
+  'lto.feature.qaSessions': { en: 'Live Q&A Sessions', nl: 'Live Q&A Sessies' },
+  'lto.feature.templates': { en: 'AI Templates & Frameworks', nl: 'AI Templates & Frameworks' },
+  'lto.feature.community': { en: 'Community Access', nl: 'Community Toegang' },
+  'lto.feature.recordings': { en: 'Recording Access (Lifetime)', nl: 'Opname Toegang (Levenslang)' },
+  
+  'lto.button.getStarted': {
+    en: 'Get Started Now',
+    nl: 'Begin Nu'
+  },
+  'lto.button.processing': {
+    en: 'Processing...',
+    nl: 'Verwerken...'
+  },
+  
+  // Testimonials
+  'lto.testimonials.title': {
+    en: 'Success Stories from Our Clients',
+    nl: 'Succesverhalen van Onze Klanten'
+  },
+  'lto.testimonial1': {
+    en: 'The AI Starter Kit gave us the clarity we needed. We implemented 3 tools and saved 20 hours per week!',
+    nl: 'De AI Starter Kit gaf ons de duidelijkheid die we nodig hadden. We implementeerden 3 tools en bespaarden 20 uur per week!'
+  },
+  'lto.testimonial2': {
+    en: 'The Growth Accelerator transformed our business. Our revenue increased by 35% in just 3 months.',
+    nl: 'De Growth Accelerator transformeerde ons bedrijf. Onze omzet steeg met 35% in slechts 3 maanden.'
+  },
+  'lto.testimonial3': {
+    en: 'The workshop series was incredible. I learned so much and connected with other business owners.',
+    nl: 'De workshop serie was ongelooflijk. Ik leerde zo veel en maakte contact met andere ondernemers.'
+  },
+  
+  // Bonus section
+  'lto.bonus.title': {
+    en: 'Special Bonus: Act Now!',
+    nl: 'Speciale Bonus: Handel Nu!'
+  },
+  'lto.bonus.desc': {
+    en: 'Purchase any package today and get our AI Prompt Library (€197 value) absolutely FREE!',
+    nl: 'Koop vandaag een pakket en krijg onze AI Prompt Library (€197 waarde) helemaal GRATIS!'
+  },
+  'lto.bonus.limited': {
+    en: 'Limited Time Offer - Expires in 48 Hours',
+    nl: 'Beperkte Tijd Aanbieding - Verloopt over 48 Uur'
+  },
+  'lto.faq.button': {
+    en: 'Have questions? Check our FAQ',
+    nl: 'Heeft u vragen? Bekijk onze FAQ'
+  },
+
   // Common elements
   'common.readMore': { en: 'Read More', nl: 'Lees Meer' },
   'common.learnMore': { en: 'Learn More', nl: 'Meer Informatie' },
@@ -269,7 +661,9 @@ const translations = {
   'common.contactUs': { en: 'Contact Us', nl: 'Neem Contact Op' },
   'common.next': { en: 'Next', nl: 'Volgende' },
   'common.previous': { en: 'Previous', nl: 'Vorige' },
-  'common.loading': { en: 'Calculating...', nl: 'Berekenen...' }
+  'common.loading': { en: 'Calculating...', nl: 'Berekenen...' },
+  'common.required': { en: 'required', nl: 'verplicht' },
+  'common.optional': { en: 'optional', nl: 'optioneel' }
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {

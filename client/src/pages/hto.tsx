@@ -31,23 +31,23 @@ export default function HTO() {
   const benefits = [
     {
       icon: CheckCircle,
-      title: t("htoBenefit1", "Personalized AI Strategy"),
-      description: t("htoBenefit1Desc", "Custom roadmap designed for your business")
+      title: t('hto.benefits.benefit1.title', 'Personalized AI Strategy'),
+      description: t('hto.benefits.benefit1.description', 'Custom roadmap designed for your business')
     },
     {
       icon: CheckCircle,
-      title: t("htoBenefit2", "ROI Analysis"),
-      description: t("htoBenefit2Desc", "Clear projections on AI investment returns")
+      title: t('hto.benefits.benefit2.title', 'ROI Analysis'),
+      description: t('hto.benefits.benefit2.description', 'Clear projections on AI investment returns')
     },
     {
       icon: CheckCircle,
-      title: t("htoBenefit3", "Implementation Plan"),
-      description: t("htoBenefit3Desc", "Step-by-step guide to AI transformation")
+      title: t('hto.benefits.benefit3.title', 'Implementation Plan'),
+      description: t('hto.benefits.benefit3.description', 'Step-by-step guide to AI transformation')
     },
     {
       icon: CheckCircle,
-      title: t("htoBenefit4", "Expert Guidance"),
-      description: t("htoBenefit4Desc", "Direct access to AI consultants")
+      title: t('hto.benefits.benefit4.title', 'Expert Guidance'),
+      description: t('hto.benefits.benefit4.description', 'Direct access to AI consultants')
     }
   ];
 
@@ -77,11 +77,11 @@ export default function HTO() {
               <CheckCircle className="w-12 h-12 text-green-400" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              {t("htoTitle", "Congratulations! You Qualify for Our Premium AI Transformation Program")}
+              {t('hto.title', 'Congratulations! You Qualify for Our Premium AI Transformation Program')}
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
               {applicationData?.fullName && 
-                t("htoGreeting", `Thank you, ${applicationData.fullName}. Based on your application, your business is perfectly positioned for AI transformation.`)}
+                t('hto.greeting', `Thank you, ${applicationData.fullName}. Based on your application, your business is perfectly positioned for AI transformation.`)}
             </p>
           </div>
 
@@ -91,11 +91,11 @@ export default function HTO() {
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Calendar className="w-8 h-8 text-blue-400" />
                 <h2 className="text-3xl font-bold text-white">
-                  {t("nextSteps", "Schedule Your Strategy Call")}
+                  {t('hto.nextSteps', 'Schedule Your Strategy Call')}
                 </h2>
               </div>
               <p className="text-xl text-white/80">
-                {t("strategyCallDesc", "Book a 45-minute call with our AI transformation experts")}
+                {t('hto.strategyCallDesc', 'Book a 45-minute call with our AI transformation experts')}
               </p>
             </div>
 
@@ -103,10 +103,10 @@ export default function HTO() {
             <div className="bg-black/20 backdrop-blur-sm border border-white/10 rounded-xl p-8 text-center mb-8">
               <Clock className="w-16 h-16 mx-auto mb-6 text-white/60" />
               <h3 className="text-2xl font-semibold text-white mb-4">
-                AI Strategy Call Booking
+                {t('hto.booking.title', 'AI Strategy Call Booking')}
               </h3>
               <p className="text-white/70 mb-6">
-                {t("calendlyPlaceholder", "Calendly booking widget will be embedded here")}
+                {t('hto.booking.placeholder', 'Calendly booking widget will be embedded here')}
               </p>
               {/* Replace with actual Calendly embed code */}
               <div 
@@ -123,7 +123,7 @@ export default function HTO() {
                 className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white border-none shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <Phone className="w-4 h-4 mr-2" />
-                {t("callNow", "Call Now: +31 20 123 4567")}
+                {t('hto.contact.callNow', 'Call Now: +31 20 123 4567')}
               </Button>
               <Button 
                 size="lg" 
@@ -131,7 +131,7 @@ export default function HTO() {
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/30"
                 onClick={() => window.open("mailto:strategy@moveglobe.com")}
               >
-                {t("emailUs", "Email: strategy@moveglobe.com")}
+                {t('hto.contact.emailUs', 'Email: strategy@moveglobe.com')}
               </Button>
             </div>
           </div>
@@ -139,7 +139,7 @@ export default function HTO() {
           {/* What You'll Get */}
           <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl mb-12">
             <h2 className="text-3xl font-bold text-white text-center mb-12">
-              {t("whatYouGet", "What You'll Get From Your Strategy Call")}
+              {t('hto.benefits.title', 'What You\'ll Get From Your Strategy Call')}
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               {benefits.map((benefit, index) => (
@@ -164,10 +164,10 @@ export default function HTO() {
               ))}
             </div>
             <p className="text-xl font-semibold text-white mb-2">
-              {t("urgencyMessage", "Limited spots available this week. Book your call now to secure your AI transformation journey.")}
+              {t('hto.urgency.message', 'Limited spots available this week. Book your call now to secure your AI transformation journey.')}
             </p>
             <p className="text-white/70">
-              Join 200+ businesses that have already transformed with AI
+              {t('hto.urgency.socialProof', 'Join 200+ businesses that have already transformed with AI')}
             </p>
           </div>
         </div>
