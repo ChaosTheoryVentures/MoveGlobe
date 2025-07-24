@@ -21,36 +21,20 @@ export function Navbar() {
 
           {/* Navigation Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Oplossingen Link */}
+            {/* AI Agents Link */}
             <Link 
-              to="/oplossingen" 
+              to="/ai-agents" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
               {t('nav.oplossingen')}
             </Link>
 
-            {/* AI Consult Link */}
+            {/* AI Analyse Link */}
             <Link 
-              to="/consult" 
+              to="/ai-analyse" 
               className="text-white hover:text-[#4746a4] transition-colors"
             >
               {t('nav.aiConsult')}
-            </Link>
-
-            {/* Kennisbank Link */}
-            <Link 
-              to="/kennisbank" 
-              className="text-white hover:text-[#4746a4] transition-colors"
-            >
-              {t('nav.kennisbank')}
-            </Link>
-
-            {/* ROI Calculator Link */}
-            <Link 
-              to="/roi" 
-              className="text-white hover:text-[#4746a4] transition-colors"
-            >
-              {t('nav.roi')}
             </Link>
 
             {/* Contact Link */}
@@ -85,40 +69,22 @@ export function Navbar() {
         {mobileMenuOpen && (
           <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/10">
             <div className="px-4 py-4 space-y-4">
-              {/* Oplossingen Mobile Link */}
+              {/* AI Agents Mobile Link */}
               <Link 
-                to="/oplossingen" 
+                to="/ai-agents" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('nav.oplossingen')}
               </Link>
 
-              {/* AI Consult Mobile Link */}
+              {/* AI Analyse Mobile Link */}
               <Link 
-                to="/consult" 
+                to="/ai-analyse" 
                 className="block text-white hover:text-[#4746a4] transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {t('nav.aiConsult')}
-              </Link>
-
-              {/* Kennisbank Mobile Link */}
-              <Link 
-                to="/kennisbank" 
-                className="block text-white hover:text-[#4746a4] transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('nav.kennisbank')}
-              </Link>
-
-              {/* ROI Calculator Mobile Link */}
-              <Link 
-                to="/roi" 
-                className="block text-white hover:text-[#4746a4] transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {t('nav.roi')}
               </Link>
 
               {/* Contact Mobile Link */}

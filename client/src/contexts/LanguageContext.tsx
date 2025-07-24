@@ -13,10 +13,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 const translations = {
   // Navigation
   'nav.sectoren': { en: 'Industries', nl: 'Sectoren' },
-  'nav.oplossingen': { en: 'Solutions', nl: 'Oplossingen' },
-  'nav.aiConsult': { en: 'AI Consult', nl: 'AI Consult' },
-  'nav.kennisbank': { en: 'Knowledge Base', nl: 'Kennisbank' },
-  'nav.roi': { en: 'ROI Calculator', nl: 'ROI Calculator' },
+  'nav.oplossingen': { en: 'AI Agents', nl: 'AI Agents' },
+  'nav.aiConsult': { en: 'AI Analyse', nl: 'AI Analyse' },
   'nav.contact': { en: 'Contact', nl: 'Contact' },
 
   // Footer
@@ -142,28 +140,6 @@ const translations = {
   'consult.trust.text': { en: 'Trusted by leading companies', nl: 'Vertrouwd door toonaangevende bedrijven' },
   'consult.trust.implementations': { en: 'Successful implementations', nl: 'Succesvolle implementaties' },
 
-  // Kennisbank page
-  'kennisbank.title': { en: 'Knowledge Base', nl: 'Kennisbank' },
-  'kennisbank.subtitle': {
-    en: 'Deepen your knowledge about AI, automation and digital transformation with our expert articles and practical guides.',
-    nl: 'Verdiep uw kennis over AI, automatisering en digitale transformatie met onze expertartikelen en praktische guides.'
-  },
-  'kennisbank.categories.all': { en: 'All', nl: 'Alle' },
-  'kennisbank.categories.fundamentals': { en: 'AI Fundamentals', nl: 'AI Fundamentals' },
-  'kennisbank.categories.practices': { en: 'Best Practices', nl: 'Best Practices' },
-  'kennisbank.categories.cases': { en: 'Case Studies', nl: 'Case Studies' },
-  'kennisbank.categories.technology': { en: 'Technology', nl: 'Technology' },
-  'kennisbank.newsletter.title': {
-    en: 'Stay up to date with the latest AI developments',
-    nl: 'Blijf op de hoogte van de laatste AI-ontwikkelingen'
-  },
-  'kennisbank.newsletter.subtitle': {
-    en: 'Receive our best articles, practical tips and exclusive insights directly in your inbox every month.',
-    nl: 'Ontvang maandelijks onze beste artikelen, praktische tips en exclusieve inzichten direct in uw inbox.'
-  },
-  'kennisbank.newsletter.placeholder': { en: 'your@email.com', nl: 'uw@email.nl' },
-  'kennisbank.newsletter.button': { en: 'Subscribe', nl: 'Aanmelden' },
-  'kennisbank.readTime': { en: 'min read', nl: 'min leestijd' },
 
 
   // Oplossingen page
@@ -285,75 +261,6 @@ const translations = {
     nl: 'Voor vragen over deze voorwaarden kunt u contact met ons opnemen via info@move.ai'
   },
 
-  // ROI Calculator page
-  'roi.title': { en: 'AI ROI Calculator', nl: 'AI ROI Calculator' },
-  'roi.subtitle': {
-    en: 'Discover the potential return on investment AI can bring to your business with our interactive calculator.',
-    nl: 'Ontdek het potentiële rendement op investering dat AI naar uw bedrijf kan brengen met onze interactieve calculator.'
-  },
-  'roi.step1.title': { en: 'Step 1: Company Information', nl: 'Stap 1: Bedrijfsinformatie' },
-  'roi.step2.title': { en: 'Step 2: Current Challenges', nl: 'Stap 2: Huidige Uitdagingen' },
-  'roi.step3.title': { en: 'Step 3: Your ROI Calculation', nl: 'Stap 3: Uw ROI Berekening' },
-  
-  'roi.revenue.label': { en: 'Annual Revenue', nl: 'Jaarlijkse Omzet' },
-  'roi.revenue.placeholder': { en: 'Select revenue range', nl: 'Selecteer omzetbereik' },
-  'roi.revenue.500k-2m': { en: '€500K - €2M', nl: '€500K - €2M' },
-  'roi.revenue.2m-10m': { en: '€2M - €10M', nl: '€2M - €10M' },
-  'roi.revenue.10m-50m': { en: '€10M - €50M', nl: '€10M - €50M' },
-  'roi.revenue.50m+': { en: '€50M+', nl: '€50M+' },
-  
-  'roi.employees.label': { en: 'Number of Employees', nl: 'Aantal Medewerkers' },
-  'roi.employees.placeholder': { en: 'Select employee count', nl: 'Selecteer aantal medewerkers' },
-  'roi.employees.1-10': { en: '1-10 employees', nl: '1-10 medewerkers' },
-  'roi.employees.11-50': { en: '11-50 employees', nl: '11-50 medewerkers' },
-  'roi.employees.51-200': { en: '51-200 employees', nl: '51-200 medewerkers' },
-  'roi.employees.201-500': { en: '201-500 employees', nl: '201-500 medewerkers' },
-  'roi.employees.500+': { en: '500+ employees', nl: '500+ medewerkers' },
-  
-  
-  'roi.challenges.label': { en: 'Biggest Challenges (select all that apply)', nl: 'Grootste Uitdagingen (selecteer alle die van toepassing zijn)' },
-  'roi.challenge.manual-processes': { en: 'Manual, repetitive processes', nl: 'Handmatige, repetitieve processen' },
-  'roi.challenge.data-analysis': { en: 'Time-consuming data analysis', nl: 'Tijdrovende data-analyse' },
-  'roi.challenge.customer-service': { en: 'High customer service costs', nl: 'Hoge klantenservice kosten' },
-  'roi.challenge.inventory': { en: 'Inventory management issues', nl: 'Voorraadbeheer problemen' },
-  'roi.challenge.compliance': { en: 'Compliance and risk management', nl: 'Compliance en risicobeheer' },
-  'roi.challenge.decision-making': { en: 'Slow decision-making processes', nl: 'Trage besluitvormingsprocessen' },
-  'roi.challenge.quality-control': { en: 'Quality control and monitoring', nl: 'Kwaliteitscontrole en monitoring' },
-  'roi.challenge.resource-planning': { en: 'Resource planning and scheduling', nl: 'Resourceplanning en planning' },
-  
-  'roi.calculate.button': { en: 'Calculate My ROI', nl: 'Bereken Mijn ROI' },
-  'roi.results.title': { en: 'Your AI ROI Potential', nl: 'Uw AI ROI Potentieel' },
-  'roi.results.annual-savings': { en: 'Estimated Annual Savings', nl: 'Geschatte Jaarlijkse Besparingen' },
-  'roi.results.implementation-cost': { en: 'Implementation Investment', nl: 'Implementatie Investering' },
-  'roi.results.roi-percentage': { en: 'Return on Investment', nl: 'Rendement op Investering' },
-  'roi.results.payback-period': { en: 'Payback Period', nl: 'Terugverdientijd' },
-  'roi.results.productivity-gain': { en: 'Productivity Improvement', nl: 'Productiviteitsverbetering' },
-  
-  'roi.breakdown.title': { en: 'Calculation Breakdown', nl: 'Berekening Uitsplitsing' },
-  'roi.breakdown.labor-savings': { en: 'Labor Cost Savings', nl: 'Arbeidskosten Besparing' },
-  'roi.breakdown.efficiency-gains': { en: 'Efficiency Gains', nl: 'Efficiëntiewinst' },
-  'roi.breakdown.error-reduction': { en: 'Error Reduction Savings', nl: 'Foutenreductie Besparing' },
-  'roi.breakdown.revenue-increase': { en: 'Revenue Increase', nl: 'Omzetverhoging' },
-  
-  'roi.consultation.title': { en: 'Ready to Make It Reality?', nl: 'Klaar om het Werkelijkheid te Maken?' },
-  'roi.consultation.description': {
-    en: 'These calculations are based on industry averages. Get a personalized assessment tailored to your specific business needs.',
-    nl: 'Deze berekeningen zijn gebaseerd op branche gemiddelden. Krijg een gepersonaliseerde beoordeling afgestemd op uw specifieke bedrijfsbehoeften.'
-  },
-  'roi.consultation.benefits': {
-    en: 'Our experts will provide you with:',
-    nl: 'Onze experts bieden u:'
-  },
-  'roi.consultation.benefit1': { en: 'Detailed implementation roadmap', nl: 'Gedetailleerde implementatie roadmap' },
-  'roi.consultation.benefit2': { en: 'Custom ROI projections for your business', nl: 'Aangepaste ROI projecties voor uw bedrijf' },
-  'roi.consultation.benefit3': { en: 'Risk assessment and mitigation strategies', nl: 'Risicobeoordeling en mitigatie strategieën' },
-  'roi.consultation.benefit4': { en: 'Technology recommendations', nl: 'Technologie aanbevelingen' },
-  'roi.consultation.cta': { en: 'Book Your Free Consultation', nl: 'Boek Uw Gratis Consultatie' },
-  
-  'roi.disclaimer': {
-    en: 'Calculations are estimates based on industry data and typical AI implementation outcomes. Actual results may vary.',
-    nl: 'Berekeningen zijn schattingen gebaseerd op branchegegevens en typische AI-implementatie resultaten. Werkelijke resultaten kunnen variëren.'
-  },
 
   // Common elements
   'common.readMore': { en: 'Read More', nl: 'Lees Meer' },

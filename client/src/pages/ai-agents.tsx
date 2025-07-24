@@ -230,7 +230,7 @@ export default function Oplossingen() {
                   
                   <div className="text-center">
                     <a 
-                      href="/consult" 
+                      href="/ai-analyse" 
                       className="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg"
                     >
                       {t('oplossingen.consulting.cta')}
