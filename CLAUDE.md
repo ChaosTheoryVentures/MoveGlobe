@@ -29,8 +29,8 @@ npm run db:push
 
 ### Tech Stack
 - **Frontend**: React 18.3 with TypeScript, Three.js/React Three Fiber for 3D graphics, Vite bundler
-- **Backend**: Express.js server with TypeScript (currently using in-memory storage)
-- **Database**: PostgreSQL with Drizzle ORM (Neon serverless) - schema defined but not connected
+- **Backend**: Express.js server with TypeScript
+- **Database**: PostgreSQL with Drizzle ORM (Neon serverless)
 - **UI**: shadcn/ui components (Radix UI primitives), TailwindCSS
 - **State Management**: Zustand (audio, game state), React Query (TanStack Query)
 - **Routing**: React Router
@@ -44,16 +44,20 @@ npm run db:push
 │   └── src/
 │       ├── components/  # React components including Globe.tsx, Scene.tsx
 │       ├── contexts/    # React contexts (LanguageContext for i18n)
-│       ├── hooks/       # Custom React hooks
-│       ├── lib/         # Utilities, stores (Zustand), and shared logic
+│       ├── hooks/       # Custom React hooks (incl. use-form-submission)
+│       ├── lib/         # Utilities, stores (Zustand), forms.ts for submissions
 │       ├── pages/       # Route components
+│       │   ├── admin/   # Admin panel for form submissions
+│       │   └── ...      # Public pages (oplossingen, ai-analyse, contact)
 │       └── styles/      # Global styles
 ├── server/             # Backend Express application
-│   ├── index.ts       # Server entry point
-│   ├── routes.ts      # API route definitions (currently scaffolded)
-│   └── storage.ts     # Database operations with Drizzle
+│   ├── index.ts       # Server entry point with middleware
+│   ├── routes.ts      # API route definitions (forms, health check)
+│   ├── storage.ts     # Storage interface (IStorage)
+│   ├── db.ts          # PostgreSQL connection setup
+│   └── drizzle-storage.ts # Drizzle ORM implementation
 ├── shared/            # Shared types and schemas
-│   └── schema.ts      # Drizzle database schema
+│   └── schema.ts      # Drizzle database schema (users, forms system)
 └── scripts/           # Build and utility scripts
 ```
 
@@ -66,8 +70,13 @@ npm run db:push
    - Touch-optimized controls
 2. **Multilingual Support**: LanguageContext provides EN/NL translations throughout the app
 3. **UI Component Library**: Extensive shadcn/ui components in client/src/components/ui/
-4. **Database Schema**: User authentication schema defined in shared/schema.ts
-5. **Audio System**: Zustand-based audio management with background music and sound effects (default muted)
+4. **Form Submission System**: 
+   - Flexible form types (formTypes table)
+   - Form submissions with dynamic fields
+   - Admin panel at `/admin/form-submissions` for management
+   - API endpoints: `/api/forms/submit`, `/api/forms/types`, `/api/forms/submissions`
+5. **Storage Abstraction**: Interface-based storage allowing switch between in-memory and PostgreSQL
+6. **Audio System**: Zustand-based audio management with background music and sound effects (default muted)
 
 ### Path Aliases
 - `@/` → `client/src/`
@@ -83,9 +92,18 @@ npm run db:push
 
 ### Database
 - Requires DATABASE_URL environment variable
-- Uses Drizzle ORM with PostgreSQL (currently using in-memory storage)
+- Uses Drizzle ORM with PostgreSQL
+- Storage can switch between in-memory (InMemoryStorage) and database (DrizzleStorage)
 - Schema changes require running `npm run db:push`
 - Configuration in drizzle.config.ts
+- Tables: users, formTypes, formSubmissions, formFields, formAttachments
+
+### Form System
+- Dynamic form types stored in database
+- Form submissions stored with metadata and dynamic fields
+- Support for file attachments
+- Client utilities in `client/src/lib/forms.ts`
+- Hook for form handling: `use-form-submission.tsx`
 
 ### Styling
 - TailwindCSS with extensive custom configuration
@@ -100,14 +118,15 @@ npm run db:push
 
 ### Current State
 - Frontend is well-developed with comprehensive UI components
-- Backend routes are scaffolded but not implemented (using in-memory storage)
-- No test framework or linting configuration present
-- Authentication schema exists but is not connected
-- Server runs on fixed port 5000 with request logging middleware
+- Backend has implemented form submission system with database persistence
+- Admin panel for managing form submissions
+- Authentication schema exists but not yet implemented
+- Server runs on port 5000 (PORT env var) with CORS and request logging
 
 ## Deployment
 - Configured for Dokku deployment on Hetzner Cloud (116.203.87.132)
 - Docker multi-stage build with Node 18 Alpine
-- Health check endpoint configured
+- Health check endpoint at `/api/health`
 - Non-root user execution (nodejs:1001)
 - Uses dumb-init for proper signal handling
+- Environment variables needed: DATABASE_URL, PORT (optional)
