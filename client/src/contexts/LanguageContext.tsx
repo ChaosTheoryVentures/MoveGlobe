@@ -289,13 +289,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const handleLanguageChange = (e: CustomEvent) => {
-      setLanguage(e.detail);
+    const handleLanguageChange = (e: Event) => {
+      // Type guard to check if it's a CustomEvent with the expected detail
+      if (e instanceof CustomEvent && e.detail) {
+        setLanguage(e.detail as Language);
+      }
     };
-    window.addEventListener('languageChange' as any, handleLanguageChange);
     
+    // Add event listener
+    window.addEventListener('languageChange', handleLanguageChange);
+    
+    // Cleanup function
     return () => {
-      window.removeEventListener('languageChange' as any, handleLanguageChange);
+      window.removeEventListener('languageChange', handleLanguageChange);
     };
   }, []);
 

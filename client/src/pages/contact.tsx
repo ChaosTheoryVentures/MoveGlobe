@@ -9,7 +9,7 @@ import { useContactForm } from "../hooks/use-form-submission";
 
 export default function Contact() {
   const { t } = useLanguage();
-  const { submit, isLoading, isSuccess, isError, error, reset } = useContactForm();
+  const { submit, isLoading, isLoadingFormTypes, isSuccess, isError, error, reset } = useContactForm();
   const [showMessage, setShowMessage] = useState(false);
 
   // Form state
@@ -22,6 +22,8 @@ export default function Contact() {
 
   // Show success/error message when submission status changes
   useEffect(() => {
+    let timer: NodeJS.Timeout | undefined;
+    
     if (isSuccess || isError) {
       setShowMessage(true);
       if (isSuccess) {
@@ -33,13 +35,19 @@ export default function Contact() {
           message: ''
         });
         // Hide success message after 5 seconds
-        const timer = setTimeout(() => {
+        timer = setTimeout(() => {
           setShowMessage(false);
           reset();
         }, 5000);
-        return () => clearTimeout(timer);
       }
     }
+    
+    // Cleanup function to clear timer if component unmounts
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
   }, [isSuccess, isError, reset]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,6 +65,17 @@ export default function Contact() {
       console.error('Form submission error:', err);
     }
   };
+
+  // Show loading state while form types are being fetched
+  if (isLoadingFormTypes) {
+    return (
+      <div className="min-h-screen relative flex flex-col items-center justify-center" style={{ 
+        background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
+      }}>
+        <div className="text-white text-lg">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative flex flex-col" style={{ 

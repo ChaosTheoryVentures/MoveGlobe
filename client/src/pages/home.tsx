@@ -1,22 +1,14 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { Scene } from "../components/Scene";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { Overlay } from "../components/ui/overlay";
+import { useScrollLockWithClass } from "../hooks/useScrollLock";
 
 export default function Home() {
-  useEffect(() => {
-    // Add classes for 3D page behavior
-    document.body.classList.add('no-scroll');
-    document.getElementById('root')?.classList.add('fixed-root');
-    
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove('no-scroll');
-      document.getElementById('root')?.classList.remove('fixed-root');
-    };
-  }, []);
+  // Use the custom hook to manage scroll locking with CSS classes
+  useScrollLockWithClass(true, 'no-scroll');
 
   return (
     <div style={{ 

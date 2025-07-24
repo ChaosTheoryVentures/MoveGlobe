@@ -17,7 +17,7 @@ export function useFormTypes() {
 }
 
 export function useContactForm() {
-  const { data: formTypes } = useFormTypes();
+  const { data: formTypes, isLoading: isLoadingFormTypes } = useFormTypes();
   const submitMutation = useSubmitForm();
 
   const submit = async (formData: {
@@ -38,6 +38,7 @@ export function useContactForm() {
   return {
     submit,
     isLoading: submitMutation.isPending,
+    isLoadingFormTypes,
     isSuccess: submitMutation.isSuccess,
     isError: submitMutation.isError,
     error: submitMutation.error,
@@ -46,7 +47,7 @@ export function useContactForm() {
 }
 
 export function useAIAnalysisForm() {
-  const { data: formTypes } = useFormTypes();
+  const { data: formTypes, isLoading: isLoadingFormTypes } = useFormTypes();
   const submitMutation = useSubmitForm();
 
   const submit = async (formData: {
@@ -71,6 +72,7 @@ export function useAIAnalysisForm() {
   return {
     submit,
     isLoading: submitMutation.isPending,
+    isLoadingFormTypes,
     isSuccess: submitMutation.isSuccess,
     isError: submitMutation.isError,
     error: submitMutation.error,
