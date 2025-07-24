@@ -3,11 +3,55 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertFormSubmissionSchema, insertFormTypeSchema } from "@shared/schema";
 import { z } from "zod";
+import { requireAuth, verifyAdminPassword } from "./middleware/auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Health check endpoint
   app.get("/api/health", (req: Request, res: Response) => {
     res.json({ status: "ok" });
+  });
+
+  // Authentication endpoints
+  app.post("/api/auth/login", async (req: Request, res: Response) => {
+    try {
+      const { password } = req.body;
+      
+      if (!password) {
+        return res.status(400).json({ error: "Password is required" });
+      }
+      
+      const isValid = await verifyAdminPassword(password);
+      
+      if (isValid) {
+        req.session.isAuthenticated = true;
+        req.session.save((err) => {
+          if (err) {
+            console.error("Session save error:", err);
+            return res.status(500).json({ error: "Failed to save session" });
+          }
+          res.json({ success: true, message: "Login successful" });
+        });
+      } else {
+        res.status(401).json({ error: "Invalid password" });
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
+  app.post("/api/auth/logout", (req: Request, res: Response) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error("Logout error:", err);
+        return res.status(500).json({ error: "Failed to logout" });
+      }
+      res.json({ success: true, message: "Logout successful" });
+    });
+  });
+
+  app.get("/api/auth/check", (req: Request, res: Response) => {
+    res.json({ authenticated: !!req.session.isAuthenticated });
   });
 
   // Form Types endpoints
@@ -94,7 +138,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/forms/submissions", async (req: Request, res: Response) => {
+  app.get("/api/forms/submissions", requireAuth, async (req: Request, res: Response) => {
     try {
       const filters = {
         formTypeId: req.query.formTypeId ? parseInt(req.query.formTypeId as string) : undefined,
@@ -113,7 +157,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/forms/submissions/:id", async (req: Request, res: Response) => {
+  app.get("/api/forms/submissions/:id", requireAuth, async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
       const submission = await storage.getFormSubmission(id);
@@ -139,7 +183,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/forms/submissions/:id/status", async (req: Request, res: Response) => {
+  app.patch("/api/forms/submissions/:id/status", requireAuth, async (req: Request, res: Response) => {
     try {
       const id = parseInt(req.params.id);
       const { status } = req.body;

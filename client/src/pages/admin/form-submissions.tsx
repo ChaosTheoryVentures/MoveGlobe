@@ -1,10 +1,13 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/ui/navbar";
 import { Footer } from "../../components/ui/footer";
 import { StarsBackground } from "../../components/StarsBackground";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+import { LogOut } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface FormSubmission {
   id: number;
@@ -23,12 +26,19 @@ interface FormField {
 }
 
 export default function FormSubmissions() {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [selectedSubmission, setSelectedSubmission] = useState<number | null>(null);
   const [filters, setFilters] = useState({
     formTypeId: '',
     status: '',
     limit: 50,
   });
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/admin/login');
+  };
 
   // Fetch submissions
   const { data: submissionsData, isLoading } = useQuery({
@@ -39,7 +49,9 @@ export default function FormSubmissions() {
       if (filters.status) params.append('status', filters.status);
       params.append('limit', filters.limit.toString());
 
-      const response = await fetch(`/api/forms/submissions?${params}`);
+      const response = await fetch(`/api/forms/submissions?${params}`, {
+        credentials: 'include'
+      });
       if (!response.ok) throw new Error('Failed to fetch submissions');
       return response.json();
     },
@@ -49,7 +61,9 @@ export default function FormSubmissions() {
   const { data: formTypes } = useQuery({
     queryKey: ['formTypes'],
     queryFn: async () => {
-      const response = await fetch('/api/forms/types');
+      const response = await fetch('/api/forms/types', {
+        credentials: 'include'
+      });
       if (!response.ok) throw new Error('Failed to fetch form types');
       const data = await response.json();
       return data.formTypes;
@@ -61,7 +75,9 @@ export default function FormSubmissions() {
     queryKey: ['submission', selectedSubmission],
     queryFn: async () => {
       if (!selectedSubmission) return null;
-      const response = await fetch(`/api/forms/submissions/${selectedSubmission}`);
+      const response = await fetch(`/api/forms/submissions/${selectedSubmission}`, {
+        credentials: 'include'
+      });
       if (!response.ok) throw new Error('Failed to fetch submission details');
       return response.json();
     },
@@ -74,6 +90,7 @@ export default function FormSubmissions() {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
+        credentials: 'include'
       });
       if (!response.ok) throw new Error('Failed to update status');
       // Refetch submissions
@@ -99,7 +116,16 @@ export default function FormSubmissions() {
         <Navbar />
         <div className="flex-1 pt-24 pb-16 px-4">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl font-bold text-white mb-8">Form Submissions</h1>
+            <div className="flex justify-between items-center mb-8">
+              <h1 className="text-4xl font-bold text-white">Form Submissions</h1>
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white hover:bg-white/20 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            </div>
             
             {/* Filters */}
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 mb-8">
