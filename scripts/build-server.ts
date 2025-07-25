@@ -12,7 +12,7 @@ build({
   target: 'node18',
   outfile: join(__dirname, '../dist/server.js'),
   format: 'esm',
-  external: ['vite'],
+  external: ['vite', '@babel/preset-typescript'],
   sourcemap: true,
   minify: true,
 }).catch(() => process.exit(1));

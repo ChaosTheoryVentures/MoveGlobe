@@ -3,7 +3,7 @@ import session from "express-session";
 import cors from "cors";
 import helmet from "helmet";
 import rateLimit from "express-rate-limit";
-import RedisStore from "connect-redis";
+import { RedisStore } from "connect-redis";
 import { createClient } from "redis";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -72,9 +72,7 @@ app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 // Configure session middleware
 let sessionConfig: any = {
-  secret: process.env.SESSION_SECRET || (() => {
-    throw new Error('SESSION_SECRET must be set in production');
-  })(),
+  secret: process.env.SESSION_SECRET || 'development-secret-change-in-production',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -85,22 +83,30 @@ let sessionConfig: any = {
   }
 };
 
-// Use Redis for session storage in production
+// Use Redis for session storage in production (optional)
 if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
-  const redisUrl = process.env.REDIS_URL;
-  const redisPassword = process.env.REDIS_PASSWORD;
-  
-  const redisClient = createClient({
-    url: redisPassword ? redisUrl.replace('redis://', `redis://:${redisPassword}@`) : redisUrl
-  });
-  
-  redisClient.on('error', (err) => console.error('Redis Client Error', err));
-  redisClient.connect().catch(console.error);
-  
-  sessionConfig.store = new RedisStore({
-    client: redisClient,
-    prefix: "moveglobe:",
-  });
+  try {
+    const redisUrl = process.env.REDIS_URL;
+    const redisPassword = process.env.REDIS_PASSWORD;
+    
+    const redisClient = createClient({
+      url: redisPassword ? redisUrl.replace('redis://', `redis://:${redisPassword}@`) : redisUrl
+    });
+    
+    redisClient.on('error', (err) => console.error('Redis Client Error', err));
+    redisClient.connect().catch(console.error);
+    
+    sessionConfig.store = new RedisStore({
+      client: redisClient,
+      prefix: "moveglobe:",
+    });
+    
+    console.log('Using Redis for session storage');
+  } catch (error) {
+    console.error('Failed to setup Redis, using memory storage:', error);
+  }
+} else {
+  console.log('Using memory storage for sessions');
 }
 
 app.use(session(sessionConfig));

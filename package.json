@@ -80,6 +80,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.27.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/bcryptjs": "^2.4.6",
     "@types/connect-redis": "^0.0.23",

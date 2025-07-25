@@ -31,7 +31,7 @@ DEPLOY_ARCHIVE="moveglobe-deploy.tar.gz"
 # Copy necessary files
 cp -r client server shared public migrations scripts $TEMP_DIR/ 2>/dev/null || true
 cp package*.json tsconfig*.json vite.config.ts drizzle.config.ts Dockerfile Procfile $TEMP_DIR/
-cp .env.example docker-compose.simple.yml setup.sh $TEMP_DIR/
+cp .env.example docker-compose.simple.yml setup.sh setup-quick.sh $TEMP_DIR/ 2>/dev/null || true
 
 # Create archive
 cd $TEMP_DIR
@@ -74,8 +74,3 @@ echo "3. Admin password"
 # Cleanup
 rm -rf $TEMP_DIR
 rm $DEPLOY_ARCHIVE
-
-echo -e "${GREEN}✅ Deployment complete!${NC}"
-echo -e "${GREEN}🌐 Your app should be available at https://$(ssh ${VPS_USER}@${VPS_IP} 'cat /opt/moveglobe/.env | grep DOMAIN | cut -d= -f2')${NC}"
-echo -e "${YELLOW}📝 Admin panel: /admin${NC}"
-echo -e "${YELLOW}🔑 Use the admin password you set in .env${NC}"

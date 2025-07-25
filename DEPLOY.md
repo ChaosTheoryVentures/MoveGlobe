@@ -1,6 +1,6 @@
 # 🚀 Super Simple MoveGlobe Deployment
 
-Deploy your app in literally 2 minutes!
+Deploy your app in literally 5 minutes!
 
 ## Prerequisites
 - A VPS with Ubuntu (any provider)
