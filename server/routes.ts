@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertFormSubmissionSchema, insertFormTypeSchema } from "@shared/schema";
 import { z } from "zod";
 import { requireAuth, verifyAdminPassword } from "./middleware/auth";
+import { getSlackNotificationService } from "./services/slack-notifications";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Health check endpoint
@@ -123,6 +124,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Create the submission
       const submission = await storage.createFormSubmission(validatedData);
+      
+      // Send Slack notification asynchronously
+      // Don't await to avoid blocking the response
+      getSlackNotificationService().sendFormSubmissionNotification({
+        submission,
+        formType,
+        fields: validatedData.fields || []
+      }).catch(error => {
+        console.error("Error sending Slack notification:", error);
+      });
       
       res.status(201).json({ 
         success: true, 
