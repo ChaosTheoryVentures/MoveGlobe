@@ -45,7 +45,7 @@ echo -e "${YELLOW}📤 Uploading to VPS...${NC}"
 scp $DEPLOY_ARCHIVE ${VPS_USER}@${VPS_IP}:/tmp/
 
 # Upload and run setup script
-echo -e "${YELLOW}🔧 Running setup on VPS...${NC}"
+echo -e "${YELLOW}🔧 Setting up on VPS...${NC}"
 ssh ${VPS_USER}@${VPS_IP} << 'ENDSSH'
 set -e
 
@@ -55,10 +55,21 @@ cd /opt/moveglobe
 tar -xzf /tmp/moveglobe-deploy.tar.gz
 rm /tmp/moveglobe-deploy.tar.gz
 
-# Make setup script executable and run it
+# Make setup script executable
 chmod +x setup.sh
-./setup.sh
 ENDSSH
+
+echo -e "${GREEN}✓ Files uploaded successfully${NC}"
+echo ""
+echo -e "${YELLOW}Now SSH into your server to complete setup:${NC}"
+echo -e "${GREEN}ssh ${VPS_USER}@${VPS_IP}${NC}"
+echo -e "${GREEN}cd /opt/moveglobe${NC}"
+echo -e "${GREEN}./setup.sh${NC}"
+echo ""
+echo -e "${YELLOW}The setup will ask for:${NC}"
+echo "1. Domain (e.g., workwithmove.com)"
+echo "2. Email (for SSL certificates)"
+echo "3. Admin password"
 
 # Cleanup
 rm -rf $TEMP_DIR
