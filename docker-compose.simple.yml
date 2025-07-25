@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/moveglobe
+      - SESSION_SECRET=${SESSION_SECRET}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+    depends_on:
+      - postgres
+    networks:
+      - internal
+
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=moveglobe
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  caddy:
+    image: caddy:alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - DOMAIN=${DOMAIN}
+      - EMAIL=${EMAIL}
+    command: |
+      caddy reverse-proxy --from https://${DOMAIN} --to backend:5000
+    depends_on:
+      - backend
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal:
