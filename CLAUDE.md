@@ -26,15 +26,18 @@ npm run check
 
 # Push database schema changes
 npm run db:push
+
+# Generate password hash (for admin user setup)
+npm run hash-password
 ```
 
 ## Environment Setup
 
 Create a `.env` file based on `.env.example`:
-- `DATABASE_URL`: PostgreSQL connection string from Supabase (required)
-- `ADMIN_PASSWORD`: Password for admin panel access
+- `DATABASE_URL`: PostgreSQL connection string (required - without this, the app will use in-memory storage)
+- `ADMIN_PASSWORD`: Password for admin panel access at `/admin`
 - `SESSION_SECRET`: Secure random string for session encryption
-- `PORT`: Server port (defaults to 5000)
+- `PORT`: Server port (defaults to 5000 - this is hardcoded in development)
 - `SLACK_WEBHOOK_URL`: Optional Slack webhook for form submission notifications
 
 ## Architecture
@@ -42,12 +45,13 @@ Create a `.env` file based on `.env.example`:
 ### Tech Stack
 - **Frontend**: React 18.3 with TypeScript, Three.js/React Three Fiber for 3D graphics, Vite bundler
 - **Backend**: Express.js server with TypeScript running on port 5000
-- **Database**: PostgreSQL with Drizzle ORM (Neon serverless)
+- **Database**: PostgreSQL with Drizzle ORM (supports Neon/Supabase)
 - **UI**: shadcn/ui components (Radix UI primitives), TailwindCSS
 - **State Management**: Zustand (audio, game state), React Query (TanStack Query)
-- **Routing**: React Router
+- **Routing**: React Router v6
 - **Animations**: Framer Motion
 - **Build Tools**: esbuild for server, Vite for client
+- **Security**: Helmet, CORS, rate limiting, session-based auth
 
 ### High-Level Architecture
 
@@ -110,6 +114,12 @@ The application follows a client-server architecture with a clear separation of 
 - Includes: client/src, shared, server directories
 
 ## Important Considerations
+
+### Development Notes
+- Port 5000 is hardcoded for development server
+- The app runs both API and client on the same port
+- In development, Vite provides HMR for frontend
+- Use `npm run check` to ensure TypeScript compliance before committing
 
 ### 3D Graphics
 - The app heavily uses Three.js for 3D rendering
@@ -197,3 +207,19 @@ The application follows a client-server architecture with a clear separation of 
     ├── Dockerfile          # Docker container definition
     └── app.json            # Dokku deployment configuration
 ```
+
+## API Endpoints
+
+### Form Management
+- `GET /api/forms/types` - Get all active form types
+- `POST /api/forms/submit` - Submit a form
+- `GET /api/forms/submissions` - Get form submissions (admin only)
+- `GET /api/forms/submissions/:id` - Get specific submission
+
+### Authentication
+- `POST /api/auth/login` - Admin login
+- `POST /api/auth/logout` - Logout
+- `GET /api/auth/check` - Check authentication status
+
+### Health Check
+- `GET /api/health` - Application health status
