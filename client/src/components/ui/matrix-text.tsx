@@ -59,7 +59,7 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           {description}
         </p>
         
-        <Link to="/vsl" className="pointer-events-auto relative inline-block px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
+        <Link to="/ai-analyse" className="pointer-events-auto relative inline-block px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
           {/* Glass background */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-white/10 rounded-full"></div>
           
