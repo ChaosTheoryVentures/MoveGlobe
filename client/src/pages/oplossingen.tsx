@@ -1,25 +1,82 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { Navbar } from "../components/ui/navbar";
 import { Footer } from "../components/ui/footer";
 import { StarsBackground } from "../components/StarsBackground";
 import { useLanguage } from "../contexts/LanguageContext";
+import { GlowButton } from "../components/ui/glow-button";
 import { 
-  MessageCircle, 
-  ArrowRight,
-  BarChart3,
+  Mail, 
+  Calendar,
+  FileText,
+  TrendingUp,
+  Users,
+  Bot,
+  Brain,
+  Sparkles,
   Zap,
   Shield,
-  Clock,
-  CheckCircle,
-  MessageSquare,
-  Workflow,
-  Database,
-  FileText
+  Gauge,
+  Trophy
 } from 'lucide-react';
 
 export default function Oplossingen() {
   const { t } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<'individuals' | 'teams' | 'enterprises'>('teams');
+
+  const agents = [
+    {
+      id: 'inbox',
+      icon: Mail,
+      title: 'Inbox Assistant',
+      subtitle: 'Manages emails, drafts replies, flags urgency',
+      description: 'Delegating your inbox has never been this safe and effective.',
+      category: ['individuals', 'teams']
+    },
+    {
+      id: 'meeting',
+      icon: Calendar,
+      title: 'Meeting Summarizer',
+      subtitle: 'Records, transcribes, and recaps your calls',
+      description: 'Never take notes again—get action items in seconds.',
+      category: ['teams', 'enterprises']
+    },
+    {
+      id: 'report',
+      icon: FileText,
+      title: 'Report Generator',
+      subtitle: 'Creates detailed reports from raw data',
+      description: 'Transform data into insights with professional reports.',
+      category: ['teams', 'enterprises']
+    },
+    {
+      id: 'analytics',
+      icon: TrendingUp,
+      title: 'Analytics Agent',
+      subtitle: 'Tracks KPIs and generates insights',
+      description: 'Real-time business intelligence at your fingertips.',
+      category: ['enterprises']
+    },
+    {
+      id: 'customer',
+      icon: Users,
+      title: 'Customer Success Bot',
+      subtitle: 'Handles support tickets and FAQs',
+      description: '24/7 customer support that learns and improves.',
+      category: ['teams', 'enterprises']
+    },
+    {
+      id: 'workflow',
+      icon: Bot,
+      title: 'Workflow Automator',
+      subtitle: 'Streamlines repetitive processes',
+      description: 'Build custom workflows without coding.',
+      category: ['individuals', 'teams', 'enterprises']
+    }
+  ];
+
+  const filteredAgents = agents.filter(agent => agent.category.includes(activeCategory));
+
   return (
     <div className="min-h-screen relative flex flex-col" style={{ 
       background: 'radial-gradient(ellipse at center, #1a2855 0%, #0f1d3a 40%, #081426 100%)'
@@ -35,250 +92,108 @@ export default function Oplossingen() {
       <div className="relative z-10 flex-1 flex flex-col overflow-y-auto">
         <Navbar />
         <div className="flex-1 pt-24 pb-24 px-4">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             
             {/* Hero Section */}
-            <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                {t('oplossingen.title')}
+            <div className="text-center mb-12">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+                Hire AI Agents to Supercharge Your Workflow
               </h1>
-              <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto mb-8">
-                {t('oplossingen.subtitle')}
+              <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto">
+                Each agent is specialized, efficient, and ready to execute tasks like a team member—only faster.
               </p>
-              <div className="flex items-center justify-center gap-6 text-white/90 font-medium">
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-green-400" />
-                  <span>24hr setup</span>
-                </div>
-                <span className="text-white/30">•</span>
-                <div className="flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-green-400" />
-                  <span>GDPR compliant</span>
-                </div>
-                <span className="text-white/30">•</span>
-                <div className="flex items-center gap-2">
-                  <Zap className="w-5 h-5 text-green-400" />
-                  <span>60% cost reduction</span>
-                </div>
-              </div>
             </div>
 
-            {/* Core Products Section */}
-            <div className="mb-16">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  {t('oplossingen.products.title')}
-                </h2>
-              </div>
-              
-              <div className="grid lg:grid-cols-3 gap-8 mb-12">
-                {/* Customer Service Agent */}
-                <div className="bg-gradient-to-br from-[#4746a4]/20 to-blue-600/20 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                  <div className="text-center mb-6">
-                    <MessageSquare className="w-16 h-16 text-[#4746a4] mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      {t('oplossingen.agent1.title')}
-                    </h3>
-                    <p className="text-white/80">
-                      {t('oplossingen.agent1.description')}
-                    </p>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4">
-                    <div className="whitespace-pre-line text-white/70 text-sm">
-                      {t('oplossingen.agent1.features')}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Operations Agent */}
-                <div className="bg-gradient-to-br from-[#4746a4]/20 to-blue-600/20 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                  <div className="text-center mb-6">
-                    <Workflow className="w-16 h-16 text-[#4746a4] mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      {t('oplossingen.agent2.title')}
-                    </h3>
-                    <p className="text-white/80">
-                      {t('oplossingen.agent2.description')}
-                    </p>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4">
-                    <div className="whitespace-pre-line text-white/70 text-sm">
-                      {t('oplossingen.agent2.features')}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Centralized Data Hub */}
-                <div className="bg-gradient-to-br from-[#4746a4]/20 to-blue-600/20 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                  <div className="text-center mb-6">
-                    <Database className="w-16 h-16 text-[#4746a4] mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold text-white mb-4">
-                      {t('oplossingen.datahub.title')}
-                    </h3>
-                    <p className="text-white/80">
-                      {t('oplossingen.datahub.description')}
-                    </p>
-                  </div>
-                  <div className="bg-white/5 rounded-xl p-4">
-                    <div className="whitespace-pre-line text-white/70 text-sm">
-                      {t('oplossingen.datahub.features')}
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {/* Categories Section */}
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-12">
+              <button
+                onClick={() => setActiveCategory('individuals')}
+                className={`px-6 py-2 font-semibold text-sm uppercase tracking-wider transition-all ${
+                  activeCategory === 'individuals' 
+                    ? 'text-white border-b-2 border-[#4746a4]' 
+                    : 'text-white/60 hover:text-white/80'
+                }`}
+              >
+                For Individuals
+              </button>
+              <button
+                onClick={() => setActiveCategory('teams')}
+                className={`px-6 py-2 font-semibold text-sm uppercase tracking-wider transition-all ${
+                  activeCategory === 'teams' 
+                    ? 'text-white border-b-2 border-[#4746a4]' 
+                    : 'text-white/60 hover:text-white/80'
+                }`}
+              >
+                For Teams
+              </button>
+              <button
+                onClick={() => setActiveCategory('enterprises')}
+                className={`px-6 py-2 font-semibold text-sm uppercase tracking-wider transition-all ${
+                  activeCategory === 'enterprises' 
+                    ? 'text-white border-b-2 border-[#4746a4]' 
+                    : 'text-white/60 hover:text-white/80'
+                }`}
+              >
+                For Enterprises
+              </button>
             </div>
 
-            {/* Custom Solutions Section */}
-            <div className="mb-16">
-              <div className="bg-gradient-to-r from-[#4746a4]/20 to-blue-600/20 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20">
-                <div className="text-center mb-8">
-                  <Zap className="w-16 h-16 text-[#4746a4] mx-auto mb-4" />
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    {t('oplossingen.custom.title')}
-                  </h2>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white/90 mb-4">
-                    {t('oplossingen.custom.subtitle')}
-                  </h3>
-                  <p className="text-xl text-white/80 max-w-3xl mx-auto mb-6">
-                    {t('oplossingen.custom.description')}
-                  </p>
-                </div>
-
-                <div className="bg-white/5 rounded-xl p-6 mb-6">
-                  <div className="whitespace-pre-line text-white/80">
-                    {t('oplossingen.custom.capabilities')}
+            {/* Agent Profiles Section */}
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              {filteredAgents.map((agent) => {
+                const Icon = agent.icon;
+                return (
+                  <div 
+                    key={agent.id}
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all"
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#4746a4]/20 to-blue-600/20 flex items-center justify-center mb-4">
+                        <Icon className="w-12 h-12 text-[#4746a4]" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {agent.title}
+                      </h3>
+                      <h4 className="text-sm font-medium text-white/60 mb-3">
+                        {agent.subtitle}
+                      </h4>
+                      <p className="text-white/70 text-sm">
+                        {agent.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
 
-            {/* Consulting Service Section */}
-            <div className="mb-16">
-              <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-green-400/20">
-                <div className="text-center mb-8">
-                  <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                  <div className="text-4xl md:text-5xl font-bold text-green-400 mb-2">
-                    {t('oplossingen.consulting.price')}
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                    {t('oplossingen.consulting.title')}
-                  </h2>
-                  <h3 className="text-xl md:text-2xl font-semibold text-white/90 mb-4">
-                    {t('oplossingen.consulting.subtitle')}
-                  </h3>
-                  <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-                    {t('oplossingen.consulting.description')}
-                  </p>
-                </div>
-
-                <div className="max-w-4xl mx-auto">
-                  <h4 className="text-xl font-semibold text-white mb-6 text-center">
-                    {t('oplossingen.consulting.includes')}
-                  </h4>
-                  
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-white/5 rounded-xl p-6">
-                      <FileText className="w-10 h-10 text-green-400 mb-3" />
-                      <h5 className="text-lg font-semibold text-white mb-2">
-                        {t('oplossingen.consulting.discovery')}
-                      </h5>
-                      <p className="text-white/70 text-sm">
-                        {t('oplossingen.consulting.discovery.desc')}
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white/5 rounded-xl p-6">
-                      <Zap className="w-10 h-10 text-green-400 mb-3" />
-                      <h5 className="text-lg font-semibold text-white mb-2">
-                        {t('oplossingen.consulting.advice')}
-                      </h5>
-                      <p className="text-white/70 text-sm">
-                        {t('oplossingen.consulting.advice.desc')}
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white/5 rounded-xl p-6">
-                      <Workflow className="w-10 h-10 text-green-400 mb-3" />
-                      <h5 className="text-lg font-semibold text-white mb-2">
-                        {t('oplossingen.consulting.implementation')}
-                      </h5>
-                      <p className="text-white/70 text-sm">
-                        {t('oplossingen.consulting.implementation.desc')}
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white/5 rounded-xl p-6">
-                      <BarChart3 className="w-10 h-10 text-green-400 mb-3" />
-                      <h5 className="text-lg font-semibold text-white mb-2">
-                        {t('oplossingen.consulting.roi')}
-                      </h5>
-                      <p className="text-white/70 text-sm">
-                        {t('oplossingen.consulting.roi.desc')}
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white/5 rounded-xl p-6">
-                      <Shield className="w-10 h-10 text-green-400 mb-3" />
-                      <h5 className="text-lg font-semibold text-white mb-2">
-                        {t('oplossingen.consulting.readiness')}
-                      </h5>
-                      <p className="text-white/70 text-sm">
-                        {t('oplossingen.consulting.readiness.desc')}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center">
-                    <a 
-                      href="/ai-analyse" 
-                      className="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg"
-                    >
-                      {t('oplossingen.consulting.cta')}
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </a>
-                  </div>
-                </div>
+            {/* Benefits Section */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center">
+                <Zap className="w-8 h-8 text-[#4746a4] mx-auto mb-2" />
+                <div className="font-semibold text-white">Fast Setup</div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center">
+                <Shield className="w-8 h-8 text-[#4746a4] mx-auto mb-2" />
+                <div className="font-semibold text-white">Data Safe</div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center">
+                <Brain className="w-8 h-8 text-[#4746a4] mx-auto mb-2" />
+                <div className="font-semibold text-white">Smart Logic</div>
+              </div>
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10 text-center">
+                <Trophy className="w-8 h-8 text-[#4746a4] mx-auto mb-2" />
+                <div className="font-semibold text-white">Pro Results</div>
               </div>
             </div>
 
             {/* CTA Section */}
-            <div className="bg-gradient-to-r from-[#4746a4]/20 to-blue-600/20 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-white/20 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
-                Start with our €1,200 AI Readiness Assessment or explore our core products.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="/consult" 
-                  className="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg"
-                >
-                  Get AI Assessment
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </a>
-                <a 
-                  href="/contact" 
-                  className="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg border border-white/20"
-                >
-                  Contact Us
-                </a>
-              </div>
-              
-              <div className="mt-8 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">€1,200</div>
-                  <div className="text-white/70 text-sm">One-day assessment</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">60%</div>
-                  <div className="text-white/70 text-sm">Average cost reduction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-green-400">24hrs</div>
-                  <div className="text-white/70 text-sm">Implementation time</div>
-                </div>
-              </div>
+            <div className="text-center py-12">
+              <GlowButton 
+                to="/ai-analyse"
+                showArrow={true}
+              >
+                Try Your First Agent
+              </GlowButton>
             </div>
 
           </div>
