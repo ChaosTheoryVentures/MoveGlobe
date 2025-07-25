@@ -44,6 +44,16 @@ export function Navbar() {
             >
               {t('nav.contact')}
             </Link>
+
+            {/* Demo Link */}
+            <a 
+              href="https://demo.workwithmove.com" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-[#4746a4] transition-colors"
+            >
+              Demo
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,6 +105,17 @@ export function Navbar() {
               >
                 {t('nav.contact')}
               </Link>
+
+              {/* Demo Mobile Link */}
+              <a 
+                href="https://demo.workwithmove.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-white hover:text-[#4746a4] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Demo
+              </a>
             </div>
           </div>
         )}

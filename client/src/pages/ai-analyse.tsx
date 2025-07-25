@@ -6,6 +6,7 @@ import { StarsBackground } from "../components/StarsBackground";
 import { CheckCircle, Clock, Zap, Shield } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
 import { useAIAnalysisForm } from "../hooks/use-form-submission";
+import { GlowButton } from "../components/ui/glow-button";
 
 export default function Consult() {
   const { t } = useLanguage();
@@ -311,13 +312,13 @@ export default function Consult() {
                   )}
 
                   <div className="pt-4">
-                    <button 
-                      type="submit"
-                      disabled={isLoading}
-                      className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-4 px-6 rounded-lg transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    <GlowButton 
+                      onClick={handleSubmit}
+                      className="w-full"
+                      showArrow={true}
                     >
                       {isLoading ? 'Verzenden...' : 'Ontvang Gratis AI Assessment'}
-                    </button>
+                    </GlowButton>
                     <p className="text-white/60 text-sm mt-4 text-center">
                       Binnen 24 uur ontvangt u uw persoonlijke AI-readiness rapport
                     </p>

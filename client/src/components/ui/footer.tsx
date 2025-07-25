@@ -1,5 +1,6 @@
 import { Linkedin, Instagram } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { GlowButton } from './glow-button';
 
 export function Footer() {
   const { language, toggleLanguage, t } = useLanguage();
@@ -35,6 +36,15 @@ export function Footer() {
             >
               {t('footer.terms')}
             </a>
+            <span className="text-white/30">•</span>
+            <a 
+              href="https://demo.workwithmove.com" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/70 transition-colors whitespace-nowrap"
+            >
+              Demo
+            </a>
           </div>
 
           <div className="flex items-center space-x-3">
@@ -69,12 +79,12 @@ export function Footer() {
               </span>
             </button>
             
-            <a 
-              href="/contact"
-              className="bg-[#4746a4]/80 hover:bg-[#4746a4] text-white px-3 py-1 rounded text-xs font-medium transition-colors whitespace-nowrap"
+            <GlowButton 
+              to="/contact"
+              variant="small"
             >
               {t('footer.contact')}
-            </a>
+            </GlowButton>
           </div>
         </div>
 
@@ -108,6 +118,15 @@ export function Footer() {
               className="hover:text-white/70 transition-colors"
             >
               {t('footer.terms')}
+            </a>
+            <span className="text-white/30">•</span>
+            <a 
+              href="https://demo.workwithmove.com" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white/70 transition-colors"
+            >
+              Demo
             </a>
           </div>
 
@@ -144,12 +163,12 @@ export function Footer() {
               </span>
             </button>
             
-            <a 
-              href="/contact"
-              className="bg-[#4746a4]/80 hover:bg-[#4746a4] text-white px-3 py-1 rounded text-xs font-medium transition-colors"
+            <GlowButton 
+              to="/contact"
+              variant="small"
             >
               {t('footer.contact')}
-            </a>
+            </GlowButton>
           </div>
         </div>
       </div>

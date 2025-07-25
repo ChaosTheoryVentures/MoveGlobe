@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { StarsBackground } from "../../components/StarsBackground";
 import { Lock } from 'lucide-react';
 import { useAuth } from "../../contexts/AuthContext";
+import { GlowButton } from "../../components/ui/glow-button";
 
 export default function AdminLogin() {
   const navigate = useNavigate();
@@ -95,13 +96,13 @@ export default function AdminLogin() {
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-[#4746a4] text-white rounded-lg px-4 py-3 font-medium hover:bg-[#5857b5] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            <GlowButton
+              onClick={handleSubmit}
+              className="w-full"
+              showArrow={true}
             >
               {isLoading ? 'Logging in...' : 'Login'}
-            </button>
+            </GlowButton>
           </form>
 
           <div className="mt-6 text-center">

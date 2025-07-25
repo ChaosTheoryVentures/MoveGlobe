@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { GlowButton } from './glow-button';
 
 interface MatrixTextProps {
   texts: string[];
@@ -59,30 +59,13 @@ export function MatrixText({ texts, baseText, description, ctaText }: MatrixText
           {description}
         </p>
         
-        <Link to="/ai-analyse" className="pointer-events-auto relative inline-block px-8 py-4 overflow-hidden rounded-full text-white text-sm sm:text-base font-medium tracking-wider uppercase transition-all duration-300 group">
-          {/* Glass background */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 backdrop-blur-md border border-white/10 rounded-full"></div>
-          
-          {/* Hover glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/20 to-[#4746a4]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-          
-          {/* Animated shine effect */}
-          <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 group-hover:left-full transition-all duration-1000 ease-out"></div>
-          
-          {/* Hover scale effect on border */}
-          <div className="absolute inset-0 border border-white/0 group-hover:border-white/30 rounded-full transform group-hover:scale-105 transition-all duration-300"></div>
-          
-          {/* Button text */}
-          <span className="relative z-10 flex items-center gap-2">
-            {ctaText}
-            <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </span>
-          
-          {/* Bottom glow on hover */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#4746a4] to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-        </Link>
+        <GlowButton 
+          to="/ai-analyse"
+          className="pointer-events-auto"
+          showArrow={true}
+        >
+          {ctaText}
+        </GlowButton>
       </div>
     </div>
   );

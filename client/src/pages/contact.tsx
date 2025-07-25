@@ -6,6 +6,7 @@ import { StarsBackground } from "../components/StarsBackground";
 import { Linkedin, Instagram } from 'lucide-react';
 import { useLanguage } from "../contexts/LanguageContext";
 import { useContactForm } from "../hooks/use-form-submission";
+import { GlowButton } from "../components/ui/glow-button";
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -228,13 +229,12 @@ export default function Contact() {
                     </div>
                   )}
                   
-                  <button 
-                    type="submit"
-                    disabled={isLoading}
-                    className="w-full bg-[#4746a4] hover:bg-[#4746a4]/80 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  <GlowButton 
+                    onClick={handleSubmit}
+                    className="w-full"
                   >
                     {isLoading ? 'Sending...' : t('contact.sendButton')}
-                  </button>
+                  </GlowButton>
                 </form>
               </div>
             </div>
