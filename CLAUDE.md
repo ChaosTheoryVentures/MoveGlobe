@@ -35,6 +35,7 @@ Create a `.env` file based on `.env.example`:
 - `ADMIN_PASSWORD`: Password for admin panel access
 - `SESSION_SECRET`: Secure random string for session encryption
 - `PORT`: Server port (defaults to 5000)
+- `SLACK_WEBHOOK_URL`: Optional Slack webhook for form submission notifications
 
 ## Architecture
 
@@ -87,9 +88,15 @@ The application follows a client-server architecture with a clear separation of 
    - Initialized based on DATABASE_URL availability
 
 5. **Audio System**
-   - Zustand store in `lib/audio-store.ts`
-   - Background music and sound effects
-   - Default muted, user-controlled
+   - Zustand store in `lib/stores/useAudio.tsx`
+   - Background music and sound effects (hit.mp3, success.mp3, background.mp3)
+   - Default muted, user-controlled toggle
+   - Cloned audio nodes for overlapping sound effects
+
+6. **Slack Integration**
+   - Form submission notifications via Slack webhook
+   - Service in `server/services/slack-notifications.ts`
+   - Configurable via SLACK_WEBHOOK_URL environment variable
 
 ### Path Aliases
 - `@/` → `client/src/`
@@ -138,9 +145,12 @@ The application follows a client-server architecture with a clear separation of 
 ### Current State
 - Frontend is well-developed with comprehensive UI components
 - Backend has implemented form submission system with database persistence
-- Admin panel for managing form submissions
-- Authentication schema exists but not yet implemented
-- Server runs on port 5000 with request logging
+- Admin panel for managing form submissions at `/admin/form-submissions`
+- Authentication system partially implemented with session-based auth
+- Server runs on port 5000 with request logging and health check endpoint
+- Multiple page routes: home, vsl, application, hto, lto, ai-analyse, contact, cases, oplossingen
+- Privacy policy and terms pages (privacy, voorwaarden)
+- 3D globe with interactive stars background and falling stars animation
 
 ## Deployment
 - Configured for Dokku deployment on Hetzner Cloud (116.203.87.132)
@@ -148,4 +158,42 @@ The application follows a client-server architecture with a clear separation of 
 - Health check endpoint at `/api/health`
 - Non-root user execution (nodejs:1001)
 - Uses dumb-init for proper signal handling
-- Environment variables needed: DATABASE_URL, PORT (optional)
+- Environment variables needed: DATABASE_URL, PORT (optional), SESSION_SECRET, ADMIN_PASSWORD
+- Dokku configuration in app.json with Node.js buildpack
+- Dockerfile optimized with separate builder and production stages
+
+## Project Structure
+
+```
+/workspaces/MoveGlobe/
+├── client/                  # Frontend React application
+│   ├── src/
+│   │   ├── components/     # React components including 3D globe
+│   │   ├── contexts/       # React contexts (Language, Auth)
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities and stores
+│   │   ├── pages/          # Route components
+│   │   └── App.tsx         # Main app component
+│   └── public/             # Static assets
+│       ├── geometries/     # 3D models (GLTF)
+│       ├── sounds/         # Audio files
+│       └── textures/       # Image textures
+├── server/                 # Backend Express application
+│   ├── middleware/         # Express middleware
+│   ├── services/           # Business logic services
+│   ├── routes.ts           # API route definitions
+│   ├── storage.ts          # Storage abstraction layer
+│   └── index.ts            # Server entry point
+├── shared/                 # Shared types and schemas
+│   └── schema.ts           # Database schema definitions
+├── scripts/                # Build and utility scripts
+├── migrations/             # Database migrations
+└── Configuration files:
+    ├── package.json        # NPM dependencies and scripts
+    ├── tsconfig.json       # TypeScript configuration
+    ├── vite.config.ts      # Vite bundler configuration
+    ├── drizzle.config.ts   # Database ORM configuration
+    ├── tailwind.config.ts  # Tailwind CSS configuration
+    ├── Dockerfile          # Docker container definition
+    └── app.json            # Dokku deployment configuration
+```

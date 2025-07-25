@@ -1,0 +1,29 @@
+# Development overrides for docker-compose.yml
+# This file is automatically loaded by docker-compose in development
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder  # Stop at builder stage for development
+    image: moveglobe:dev
+    environment:
+      - NODE_ENV=development
+    volumes:
+      # Mount source code for hot reloading
+      - ./client:/app/client:delegated
+      - ./server:/app/server:delegated
+      - ./shared:/app/shared:delegated
+      - ./public:/app/public:delegated
+      # Prevent node_modules from being overwritten
+      - /app/node_modules
+    command: npm run dev
+    stdin_open: true
+    tty: true
+
+  # Always include adminer in development
+  adminer:
+    profiles: []  # Remove profile to always start in development

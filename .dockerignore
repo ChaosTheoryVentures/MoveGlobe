@@ -1,26 +1,73 @@
-node_modules
-npm-debug.log
-.git
-.gitignore
-README.md
-.env
-.nyc_output
-coverage
-.cache
-.vscode
-.idea
-*.log
-*.md
-.DS_Store
-Thumbs.db
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Development files
+.git/
+.gitignore
+.github/
+.vscode/
+.idea/
+.cursor/
+*.swp
+*.swo
+*~
 dev-server.sh
 nginx.conf
 test-scrolling.html
 attached_assets/
 
-# Build artifacts (will be built in container)
+# Build outputs (will be created in container)
 dist/
+build/
+*.tsbuildinfo
 *.tgz
 *.tar.gz
+
+# Environment files (should be injected at runtime)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.example
+
+# Documentation
+*.md
+LICENSE
+docs/
+CLAUDE.md
+
+# Testing
+coverage/
+.nyc_output/
+jest.config.*
+vitest.config.*
+cypress/
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Mac files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
