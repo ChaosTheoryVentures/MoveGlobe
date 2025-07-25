@@ -1,5 +1,10 @@
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
+import cors from "cors";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+import RedisStore from "connect-redis";
+import { createClient } from "redis";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { initializeStorage } from "./storage";
@@ -9,21 +14,96 @@ import { config } from "dotenv";
 config();
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"], // unsafe-eval needed for Three.js
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "blob:", "https:"],
+      connectSrc: ["'self'"],
+      mediaSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      frameSrc: ["'none'"],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true,
+  },
+}));
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:5000'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply rate limiting to API routes
+app.use('/api/', limiter);
+
+// Stricter rate limiting for auth endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each IP to 5 requests per windowMs
+  message: 'Too many authentication attempts, please try again later.',
+  skipSuccessfulRequests: true,
+});
+
+app.use('/api/auth/', authLimiter);
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 // Configure session middleware
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'fallback-secret-change-in-production',
+let sessionConfig: any = {
+  secret: process.env.SESSION_SECRET || (() => {
+    throw new Error('SESSION_SECRET must be set in production');
+  })(),
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false, // Set to false for development, should be true in production with HTTPS
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    sameSite: 'lax' // Help with CSRF protection
+    sameSite: 'lax' // CSRF protection
   }
-}));
+};
+
+// Use Redis for session storage in production
+if (process.env.REDIS_URL && process.env.NODE_ENV === 'production') {
+  const redisUrl = process.env.REDIS_URL;
+  const redisPassword = process.env.REDIS_PASSWORD;
+  
+  const redisClient = createClient({
+    url: redisPassword ? redisUrl.replace('redis://', `redis://:${redisPassword}@`) : redisUrl
+  });
+  
+  redisClient.on('error', (err) => console.error('Redis Client Error', err));
+  redisClient.connect().catch(console.error);
+  
+  sessionConfig.store = new RedisStore({
+    client: redisClient,
+    prefix: "moveglobe:",
+  });
+}
+
+app.use(session(sessionConfig));
 
 app.use((req, res, next) => {
   const start = Date.now();

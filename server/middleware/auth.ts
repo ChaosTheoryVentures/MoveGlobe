@@ -19,16 +19,15 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Helper function to verify admin password
 export async function verifyAdminPassword(password: string): Promise<boolean> {
-  const adminPassword = process.env.ADMIN_PASSWORD;
+  const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
   
-  if (!adminPassword) {
-    console.error('ADMIN_PASSWORD not set in environment variables');
+  if (!adminPasswordHash) {
+    console.error('ADMIN_PASSWORD_HASH not set in environment variables');
     return false;
   }
   
-  // For simplicity, we're doing direct comparison
-  // In a real app with multiple users, you'd hash and store passwords
-  return password === adminPassword;
+  // Compare the provided password with the stored hash
+  return bcrypt.compare(password, adminPasswordHash);
 }
 
 // Hash password for future use if needed
